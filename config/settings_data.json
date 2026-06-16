@@ -118,7 +118,7 @@
           "seal_ssl": true,
           "seal_norton": false,
           "seals_text": "Secure checkout — your data is protected.",
-          "show_payment": true,
+          "show_payment": false,
           "payment_heading": "We accept"
         }
       }
