@@ -1,4 +1,4 @@
-/* LojaDrop Theme — base.js */
+/* SUPERNOVA Theme — base.js */
 
 'use strict';
 
@@ -102,7 +102,7 @@ class CartDrawer {
     if (!itemsContainer) return;
 
     if (cart.item_count === 0) {
-      itemsContainer.innerHTML = '<p style="padding:2rem 0;text-align:center;color:rgba(var(--color-base-text),0.6)">Tu carrito está vacío.</p>';
+      itemsContainer.innerHTML = '<p style="padding:2rem 0;text-align:center;color:rgba(var(--color-base-text),0.6)">Your cart is empty.</p>';
     } else {
       itemsContainer.innerHTML = cart.items.map(item => `
         <div class="cart-item">
@@ -119,7 +119,7 @@ class CartDrawer {
                 <input class="quantity-input" type="number" value="${item.quantity}" min="1" data-key="${item.key}" style="width:4rem">
                 <button class="quantity-btn" data-action="increase" data-key="${item.key}">+</button>
               </div>
-              <button class="cart-item__remove" data-key="${item.key}">Eliminar</button>
+              <button class="cart-item__remove" data-key="${item.key}">Remove</button>
             </div>
           </div>
         </div>
@@ -190,7 +190,7 @@ async function addToCart(variantId, quantity = 1) {
       body: JSON.stringify({ id: variantId, quantity })
     });
 
-    if (!res.ok) throw new Error('Error al añadir al carrito');
+    if (!res.ok) throw new Error('Could not add to cart');
 
     const item = await res.json();
 
@@ -205,10 +205,10 @@ async function addToCart(variantId, quantity = 1) {
       window.cartDrawer?.open();
     }
 
-    showToast('¡Artículo añadido al carrito!');
+    showToast('Added to cart!');
     return item;
   } catch (e) {
-    showToast('Error al añadir al carrito.', 'error');
+    showToast('Could not add to cart.', 'error');
     throw e;
   }
 }
@@ -254,12 +254,12 @@ class VariantPicker {
         if (!this.currentVariant || !this.currentVariant.available) return;
         const qty = parseInt(this.form.querySelector('.quantity-input')?.value || 1);
         addBtn.disabled = true;
-        addBtn.textContent = 'Añadiendo...';
+        addBtn.textContent = 'Adding...';
         try {
           await addToCart(this.currentVariant.id, qty);
         } finally {
           addBtn.disabled = false;
-          addBtn.textContent = 'Añadir al carrito';
+          addBtn.textContent = 'Add to cart';
         }
       });
     }
@@ -301,11 +301,11 @@ class VariantPicker {
 
     if (addBtn) {
       addBtn.disabled = !this.currentVariant.available;
-      addBtn.textContent = this.currentVariant.available ? 'Añadir al carrito' : 'Agotado';
+      addBtn.textContent = this.currentVariant.available ? 'Add to cart' : 'Sold out';
     }
 
     if (stockEl) {
-      stockEl.textContent = this.currentVariant.available ? 'En stock' : 'Agotado';
+      stockEl.textContent = this.currentVariant.available ? 'In stock' : 'Sold out';
     }
 
     // Update URL
@@ -373,11 +373,40 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = '...';
       try {
         await addToCart(variantId);
-        btn.textContent = '¡Añadido!';
-        setTimeout(() => { btn.textContent = 'Añadir'; }, 2000);
+        btn.textContent = 'Added!';
+        setTimeout(() => { btn.textContent = 'Add to cart'; }, 2000);
       } catch {
         btn.textContent = 'Error';
       }
     });
   });
 });
+
+// ─── Scroll reveal ─────────────────────────────────────────────────
+// Elements rise/fade in as they enter the viewport. Works on touch too,
+// where hover doesn't exist. JS adds the hidden state, so no-JS users
+// still see everything. Disabled when the user prefers reduced motion.
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const targets = document.querySelectorAll('.product-card, .category-card, [data-reveal]');
+  if (!targets.length) return;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      // Stagger items that share a row (grid) for a cascading effect.
+      const siblings = el.parentNode ? Array.prototype.indexOf.call(el.parentNode.children, el) : 0;
+      el.style.transitionDelay = (siblings % 4) * 80 + 'ms';
+      el.classList.add('is-revealed');
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  targets.forEach(el => {
+    el.classList.add('sn-reveal');
+    observer.observe(el);
+  });
+})();

@@ -1,5 +1,5 @@
 /* ============================================
-   LojaDrop Theme — Moda, Vestuário & Joias
+   SUPERNOVA Theme — Streetwear / Football-core / Y2K
    ============================================ */
 
 /* ---------- Reset & Base ---------- */
@@ -1676,3 +1676,91 @@ img, svg { display: block; max-width: 100%; }
 .footer__newsletter-btn:hover {
   box-shadow: 0 6px 24px rgba(var(--color-base-accent-1), 0.45);
 }
+
+/* ============================================================
+   SUPERNOVA — micro-interactions (hover, touch & scroll reveal)
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Scroll reveal — JS adds .sn-reveal, then .is-revealed on enter */
+  .sn-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .sn-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Animated nav underline (replaces the plain opacity fade) */
+  .header__nav-item > a { position: relative; }
+  .header__nav-item > a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    background: rgb(var(--color-base-accent-1));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.28s ease;
+  }
+  .header__nav-item > a:hover { opacity: 1; }
+  .header__nav-item > a:hover::after { transform: scaleX(1); }
+
+  /* Product card — electric outline + accent title on hover */
+  .product-card__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--product-card-corner-radius);
+    box-shadow: inset 0 0 0 2px rgba(var(--color-base-accent-1), 0);
+    transition: box-shadow 0.3s ease;
+    pointer-events: none;
+  }
+  .product-card:hover .product-card__media::after {
+    box-shadow: inset 0 0 0 2px rgba(var(--color-base-accent-1), 0.9);
+  }
+  .product-card__title a { transition: color 0.2s ease, opacity 0.2s ease; }
+  .product-card:hover .product-card__title a {
+    color: rgb(var(--color-base-accent-1));
+    opacity: 1;
+  }
+
+  /* Category card — electric glow on hover */
+  .category-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .category-card:hover {
+    box-shadow: 0 16px 44px rgba(var(--color-base-accent-1), 0.28);
+  }
+
+  /* Y2K chrome shine sweep across primary buttons */
+  .btn--primary,
+  .btn--white {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn--primary::before,
+  .btn--white::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+  }
+  .btn--primary:hover::before,
+  .btn--white:hover::before { left: 140%; }
+  .btn:hover { transform: translateY(-2px); }
+}
+
+/* Touch feedback — fires on tap even without hover (mobile) */
+.btn:active { transform: scale(0.97); }
+.product-card:active,
+.category-card:active { transform: scale(0.985); }
