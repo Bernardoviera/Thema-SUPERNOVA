@@ -1,0 +1,217 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .hero {
+    {%- if section.settings.text_color == 'dark' -%}color: rgb(var(--color-base-text));{%- else -%}color: #fff;{%- endif -%}
+  }
+{%- endstyle -%}
+
+<section class="hero hero--{{ section.settings.height_option }}">
+  {%- if section.settings.image != blank or section.settings.image_mobile != blank -%}
+    <div class="hero__media">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 1920
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            width: 1920,
+            alt: section.settings.title,
+            class: 'hero__bg hero__bg--desktop'
+        }}
+      {%- endif -%}
+      {%- if section.settings.image_mobile != blank -%}
+        {{
+          section.settings.image_mobile
+          | image_url: width: 800
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            width: 800,
+            alt: section.settings.title,
+            class: 'hero__bg hero__bg--mobile'
+        }}
+      {%- elsif section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 800
+          | image_tag:
+            loading: 'eager',
+            width: 800,
+            alt: section.settings.title,
+            class: 'hero__bg hero__bg--mobile'
+        }}
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <div class="hero__media" style="background:linear-gradient(135deg, #0b0b0f 0%, #1a1640 50%, #5b4dff 100%);"></div>
+  {%- endif -%}
+
+  {%- if section.settings.show_overlay -%}
+    {%- assign overlay_top = section.settings.overlay_top | divided_by: 100.0 -%}
+    {%- assign overlay_bottom = section.settings.overlay_bottom | divided_by: 100.0 -%}
+    <div class="hero__overlay" style="background:linear-gradient(to bottom, rgba(0,0,0,{{ overlay_top }}) 0%, rgba(0,0,0,{{ overlay_bottom }}) 100%);"></div>
+  {%- endif -%}
+
+  <div class="hero__content" style="text-align:{{ section.settings.content_alignment }}">
+    <div class="page-width">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="hero__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.title != blank -%}
+        <h1 class="hero__title">{{ section.settings.title }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="hero__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+
+      <div class="hero__cta-group" style="justify-content:{{ section.settings.content_alignment }}">
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="btn btn--white">
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button2_label != blank -%}
+          <a href="{{ section.settings.button2_link }}" class="btn btn--outline-white">
+            {{ section.settings.button2_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Banner Hero",
+  "tag": "section",
+  "class": "hero-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image — Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image — Mobile (optional)"
+    },
+    {
+      "type": "select",
+      "id": "height_option",
+      "label": "Height",
+      "options": [
+        { "value": "full-height", "label": "Full screen" },
+        { "value": "medium", "label": "Medium (70vh)" },
+        { "value": "small", "label": "Small (40vh)" }
+      ],
+      "default": "full-height"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "New Drop"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "WEAR THE EXPLOSION",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "default": "Streetwear, football-core and Y2K — built for the bold.",
+      "label": "Subtitle"
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Text color",
+      "options": [
+        { "value": "light", "label": "Light (white)" },
+        { "value": "dark", "label": "Dark" }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Shop the drop",
+      "label": "Primary button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button2_label",
+      "label": "Secondary button text"
+    },
+    {
+      "type": "url",
+      "id": "button2_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "default": true,
+      "label": "Show dark overlay"
+    },
+    {
+      "type": "range",
+      "id": "overlay_top",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 15,
+      "label": "Top opacity"
+    },
+    {
+      "type": "range",
+      "id": "overlay_bottom",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 50,
+      "label": "Bottom opacity"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

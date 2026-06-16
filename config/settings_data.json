@@ -1,0 +1,128 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "colors_text": "#0b0b0f",
+    "colors_background_1": "#ffffff",
+    "colors_background_2": "#f4f4f5",
+    "colors_accent_1": "#5b4dff",
+    "colors_accent_2": "#0b0b0f",
+    "colors_solid_button_labels": "#ffffff",
+    "colors_outline_button_labels": "#0b0b0f",
+    "colors_brand_surface": "#0b0b0f",
+    "colors_brand_surface_text": "#f5f5f7",
+    "gradient_background_1": "",
+    "gradient_background_2": "",
+    "gradient_accent_1": "",
+    "gradient_accent_2": "",
+    "type_header_font": "archivo_n7",
+    "type_body_font": "inter_n4",
+    "body_scale": 100,
+    "heading_scale": 120,
+    "page_width": "1400",
+    "spacing_sections": 60,
+    "spacing_grid_horizontal": 24,
+    "spacing_grid_vertical": 36,
+    "cart_type": "drawer",
+    "whatsapp_country_code": "31",
+    "whatsapp_number": "",
+    "whatsapp_show_desktop": true,
+    "whatsapp_show_mobile": true,
+    "card_image_padding": 0,
+    "card_corner_radius": 4,
+    "card_text_alignment": "left",
+    "card_border_thickness": 0,
+    "card_border_opacity": 10,
+    "card_shadow_opacity": 0,
+    "card_shadow_horizontal_offset": 0,
+    "card_shadow_vertical_offset": 0,
+    "card_shadow_blur": 0,
+    "buttons_radius": 0,
+    "buttons_border_thickness": 2,
+    "buttons_border_opacity": 100,
+    "buttons_shadow_opacity": 0,
+    "buttons_shadow_horizontal_offset": 0,
+    "buttons_shadow_vertical_offset": 0,
+    "buttons_shadow_blur": 0,
+    "inputs_radius": 0,
+    "inputs_border_thickness": 1,
+    "inputs_border_opacity": 55,
+    "inputs_shadow_opacity": 0,
+    "inputs_shadow_horizontal_offset": 0,
+    "inputs_shadow_vertical_offset": 0,
+    "inputs_shadow_blur": 0,
+    "text_boxes_radius": 8,
+    "text_boxes_border_thickness": 0,
+    "text_boxes_border_opacity": 10,
+    "text_boxes_shadow_opacity": 0,
+    "text_boxes_shadow_horizontal_offset": 0,
+    "text_boxes_shadow_vertical_offset": 0,
+    "text_boxes_shadow_blur": 0,
+    "media_padding": 0,
+    "media_radius": 4,
+    "media_border_thickness": 0,
+    "media_border_opacity": 10,
+    "media_shadow_opacity": 0,
+    "media_shadow_horizontal_offset": 0,
+    "media_shadow_vertical_offset": 0,
+    "media_shadow_blur": 0,
+    "animations_hover_elements": "lift",
+    "sections": {
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {}
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "show_announcement": true,
+          "announcement_text": "Free EU shipping on orders over €50 • Use code WELCOME10 for 10% off",
+          "announcement_link": ""
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_height": 40,
+          "menu": "main-menu",
+          "show_search": true,
+          "show_account": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "policies_heading": "Help",
+          "policies_menu": "footer",
+          "company_name": "SUPERNOVA",
+          "contact_email": "support@supernova.eu",
+          "contact_phone": "",
+          "contact_whatsapp": "",
+          "show_newsletter": true,
+          "newsletter_text": "Sign up for early access to drops and exclusive offers",
+          "newsletter_placeholder": "Your email",
+          "newsletter_button": "Sign up",
+          "social_heading": "Follow us",
+          "social_facebook": "",
+          "social_instagram": "",
+          "social_youtube": "",
+          "social_tiktok": "",
+          "show_security_seals": true,
+          "seal_ssl": true,
+          "seal_norton": false,
+          "seals_text": "Secure checkout — your data is protected.",
+          "show_payment": true,
+          "payment_heading": "We accept"
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}

@@ -1,0 +1,90 @@
+<section class="section">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="section-header">
+        <h2 class="section-header__title">{{ section.settings.title }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="category-highlights">
+      {%- for block in section.blocks -%}
+        <a class="category-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          <div class="category-card__media">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 800
+                | image_tag: loading: 'lazy', width: 800, alt: block.settings.title
+              }}
+            {%- else -%}
+              {{ 'collection-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <div class="category-card__overlay"></div>
+          <div class="category-card__content">
+            <h3 class="category-card__title">{{ block.settings.title }}</h3>
+            {%- if block.settings.cta_label != blank -%}
+              <span class="category-card__link">{{ block.settings.cta_label }}</span>
+            {%- endif -%}
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Categories",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Shop by Category",
+      "label": "Section title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Tops",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "default": "Shop now",
+          "label": "Link text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Categories",
+      "blocks": [
+        { "type": "category", "settings": { "title": "Tops" } },
+        { "type": "category", "settings": { "title": "Bottoms" } },
+        { "type": "category", "settings": { "title": "Accessories" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,163 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero-banner": {
+      "type": "hero-banner",
+      "settings": {
+        "image": "",
+        "image_mobile": "",
+        "height_option": "full-height",
+        "content_alignment": "center",
+        "eyebrow": "New Drop",
+        "title": "WEAR THE EXPLOSION",
+        "subtitle": "Streetwear, football-core and Y2K — built for the bold.",
+        "text_color": "light",
+        "button_label": "Shop the drop",
+        "button_link": "shopify://collections/all",
+        "button2_label": "",
+        "button2_link": "",
+        "show_overlay": true,
+        "overlay_top": 15,
+        "overlay_bottom": 55
+      }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "blocks": {
+        "badge-1": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚚",
+            "title": "Free EU shipping",
+            "text": "On orders over €50"
+          }
+        },
+        "badge-2": {
+          "type": "badge",
+          "settings": {
+            "icon": "⚡",
+            "title": "New drops weekly",
+            "text": "Fresh styles, limited stock"
+          }
+        },
+        "badge-3": {
+          "type": "badge",
+          "settings": {
+            "icon": "🔄",
+            "title": "Easy returns",
+            "text": "30 days to change your mind"
+          }
+        },
+        "badge-4": {
+          "type": "badge",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure checkout",
+            "text": "100% protected payments"
+          }
+        }
+      },
+      "block_order": [
+        "badge-1",
+        "badge-2",
+        "badge-3",
+        "badge-4"
+      ],
+      "settings": {}
+    },
+    "category-highlights": {
+      "type": "category-highlights",
+      "blocks": {
+        "cat-1": {
+          "type": "category",
+          "settings": {
+            "image": "",
+            "title": "Tops",
+            "cta_label": "Shop now",
+            "link": "shopify://collections/all"
+          }
+        },
+        "cat-2": {
+          "type": "category",
+          "settings": {
+            "image": "",
+            "title": "Bottoms",
+            "cta_label": "Shop now",
+            "link": "shopify://collections/all"
+          }
+        },
+        "cat-3": {
+          "type": "category",
+          "settings": {
+            "image": "",
+            "title": "Accessories",
+            "cta_label": "Shop now",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "cat-1",
+        "cat-2",
+        "cat-3"
+      ],
+      "settings": {
+        "title": "Shop by category"
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "",
+        "eyebrow": "Best sellers",
+        "title": "Featured",
+        "subtitle": "The pieces everyone's after",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "show_view_all": true,
+        "view_all_text": "Shop the drop"
+      }
+    },
+    "image-with-text": {
+      "type": "image-with-text",
+      "settings": {
+        "bg_color": "#0b0b0f",
+        "text_color_val": "#ffffff",
+        "show_logo": true,
+        "layout": "image_first",
+        "eyebrow": "Our story",
+        "title": "Built to make the streets your runway",
+        "text": "<p>SUPERNOVA was born where streetwear, football culture and Y2K nostalgia collide. We curate bold, limited pieces for a generation that refuses to blend in.</p><p>Every drop is selected with one rule in mind: it has to hit. No filler, no basics-for-the-sake-of-it — just statement fits built to stand out on the street and on the timeline.</p><p>Welcome to SUPERNOVA. Go off.</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "eyebrow": "Stay in orbit",
+        "title": "Get drops and exclusive offers first",
+        "subtitle": "Sign up and get 10% off your first order.",
+        "placeholder": "Your email",
+        "button_label": "Get my discount",
+        "disclaimer": "By signing up you agree to our privacy policy."
+      }
+    }
+  },
+  "order": [
+    "hero-banner",
+    "trust-bar",
+    "category-highlights",
+    "featured-collection",
+    "image-with-text",
+    "newsletter"
+  ]
+}

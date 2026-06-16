@@ -1,0 +1,310 @@
+<footer class="site-footer" role="contentinfo">
+
+  <!-- Main row -->
+  <div class="footer__main">
+    <div class="page-width">
+      <div class="footer__top-grid">
+
+        <!-- Column 1: Policies -->
+        <div class="footer__col">
+          <h3 class="footer__col-title">{{ section.settings.policies_heading }}</h3>
+          <ul class="footer__links">
+            {%- if shop.policies.refund_policy.body != blank -%}
+              <li><a href="{{ shop.policies.refund_policy.url }}">{{ shop.policies.refund_policy.title }}</a></li>
+            {%- endif -%}
+            {%- if shop.policies.privacy_policy.body != blank -%}
+              <li><a href="{{ shop.policies.privacy_policy.url }}">{{ shop.policies.privacy_policy.title }}</a></li>
+            {%- endif -%}
+            {%- if shop.policies.terms_of_service.body != blank -%}
+              <li><a href="{{ shop.policies.terms_of_service.url }}">{{ shop.policies.terms_of_service.title }}</a></li>
+            {%- endif -%}
+            {%- if shop.policies.shipping_policy.body != blank -%}
+              <li><a href="{{ shop.policies.shipping_policy.url }}">{{ shop.policies.shipping_policy.title }}</a></li>
+            {%- endif -%}
+            {%- if shop.policies.legal_notice.body != blank -%}
+              <li><a href="{{ shop.policies.legal_notice.url }}">{{ shop.policies.legal_notice.title }}</a></li>
+            {%- endif -%}
+            {%- for link in section.settings.policies_menu.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+
+        <!-- Column 2: Company info + Newsletter -->
+        <div class="footer__col footer__col--wide">
+          {%- if section.settings.company_name != blank -%}
+            <p class="footer__company-name">{{ section.settings.company_name }}</p>
+          {%- endif -%}
+
+          <div class="footer__contact-info">
+            {%- if section.settings.contact_email != blank -%}
+              <p>Email: <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a></p>
+            {%- endif -%}
+            {%- if section.settings.contact_phone != blank -%}
+              <p>Phone: <a href="tel:{{ section.settings.contact_phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' }}">{{ section.settings.contact_phone }}</a></p>
+            {%- endif -%}
+            {%- if section.settings.contact_whatsapp != blank -%}
+              <p>WhatsApp: <a href="https://wa.me/{{ section.settings.contact_whatsapp | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '+' }}">{{ section.settings.contact_whatsapp }}</a></p>
+            {%- endif -%}
+          </div>
+
+          {%- if section.settings.show_newsletter -%}
+            <div class="footer__newsletter">
+              <p class="footer__newsletter-title">{{ section.settings.newsletter_text }}</p>
+              {%- form 'customer', id: 'footer-newsletter-form' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="footer__newsletter-form">
+                  <input
+                    type="email"
+                    name="contact[email]"
+                    placeholder="{{ section.settings.newsletter_placeholder }}"
+                    class="footer__newsletter-input"
+                    required
+                    autocomplete="email"
+                  >
+                  <button type="submit" class="footer__newsletter-btn">
+                    {{ section.settings.newsletter_button }}
+                  </button>
+                </div>
+              {%- endform -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <!-- Column 3: Social media -->
+        <div class="footer__col footer__col--social">
+          <h3 class="footer__col-title">{{ section.settings.social_heading }}</h3>
+          <div class="footer__social-icons">
+            {%- if section.settings.social_facebook != blank -%}
+              <a href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+              </a>
+            {%- endif -%}
+            {%- if section.settings.social_instagram != blank -%}
+              <a href="{{ section.settings.social_instagram }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </a>
+            {%- endif -%}
+            {%- if section.settings.social_youtube != blank -%}
+              <a href="{{ section.settings.social_youtube }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="YouTube">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/>
+                </svg>
+              </a>
+            {%- endif -%}
+            {%- if section.settings.social_tiktok != blank -%}
+              <a href="{{ section.settings.social_tiktok }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="TikTok">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.26 8.26 0 004.83 1.56V6.8a4.85 4.85 0 01-1.06-.11z"/>
+                </svg>
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust badges -->
+  {%- if section.settings.show_security_seals -%}
+    <div class="footer__seals">
+      <div class="page-width">
+        <div class="footer__seals-inner">
+          {%- if section.settings.seal_ssl -%}
+            <img src="{{ 'SSL.svg' | asset_url }}" alt="SSL secured" class="footer__seal-img" loading="lazy" onerror="this.style.display='none'">
+          {%- endif -%}
+          {%- if section.settings.seal_norton -%}
+            <img src="{{ 'nortonlogo.svg' | asset_url }}" alt="Norton secured" class="footer__seal-img" loading="lazy" onerror="this.style.display='none'">
+          {%- endif -%}
+          {%- if section.settings.seals_text != blank -%}
+            <p class="footer__seals-text">{{ section.settings.seals_text }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <!-- Payment methods -->
+  {%- if section.settings.show_payment -%}
+  <div class="footer__payment">
+    <div class="page-width">
+      <p class="footer__payment-title">{{ section.settings.payment_heading }}</p>
+      <div class="footer__payment-icons">
+        <img src="{{ 'Visa.svg' | asset_url }}" alt="Visa" class="footer__payment-svg" loading="lazy">
+        <img src="{{ 'mastercard.svg' | asset_url }}" alt="Mastercard" class="footer__payment-svg" loading="lazy">
+        <img src="{{ 'Amex.svg' | asset_url }}" alt="American Express" class="footer__payment-svg" loading="lazy">
+        <img src="{{ 'Diners.svg' | asset_url }}" alt="Diners Club" class="footer__payment-svg" loading="lazy">
+        <img src="{{ 'PayPal.svg' | asset_url }}" alt="PayPal" class="footer__payment-svg" loading="lazy">
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+  <!-- Bottom bar -->
+  <div class="footer__bottom">
+    <div class="page-width">
+      <p class="footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+    </div>
+  </div>
+
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "footer-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Policies column"
+    },
+    {
+      "type": "text",
+      "id": "policies_heading",
+      "default": "Help",
+      "label": "Policies heading"
+    },
+    {
+      "type": "link_list",
+      "id": "policies_menu",
+      "default": "footer",
+      "label": "Policies menu"
+    },
+    {
+      "type": "header",
+      "content": "Company information"
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "Company name",
+      "default": "SUPERNOVA"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact email",
+      "default": "support@supernova.eu"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Contact phone",
+      "info": "e.g. +31 6 12345678"
+    },
+    {
+      "type": "text",
+      "id": "contact_whatsapp",
+      "label": "WhatsApp (with country code)",
+      "info": "e.g. +31612345678"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "default": true,
+      "label": "Show newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "default": "Sign up for early access to drops and exclusive offers",
+      "label": "Text above the field"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "default": "Your email",
+      "label": "Field placeholder"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "default": "Sign up",
+      "label": "Button text"
+    },
+    {
+      "type": "header",
+      "content": "Social media"
+    },
+    {
+      "type": "text",
+      "id": "social_heading",
+      "default": "Follow us",
+      "label": "Heading"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "social_youtube",
+      "label": "YouTube"
+    },
+    {
+      "type": "url",
+      "id": "social_tiktok",
+      "label": "TikTok"
+    },
+    {
+      "type": "header",
+      "content": "Trust badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_security_seals",
+      "default": true,
+      "label": "Show trust badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "seal_ssl",
+      "default": true,
+      "label": "SSL secured badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "seal_norton",
+      "default": false,
+      "label": "Norton secured badge"
+    },
+    {
+      "type": "text",
+      "id": "seals_text",
+      "default": "Secure checkout — your data is protected.",
+      "label": "Text below the badges"
+    },
+    {
+      "type": "header",
+      "content": "Payment methods"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment",
+      "default": true,
+      "label": "Show payment methods"
+    },
+    {
+      "type": "text",
+      "id": "payment_heading",
+      "default": "We accept",
+      "label": "Heading"
+    }
+  ]
+}
+{% endschema %}

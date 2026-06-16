@@ -1,0 +1,59 @@
+<section class="section">
+  <div class="page-width">
+    <div class="rich-text">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="rich-text__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.content != blank -%}
+        <div class="rich-text__content">{{ section.settings.content }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="btn btn--primary">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rich Text",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Welcome to SUPERNOVA",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "default": "<p>Streetwear built for the culture. Football-core fits and Y2K energy, dropped fresh and made to stand out.</p>",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text"
+    }
+  ]
+}
+{% endschema %}

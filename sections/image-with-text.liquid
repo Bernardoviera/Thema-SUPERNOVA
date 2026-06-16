@@ -1,0 +1,161 @@
+<section class="section image-with-text-section" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color_val }};">
+  <div class="page-width">
+
+    {%- if section.settings.show_logo -%}
+      <div class="iwt-logo">
+        {%- if section.settings.logo != blank -%}
+          {{
+            section.settings.logo
+            | image_url: width: 240
+            | image_tag: width: 160, alt: shop.name, class: 'iwt-logo__img'
+          }}
+        {%- else -%}
+          <span class="iwt-logo__text">{{ shop.name }}</span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.image != blank -%}
+      <div class="image-with-text{% if section.settings.layout == 'image_second' %} image-with-text--reverse{% endif %}">
+        <div class="image-with-text__media">
+          {{
+            section.settings.image
+            | image_url: width: 900
+            | image_tag: loading: 'lazy', width: 900, alt: section.settings.title
+          }}
+        </div>
+        <div class="image-with-text__content">
+          {%- if section.settings.eyebrow != blank -%}
+            <span class="image-with-text__eyebrow">{{ section.settings.eyebrow }}</span>
+          {%- endif -%}
+          {%- if section.settings.title != blank -%}
+            <h2 class="image-with-text__title">{{ section.settings.title }}</h2>
+          {%- endif -%}
+          {%- if section.settings.text != blank -%}
+            <div class="image-with-text__text">{{ section.settings.text }}</div>
+          {%- endif -%}
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link }}" class="btn btn--primary">{{ section.settings.button_label }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- else -%}
+      <div class="image-with-text__content image-with-text__content--centered">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="image-with-text__eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="image-with-text__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="image-with-text__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="btn btn--primary">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with Text",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background and color"
+    },
+    {
+      "type": "select",
+      "id": "bg_color",
+      "label": "Background color",
+      "options": [
+        { "value": "#ffffff", "label": "White" },
+        { "value": "#f8f5f2", "label": "Cream (soft)" },
+        { "value": "#1a1a1a", "label": "Black" },
+        { "value": "#1a1a2e", "label": "Dark blue" },
+        { "value": "#c9a96e", "label": "Gold" }
+      ],
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "text_color_val",
+      "label": "Text color",
+      "options": [
+        { "value": "#ffffff", "label": "White" },
+        { "value": "#1a1a1a", "label": "Black" }
+      ],
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "label": "Show logo",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo (optional, falls back to store name if not uploaded)"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout (with image)",
+      "options": [
+        { "value": "image_first", "label": "Image on the left" },
+        { "value": "image_second", "label": "Image on the right" }
+      ],
+      "default": "image_first"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (optional)"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Built to make the streets your runway",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with Text"
+    }
+  ]
+}
+{% endschema %}

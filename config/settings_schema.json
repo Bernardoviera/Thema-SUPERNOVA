@@ -1,0 +1,162 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "SUPERNOVA",
+    "theme_version": "1.0.0",
+    "theme_author": "SUPERNOVA",
+    "theme_documentation_url": "https://supernova.eu",
+    "theme_support_url": "https://supernova.eu"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "header", "content": "Content (light areas)" },
+      { "type": "color", "id": "colors_text", "default": "#0b0b0f", "label": "Body text" },
+      { "type": "color", "id": "colors_background_1", "default": "#ffffff", "label": "Background" },
+      { "type": "color", "id": "colors_background_2", "default": "#f4f4f5", "label": "Secondary background" },
+      { "type": "header", "content": "Accents" },
+      { "type": "color", "id": "colors_accent_1", "default": "#5b4dff", "label": "Electric accent" },
+      { "type": "color", "id": "colors_accent_2", "default": "#0b0b0f", "label": "Accent 2" },
+      { "type": "color", "id": "colors_solid_button_labels", "default": "#ffffff", "label": "Solid button text" },
+      { "type": "color", "id": "colors_outline_button_labels", "default": "#0b0b0f", "label": "Outline button text" },
+      { "type": "header", "content": "Brand surfaces (dark areas: header, footer, banners)" },
+      { "type": "color", "id": "colors_brand_surface", "default": "#0b0b0f", "label": "Brand surface background" },
+      { "type": "color", "id": "colors_brand_surface_text", "default": "#f5f5f7", "label": "Brand surface text" },
+      { "type": "header", "content": "Gradients (optional)" },
+      { "type": "color_background", "id": "gradient_background_1", "label": "Background gradient" },
+      { "type": "color_background", "id": "gradient_background_2", "label": "Secondary background gradient" },
+      { "type": "color_background", "id": "gradient_accent_1", "label": "Accent 1 gradient" },
+      { "type": "color_background", "id": "gradient_accent_2", "label": "Accent 2 gradient" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "font_picker", "id": "type_header_font", "default": "archivo_n7", "label": "Heading font" },
+      { "type": "font_picker", "id": "type_body_font", "default": "inter_n4", "label": "Body font" },
+      { "type": "range", "id": "body_scale", "min": 100, "max": 130, "step": 5, "unit": "%", "label": "Body font size", "default": 100 },
+      { "type": "range", "id": "heading_scale", "min": 100, "max": 150, "step": 5, "unit": "%", "label": "Heading font size", "default": 120 }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "select", "id": "page_width",
+        "options": [
+          { "value": "1200", "label": "1200px" },
+          { "value": "1400", "label": "1400px" },
+          { "value": "1600", "label": "1600px" }
+        ],
+        "default": "1400", "label": "Maximum page width"
+      },
+      { "type": "range", "id": "spacing_sections", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Spacing between sections", "default": 60 },
+      { "type": "range", "id": "spacing_grid_horizontal", "min": 4, "max": 40, "step": 4, "unit": "px", "label": "Grid horizontal spacing", "default": 24 },
+      { "type": "range", "id": "spacing_grid_vertical", "min": 4, "max": 60, "step": 4, "unit": "px", "label": "Grid vertical spacing", "default": 36 }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select", "id": "cart_type",
+        "options": [
+          { "value": "drawer", "label": "Side drawer" },
+          { "value": "page", "label": "Cart page" }
+        ],
+        "default": "drawer", "label": "Cart type"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Favicon", "info": "32x32px image recommended" }
+    ]
+  },
+  {
+    "name": "WhatsApp",
+    "settings": [
+      { "type": "text", "id": "whatsapp_country_code", "label": "Country code", "default": "31", "info": "Digits only, no +. Example: 31 for the Netherlands, 49 for Germany." },
+      { "type": "text", "id": "whatsapp_number", "label": "WhatsApp number", "placeholder": "612345678", "info": "Local number only (without the country code)." },
+      { "type": "checkbox", "id": "whatsapp_show_desktop", "label": "Show on desktop", "default": true },
+      { "type": "checkbox", "id": "whatsapp_show_mobile", "label": "Show on mobile", "default": true }
+    ]
+  },
+  {
+    "name": "Product cards",
+    "settings": [
+      { "type": "range", "id": "card_image_padding", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Image padding", "default": 0 },
+      { "type": "range", "id": "card_corner_radius", "min": 0, "max": 20, "step": 2, "unit": "px", "label": "Corner radius", "default": 4 },
+      { "type": "select", "id": "card_text_alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }], "default": "left", "label": "Text alignment" },
+      { "type": "range", "id": "card_border_thickness", "min": 0, "max": 10, "step": 1, "unit": "px", "label": "Border thickness", "default": 0 },
+      { "type": "range", "id": "card_border_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Border opacity", "default": 10 },
+      { "type": "range", "id": "card_shadow_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Shadow opacity", "default": 0 },
+      { "type": "range", "id": "card_shadow_horizontal_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow horizontal offset", "default": 0 },
+      { "type": "range", "id": "card_shadow_vertical_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow vertical offset", "default": 0 },
+      { "type": "range", "id": "card_shadow_blur", "min": 0, "max": 40, "step": 5, "unit": "px", "label": "Shadow blur", "default": 0 }
+    ]
+  },
+  {
+    "name": "Buttons",
+    "settings": [
+      { "type": "range", "id": "buttons_radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Corner radius", "default": 0 },
+      { "type": "range", "id": "buttons_border_thickness", "min": 0, "max": 10, "step": 1, "unit": "px", "label": "Border thickness", "default": 2 },
+      { "type": "range", "id": "buttons_border_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Border opacity", "default": 100 },
+      { "type": "range", "id": "buttons_shadow_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Shadow opacity", "default": 0 },
+      { "type": "range", "id": "buttons_shadow_horizontal_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow horizontal offset", "default": 0 },
+      { "type": "range", "id": "buttons_shadow_vertical_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow vertical offset", "default": 0 },
+      { "type": "range", "id": "buttons_shadow_blur", "min": 0, "max": 40, "step": 5, "unit": "px", "label": "Shadow blur", "default": 0 }
+    ]
+  },
+  {
+    "name": "Inputs",
+    "settings": [
+      { "type": "range", "id": "inputs_radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Corner radius", "default": 0 },
+      { "type": "range", "id": "inputs_border_thickness", "min": 0, "max": 10, "step": 1, "unit": "px", "label": "Border thickness", "default": 1 },
+      { "type": "range", "id": "inputs_border_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Border opacity", "default": 55 },
+      { "type": "range", "id": "inputs_shadow_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Shadow opacity", "default": 0 },
+      { "type": "range", "id": "inputs_shadow_horizontal_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow horizontal offset", "default": 0 },
+      { "type": "range", "id": "inputs_shadow_vertical_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow vertical offset", "default": 0 },
+      { "type": "range", "id": "inputs_shadow_blur", "min": 0, "max": 40, "step": 5, "unit": "px", "label": "Shadow blur", "default": 0 }
+    ]
+  },
+  {
+    "name": "Text boxes",
+    "settings": [
+      { "type": "range", "id": "text_boxes_radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Corner radius", "default": 8 },
+      { "type": "range", "id": "text_boxes_border_thickness", "min": 0, "max": 10, "step": 1, "unit": "px", "label": "Border thickness", "default": 0 },
+      { "type": "range", "id": "text_boxes_border_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Border opacity", "default": 10 },
+      { "type": "range", "id": "text_boxes_shadow_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Shadow opacity", "default": 0 },
+      { "type": "range", "id": "text_boxes_shadow_horizontal_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow horizontal offset", "default": 0 },
+      { "type": "range", "id": "text_boxes_shadow_vertical_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow vertical offset", "default": 0 },
+      { "type": "range", "id": "text_boxes_shadow_blur", "min": 0, "max": 40, "step": 5, "unit": "px", "label": "Shadow blur", "default": 0 }
+    ]
+  },
+  {
+    "name": "Media",
+    "settings": [
+      { "type": "range", "id": "media_padding", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Padding", "default": 0 },
+      { "type": "range", "id": "media_radius", "min": 0, "max": 20, "step": 2, "unit": "px", "label": "Corner radius", "default": 4 },
+      { "type": "range", "id": "media_border_thickness", "min": 0, "max": 10, "step": 1, "unit": "px", "label": "Border thickness", "default": 0 },
+      { "type": "range", "id": "media_border_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Border opacity", "default": 10 },
+      { "type": "range", "id": "media_shadow_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Shadow opacity", "default": 0 },
+      { "type": "range", "id": "media_shadow_horizontal_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow horizontal offset", "default": 0 },
+      { "type": "range", "id": "media_shadow_vertical_offset", "min": -12, "max": 12, "step": 2, "unit": "px", "label": "Shadow vertical offset", "default": 0 },
+      { "type": "range", "id": "media_shadow_blur", "min": 0, "max": 40, "step": 5, "unit": "px", "label": "Shadow blur", "default": 0 }
+    ]
+  },
+  {
+    "name": "Animations",
+    "settings": [
+      {
+        "type": "select", "id": "animations_hover_elements",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "lift", "label": "Lift" }
+        ],
+        "default": "lift", "label": "Card hover effect"
+      }
+    ]
+  }
+]

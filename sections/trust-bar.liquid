@@ -1,0 +1,59 @@
+<section class="section" style="padding:0">
+  <div class="page-width">
+    <div class="trust-bar">
+      {%- for block in section.blocks -%}
+        <div class="trust-badge" {{ block.shopify_attributes }}>
+          <div class="trust-badge__icon">{{ block.settings.icon }}</div>
+          <div class="trust-badge__title">{{ block.settings.title }}</div>
+          <p class="trust-badge__text">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "default": "🚚",
+          "label": "Emoji / Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Free Shipping",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "default": "On orders over 50€",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Bar",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "🚚", "title": "Free EU shipping", "text": "On orders over €50" } },
+        { "type": "badge", "settings": { "icon": "⚡", "title": "New drops weekly", "text": "Fresh styles, limited stock" } },
+        { "type": "badge", "settings": { "icon": "🔄", "title": "Easy returns", "text": "30 days to change your mind" } },
+        { "type": "badge", "settings": { "icon": "🔒", "title": "Secure checkout", "text": "100% protected payments" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
