@@ -83,6 +83,13 @@
             </div>
           {%- endunless -%}
 
+          {%- if section.settings.show_size_guide and section.settings.size_guide_content != blank -%}
+            <button type="button" class="product-form__size-guide" data-size-guide-open aria-haspopup="dialog">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l4-4 14 14-4 4z"/><path d="M7 11l2-2M11 15l2-2M9 13l2-2"/></svg>
+              {{ section.settings.size_guide_label | default: 'Guia de tamanhos' }}
+            </button>
+          {%- endif -%}
+
           <!-- Quantity -->
           <div class="product-form__quantity">
             <div class="quantity-selector">
@@ -122,6 +129,19 @@
       </div>
     </div>
   </div>
+
+  {%- if section.settings.show_size_guide and section.settings.size_guide_content != blank -%}
+    <div class="size-guide-modal" data-size-guide-modal aria-hidden="true" role="dialog" aria-modal="true" aria-label="{{ section.settings.size_guide_label | default: 'Guia de tamanhos' }}">
+      <div class="size-guide-modal__overlay" data-size-guide-close></div>
+      <div class="size-guide-modal__box">
+        <button type="button" class="size-guide-modal__close" data-size-guide-close aria-label="Fechar">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <h2 class="size-guide-modal__title">{{ section.settings.size_guide_label | default: 'Guia de tamanhos' }}</h2>
+        <div class="size-guide-modal__content">{{ section.settings.size_guide_content }}</div>
+      </div>
+    </div>
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -129,6 +149,30 @@
   "name": "Produto Principal",
   "tag": "section",
   "templates": ["product"],
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "Guia de tamanhos"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_size_guide",
+      "default": true,
+      "label": "Mostrar guia de tamanhos"
+    },
+    {
+      "type": "text",
+      "id": "size_guide_label",
+      "default": "Guia de tamanhos",
+      "label": "Texto do link"
+    },
+    {
+      "type": "html",
+      "id": "size_guide_content",
+      "label": "Conteúdo (tabela de medidas)",
+      "info": "Aceita HTML, incluindo tabelas. Edite os valores conforme suas peças.",
+      "default": "<table><thead><tr><th>Tamanho</th><th>EU</th><th>Peito (cm)</th><th>Comprimento (cm)</th></tr></thead><tbody><tr><td>S</td><td>46</td><td>96–101</td><td>68</td></tr><tr><td>M</td><td>48–50</td><td>102–107</td><td>71</td></tr><tr><td>L</td><td>52</td><td>108–113</td><td>74</td></tr><tr><td>XL</td><td>54–56</td><td>114–119</td><td>76</td></tr></tbody></table><p>Medidas aproximadas. Na dúvida entre dois tamanhos, escolha o maior.</p>"
+    }
+  ]
 }
 {% endschema %}

@@ -502,3 +502,23 @@ function initHeroCarousels() {
 }
 initHeroCarousels();
 document.addEventListener('shopify:section:load', initHeroCarousels);
+
+// ─── Size guide modal ──────────────────────────────────────────────
+(function () {
+  function getModal() { return document.querySelector('[data-size-guide-modal]'); }
+  function openModal() {
+    const m = getModal();
+    if (m) { m.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeModal() {
+    const m = getModal();
+    if (m) { m.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-size-guide-open]')) { e.preventDefault(); openModal(); }
+    else if (e.target.closest('[data-size-guide-close]')) { closeModal(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+})();
