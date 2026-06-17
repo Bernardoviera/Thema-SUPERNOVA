@@ -12,8 +12,7 @@
     "hero-banner": {
       "type": "hero-banner",
       "settings": {
-        "image": "",
-        "image_mobile": "",
+        "image": "shopify://shop_images/ChatGPT_Image_17_de_jun._de_2026_13_44_05.png",
         "height_option": "full-height",
         "content_alignment": "center",
         "eyebrow": "New Drop",
@@ -79,7 +78,6 @@
         "cat-1": {
           "type": "category",
           "settings": {
-            "image": "",
             "title": "Tops",
             "cta_label": "Shop now",
             "link": "shopify://collections/all"
@@ -88,7 +86,6 @@
         "cat-2": {
           "type": "category",
           "settings": {
-            "image": "",
             "title": "Bottoms",
             "cta_label": "Shop now",
             "link": "shopify://collections/all"
@@ -97,7 +94,6 @@
         "cat-3": {
           "type": "category",
           "settings": {
-            "image": "",
             "title": "Accessories",
             "cta_label": "Shop now",
             "link": "shopify://collections/all"
