@@ -2,6 +2,15 @@
    SUPERNOVA Theme — Streetwear / Football-core / Y2K
    ============================================ */
 
+/* === TESTE TEMPORÁRIO — REMOVER DEPOIS ===
+   Se a faixa do topo ficar vermelha, o CSS novo está chegando no tema. */
+.announcement-bar,
+.announcement-bar-section,
+.template-index .announcement-bar-section .announcement-bar {
+  background: #ff0000 !important;
+}
+/* === FIM DO TESTE === */
+
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 
