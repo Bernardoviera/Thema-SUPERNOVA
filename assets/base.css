@@ -165,15 +165,16 @@ img, svg { display: block; max-width: 100%; }
 .header-wrapper {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  align-items: start;
   padding: 1.6rem 2rem;
   max-width: var(--page-width);
   margin: 0 auto;
 }
 
-.header__nav    { grid-column: 1; justify-self: start; }
-.header__logo   { grid-column: 2; justify-self: center; }
-.header__actions{ grid-column: 3; justify-self: end; }
+/* Menu e ícones alinhados ao topo, na altura do conteúdo da logo */
+.header__nav     { grid-column: 1; justify-self: start; align-self: start; }
+.header__logo    { grid-column: 2; justify-self: center; }
+.header__actions { grid-column: 3; justify-self: end; align-self: start; }
 
 .header__logo a {
   display: block;
@@ -1499,9 +1500,10 @@ img, svg { display: block; max-width: 100%; }
   .header__hamburger { display: block; }
 
   /* No celular: logo à esquerda, ícones à direita */
-  .header-wrapper { display: flex; justify-content: space-between; }
+  .header-wrapper { display: flex; justify-content: space-between; align-items: center; }
   .header__logo { justify-self: auto; }
-  .header__actions { justify-self: auto; }
+  .header__actions { justify-self: auto; align-self: auto; }
+  .header__nav { align-self: auto; }
 
   .product-grid { --grid-cols: 2; }
 
