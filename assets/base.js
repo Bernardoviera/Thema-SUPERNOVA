@@ -426,3 +426,79 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 })();
+
+// ─── Hero carousel ─────────────────────────────────────────────────
+// Slideshow with autoplay, arrows, dots and touch swipe. Pauses on hover
+// and when the tab is hidden; integrates with the Shopify theme editor.
+function setupHeroCarousel(root) {
+  if (root.dataset.heroReady === 'true') return;
+  root.dataset.heroReady = 'true';
+
+  const track = root.querySelector('[data-hero-track]');
+  const slides = track ? Array.from(track.children) : [];
+  if (!track || slides.length <= 1) return;
+
+  const dots = Array.from(root.querySelectorAll('[data-hero-dot]'));
+  const prevBtn = root.querySelector('[data-hero-prev]');
+  const nextBtn = root.querySelector('[data-hero-next]');
+  const total = slides.length;
+  const autoplay = root.dataset.autoplay === 'true';
+  const speed = parseInt(root.dataset.speed, 10) || 5000;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let index = 0;
+  let timer = null;
+
+  function update() {
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    slides.forEach((s, i) => s.setAttribute('aria-hidden', i === index ? 'false' : 'true'));
+    dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+  }
+  function goTo(i) { index = (i + total) % total; update(); }
+  function next() { goTo(index + 1); }
+  function prev() { goTo(index - 1); }
+
+  function start() {
+    if (!autoplay || reduceMotion) return;
+    stop();
+    timer = setInterval(next, speed);
+  }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => { prev(); start(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { next(); start(); });
+  dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); start(); }));
+
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop(); else start();
+  });
+
+  // Touch swipe
+  let startX = null;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; stop(); }, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) { if (dx < 0) next(); else prev(); }
+    startX = null;
+    start();
+  }, { passive: true });
+
+  // Theme editor: jump to the slide being edited
+  root.addEventListener('shopify:block:select', e => {
+    const slide = e.target.closest('.hero__slide');
+    const i = slides.indexOf(slide);
+    if (i >= 0) { stop(); goTo(i); }
+  });
+  root.addEventListener('shopify:block:deselect', start);
+
+  update();
+  start();
+}
+
+function initHeroCarousels() {
+  document.querySelectorAll('[data-hero-carousel]').forEach(setupHeroCarousel);
+}
+initHeroCarousels();
+document.addEventListener('shopify:section:load', initHeroCarousels);

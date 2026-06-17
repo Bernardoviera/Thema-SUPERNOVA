@@ -1,85 +1,123 @@
-{%- style -%}
-  #shopify-section-{{ section.id }} .hero {
-    {%- if section.settings.text_color == 'dark' -%}color: rgb(var(--color-base-text));{%- else -%}color: #fff;{%- endif -%}
-  }
-{%- endstyle -%}
+{%- liquid
+  assign align = section.settings.content_alignment
+  assign show_overlay = section.settings.show_overlay
+  assign overlay_top = section.settings.overlay_top | divided_by: 100.0
+  assign overlay_bottom = section.settings.overlay_bottom | divided_by: 100.0
+  assign slide_count = section.blocks.size
+  assign autoplay_ms = section.settings.autoplay_speed | times: 1000
+-%}
 
-<section class="hero hero--{{ section.settings.height_option }}">
-  {%- if section.settings.image != blank or section.settings.image_mobile != blank -%}
-    <div class="hero__media">
-      {%- if section.settings.image != blank -%}
-        {{
-          section.settings.image
-          | image_url: width: 1920
-          | image_tag:
-            loading: 'eager',
-            fetchpriority: 'high',
-            width: 1920,
-            alt: section.settings.title,
-            class: 'hero__bg hero__bg--desktop'
-        }}
-      {%- endif -%}
-      {%- if section.settings.image_mobile != blank -%}
-        {{
-          section.settings.image_mobile
-          | image_url: width: 800
-          | image_tag:
-            loading: 'eager',
-            fetchpriority: 'high',
-            width: 800,
-            alt: section.settings.title,
-            class: 'hero__bg hero__bg--mobile'
-        }}
-      {%- elsif section.settings.image != blank -%}
-        {{
-          section.settings.image
-          | image_url: width: 800
-          | image_tag:
-            loading: 'eager',
-            width: 800,
-            alt: section.settings.title,
-            class: 'hero__bg hero__bg--mobile'
-        }}
-      {%- endif -%}
-    </div>
-  {%- else -%}
-    <div class="hero__media" style="background:linear-gradient(135deg, #0b0b0f 0%, #1a1640 50%, #5b4dff 100%);"></div>
-  {%- endif -%}
+<section
+  class="hero hero--{{ section.settings.height_option }} hero-carousel"
+  data-hero-carousel
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-speed="{{ autoplay_ms }}"
+>
+  <div class="hero__track" data-hero-track>
+    {%- if slide_count > 0 -%}
+      {%- for block in section.blocks -%}
+        <div
+          class="hero__slide{% if block.settings.text_color == 'dark' %} hero__slide--dark{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.image != blank -%}
+            <div class="hero__media">
+              {{
+                block.settings.image
+                | image_url: width: 1920
+                | image_tag:
+                  loading: forloop.first ? 'eager' : 'lazy',
+                  fetchpriority: forloop.first ? 'high' : 'auto',
+                  width: 1920,
+                  alt: block.settings.title,
+                  class: 'hero__bg hero__bg--desktop'
+              }}
+              {%- if block.settings.image_mobile != blank -%}
+                {{
+                  block.settings.image_mobile
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: forloop.first ? 'eager' : 'lazy',
+                    width: 800,
+                    alt: block.settings.title,
+                    class: 'hero__bg hero__bg--mobile'
+                }}
+              {%- else -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: forloop.first ? 'eager' : 'lazy',
+                    width: 800,
+                    alt: block.settings.title,
+                    class: 'hero__bg hero__bg--mobile'
+                }}
+              {%- endif -%}
+            </div>
+          {%- else -%}
+            <div class="hero__media" style="background:linear-gradient(135deg, #0b0b0f 0%, #1a1640 50%, #5b4dff 100%);"></div>
+          {%- endif -%}
 
-  {%- if section.settings.show_overlay -%}
-    {%- assign overlay_top = section.settings.overlay_top | divided_by: 100.0 -%}
-    {%- assign overlay_bottom = section.settings.overlay_bottom | divided_by: 100.0 -%}
-    <div class="hero__overlay" style="background:linear-gradient(to bottom, rgba(0,0,0,{{ overlay_top }}) 0%, rgba(0,0,0,{{ overlay_bottom }}) 100%);"></div>
-  {%- endif -%}
+          {%- if show_overlay -%}
+            <div class="hero__overlay" style="background:linear-gradient(to bottom, rgba(0,0,0,{{ overlay_top }}) 0%, rgba(0,0,0,{{ overlay_bottom }}) 100%);"></div>
+          {%- endif -%}
 
-  <div class="hero__content" style="text-align:{{ section.settings.content_alignment }}">
-    <div class="page-width">
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="hero__eyebrow">{{ section.settings.eyebrow }}</span>
-      {%- endif -%}
-
-      {%- if section.settings.title != blank -%}
-        <h1 class="hero__title">{{ section.settings.title }}</h1>
-      {%- endif -%}
-
-      {%- if section.settings.subtitle != blank -%}
-        <p class="hero__subtitle">{{ section.settings.subtitle }}</p>
-      {%- endif -%}
-
-      <div class="hero__cta-group" style="justify-content:{{ section.settings.content_alignment }}">
-        {%- if section.settings.button_label != blank -%}
-          <a href="{{ section.settings.button_link }}" class="btn btn--white">
-            {{ section.settings.button_label }}
-          </a>
-        {%- endif -%}
-        {%- if section.settings.button2_label != blank -%}
-          <a href="{{ section.settings.button2_link }}" class="btn btn--outline-white">
-            {{ section.settings.button2_label }}
-          </a>
-        {%- endif -%}
+          <div class="hero__content" style="text-align:{{ align }}">
+            <div class="page-width">
+              {%- if block.settings.eyebrow != blank -%}
+                <span class="hero__eyebrow">{{ block.settings.eyebrow }}</span>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <h2 class="hero__title">{{ block.settings.title }}</h2>
+              {%- endif -%}
+              {%- if block.settings.subtitle != blank -%}
+                <p class="hero__subtitle">{{ block.settings.subtitle }}</p>
+              {%- endif -%}
+              <div class="hero__cta-group" style="justify-content:{{ align }}">
+                {%- if block.settings.button_label != blank -%}
+                  <a href="{{ block.settings.button_link }}" class="btn btn--white">{{ block.settings.button_label }}</a>
+                {%- endif -%}
+                {%- if block.settings.button2_label != blank -%}
+                  <a href="{{ block.settings.button2_link }}" class="btn btn--outline-white">{{ block.settings.button2_label }}</a>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      {%- comment -%} Nenhum slide adicionado ainda — mostra um banner padrão. {%- endcomment -%}
+      <div class="hero__slide">
+        <div class="hero__media" style="background:linear-gradient(135deg, #0b0b0f 0%, #1a1640 50%, #5b4dff 100%);"></div>
+        <div class="hero__content" style="text-align:center">
+          <div class="page-width">
+            <span class="hero__eyebrow">New Drop</span>
+            <h2 class="hero__title">WEAR THE EXPLOSION</h2>
+            <p class="hero__subtitle">Adicione slides em "Adicionar bloco" para montar seu carrossel.</p>
+          </div>
+        </div>
       </div>
-    </div>
+    {%- endif -%}
   </div>
+
+  {%- if slide_count > 1 -%}
+    {%- if section.settings.show_arrows -%}
+      <button class="hero__arrow hero__arrow--prev" data-hero-prev aria-label="Slide anterior">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="hero__arrow hero__arrow--next" data-hero-next aria-label="Próximo slide">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    {%- endif -%}
+
+    {%- if section.settings.show_dots -%}
+      <div class="hero__dots" role="tablist" aria-label="Slides">
+        {%- for block in section.blocks -%}
+          <button class="hero__dot" data-hero-dot aria-label="Ir para o slide {{ forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -87,16 +125,11 @@
   "name": "Banner Hero",
   "tag": "section",
   "class": "hero-section",
+  "max_blocks": 8,
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image — Desktop"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Image — Mobile (optional)"
+      "type": "header",
+      "content": "Layout"
     },
     {
       "type": "select",
@@ -122,64 +155,39 @@
     },
     {
       "type": "header",
-      "content": "Text"
+      "content": "Slideshow"
     },
     {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "New Drop"
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Trocar slides automaticamente",
+      "default": true
     },
     {
-      "type": "text",
-      "id": "title",
-      "default": "WEAR THE EXPLOSION",
-      "label": "Title"
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Tempo em cada slide",
+      "default": 5
     },
     {
-      "type": "textarea",
-      "id": "subtitle",
-      "default": "Streetwear, football-core and Y2K — built for the bold.",
-      "label": "Subtitle"
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Mostrar setas",
+      "default": true
     },
     {
-      "type": "select",
-      "id": "text_color",
-      "label": "Text color",
-      "options": [
-        { "value": "light", "label": "Light (white)" },
-        { "value": "dark", "label": "Dark" }
-      ],
-      "default": "light"
-    },
-    {
-      "type": "header",
-      "content": "Buttons"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "Shop the drop",
-      "label": "Primary button text"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Primary button link"
-    },
-    {
-      "type": "text",
-      "id": "button2_label",
-      "label": "Secondary button text"
-    },
-    {
-      "type": "url",
-      "id": "button2_link",
-      "label": "Secondary button link"
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Mostrar bolinhas",
+      "default": true
     },
     {
       "type": "header",
-      "content": "Overlay"
+      "content": "Overlay (escurecer imagem)"
     },
     {
       "type": "checkbox",
@@ -208,9 +216,87 @@
       "label": "Bottom opacity"
     }
   ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem — Desktop"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Imagem — Celular (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Texto pequeno (eyebrow)",
+          "default": "New Drop"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "WEAR THE EXPLOSION"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtítulo",
+          "default": "Streetwear, football-core and Y2K — built for the bold."
+        },
+        {
+          "type": "select",
+          "id": "text_color",
+          "label": "Cor do texto",
+          "options": [
+            { "value": "light", "label": "Claro (branco)" },
+            { "value": "dark", "label": "Escuro" }
+          ],
+          "default": "light"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Botão principal — texto",
+          "default": "Shop the drop"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Botão principal — link"
+        },
+        {
+          "type": "text",
+          "id": "button2_label",
+          "label": "Botão secundário — texto"
+        },
+        {
+          "type": "url",
+          "id": "button2_link",
+          "label": "Botão secundário — link"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Hero Banner"
+      "name": "Banner Hero",
+      "blocks": [
+        { "type": "slide" },
+        {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Just Dropped",
+            "title": "BUILT FOR THE BOLD",
+            "subtitle": "New season, new energy."
+          }
+        }
+      ]
     }
   ]
 }
