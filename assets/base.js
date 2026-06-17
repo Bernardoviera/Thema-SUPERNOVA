@@ -7,15 +7,31 @@ const siteHeader = document.querySelector('.site-header');
 const announcementBarSection = document.querySelector('.announcement-bar-section');
 
 function syncHeaderHeight() {
-  if (siteHeader) {
-    const headerH = siteHeader.offsetHeight;
-    document.documentElement.style.setProperty('--header-height', headerH + 'px');
-    const barH = announcementBarSection ? announcementBarSection.offsetHeight : 0;
-    document.documentElement.style.setProperty('--topbar-total-height', (headerH + barH) + 'px');
-  }
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const bar = document.querySelector('.announcement-bar-section');
+  const headerH = header.offsetHeight;
+  document.documentElement.style.setProperty('--header-height', headerH + 'px');
+  const barH = bar ? bar.offsetHeight : 0;
+  document.documentElement.style.setProperty('--topbar-total-height', (headerH + barH) + 'px');
 }
+
+// Recalcula sempre que o cabeçalho/barra mudarem de tamanho
+// (logo carregando, mudanças no editor de tema, fontes web, etc.)
+let headerResizeObserver;
+function observeHeaderSize() {
+  if (!window.ResizeObserver) return;
+  if (headerResizeObserver) headerResizeObserver.disconnect();
+  headerResizeObserver = new ResizeObserver(syncHeaderHeight);
+  document.querySelectorAll('.site-header, .announcement-bar-section')
+    .forEach(el => headerResizeObserver.observe(el));
+}
+
 syncHeaderHeight();
+observeHeaderSize();
 window.addEventListener('resize', syncHeaderHeight, { passive: true });
+window.addEventListener('load', syncHeaderHeight);
+document.addEventListener('shopify:section:load', () => { syncHeaderHeight(); observeHeaderSize(); });
 
 // ─── Header scroll effect ──────────────────────────────────────────
 if (siteHeader) {
