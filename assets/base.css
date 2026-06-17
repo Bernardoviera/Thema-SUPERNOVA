@@ -2,15 +2,6 @@
    SUPERNOVA Theme — Streetwear / Football-core / Y2K
    ============================================ */
 
-/* === TESTE TEMPORÁRIO — REMOVER DEPOIS ===
-   Se a faixa do topo ficar vermelha, o CSS novo está chegando no tema. */
-.announcement-bar,
-.announcement-bar-section,
-.template-index .announcement-bar-section .announcement-bar {
-  background: #ff0000 !important;
-}
-/* === FIM DO TESTE === */
-
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -227,6 +218,17 @@ img, svg { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   gap: 1.6rem;
+}
+
+/* Desktop: sobe o conteúdo do menu e dos ícones pro topo, na altura da logo.
+   Seletor com 2 classes para vencer qualquer regra de align-items: center. */
+@media (min-width: 991px) {
+  .header-wrapper > .header__nav,
+  .header-wrapper > .header__actions {
+    align-self: start;
+    align-items: flex-start;
+    padding-top: 0.4rem;
+  }
 }
 
 .header__icon-btn {
