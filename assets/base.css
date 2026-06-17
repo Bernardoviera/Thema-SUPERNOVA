@@ -163,13 +163,17 @@ img, svg { display: block; max-width: 100%; }
 }
 
 .header-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 1.6rem 2rem;
   max-width: var(--page-width);
   margin: 0 auto;
 }
+
+.header__nav    { grid-column: 1; justify-self: start; }
+.header__logo   { grid-column: 2; justify-self: center; }
+.header__actions{ grid-column: 3; justify-self: end; }
 
 .header__logo a {
   display: block;
@@ -1423,6 +1427,11 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 990px) {
   .header__nav { display: none; }
   .header__hamburger { display: block; }
+
+  /* No celular: logo à esquerda, ícones à direita */
+  .header-wrapper { display: flex; justify-content: space-between; }
+  .header__logo { justify-self: auto; }
+  .header__actions { justify-self: auto; }
 
   .product-grid { --grid-cols: 2; }
 
