@@ -91,6 +91,7 @@
         "type": "header",
         "settings": {
           "logo": "shopify://shop_images/ChatGPT_Image_17_de_jun._de_2026_12_50_58_83ce5602-0808-4ff4-b605-8fbbbd98832c.png",
+          "logo_inverse": "shopify://shop_images/ChatGPT_Image_17_de_jun._de_2026_17_34_46.png",
           "logo_height": 56,
           "logo_height_mobile": 42,
           "menu": "main-menu",
