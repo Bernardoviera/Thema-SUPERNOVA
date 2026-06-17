@@ -1517,6 +1517,10 @@ img, svg { display: block; max-width: 100%; }
   .header__nav { display: none; }
   .header__hamburger { display: block; }
 
+  /* Tamanho da logo no celular */
+  .header__logo-image { height: var(--logo-height-mobile, var(--logo-height, 4rem)); }
+  .header__logo-text { font-size: calc(var(--logo-height-mobile, var(--logo-height, 40px)) * 0.55); }
+
   /* No celular: logo à esquerda, ícones à direita */
   .header-wrapper { display: flex; justify-content: space-between; align-items: center; }
   .header__logo { justify-self: auto; }

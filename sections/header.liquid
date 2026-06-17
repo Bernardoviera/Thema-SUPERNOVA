@@ -2,10 +2,13 @@
   <div class="header-wrapper">
     <!-- Logo -->
     {%- assign logo_height = section.settings.logo_height | default: 40 -%}
-    <div class="header__logo" style="--logo-height: {{ logo_height }}px;">
+    {%- assign logo_height_mobile = section.settings.logo_height_mobile | default: 32 -%}
+    {%- assign logo_render_height = logo_height -%}
+    {%- if logo_height_mobile > logo_height -%}{%- assign logo_render_height = logo_height_mobile -%}{%- endif -%}
+    <div class="header__logo" style="--logo-height: {{ logo_height }}px; --logo-height-mobile: {{ logo_height_mobile }}px;">
       <a href="{{ routes.root_url }}">
         {%- if section.settings.logo != blank -%}
-          {%- assign logo_2x = logo_height | times: 2 -%}
+          {%- assign logo_2x = logo_render_height | times: 2 -%}
           {{
             section.settings.logo
             | image_url: height: logo_2x
@@ -107,8 +110,18 @@
       "step": 2,
       "default": 40,
       "unit": "px",
-      "label": "Logo / nome — tamanho",
+      "label": "Logo / nome — tamanho (desktop)",
       "info": "Funciona tanto para a imagem do logo quanto para o nome em texto."
+    },
+    {
+      "type": "range",
+      "id": "logo_height_mobile",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "default": 32,
+      "unit": "px",
+      "label": "Logo / nome — tamanho (celular)"
     },
     {
       "type": "link_list",
