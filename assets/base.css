@@ -1475,32 +1475,74 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* ---------- Trust badges ---------- */
-.trust-bar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  text-align: center;
-  padding: 4rem 0;
+/* ---------- Trust marquee ---------- */
+.trust-section {
+  overflow: hidden;
+}
+.trust-marquee {
+  overflow: hidden;
   border-top: 1px solid rgba(var(--color-base-text), 0.08);
   border-bottom: 1px solid rgba(var(--color-base-text), 0.08);
+  padding: 2.2rem 0;
 }
-
-.trust-badge__icon {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
+.trust-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: trust-scroll 28s linear infinite;
 }
-
-.trust-badge__title {
+.trust-marquee:hover .trust-marquee__track {
+  animation-play-state: paused;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0 2.8rem;
+  white-space: nowrap;
+  position: relative;
+}
+.trust-item::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(var(--color-base-accent-1));
+}
+.trust-item__icon {
+  display: inline-flex;
+  color: rgb(var(--color-base-accent-1));
+}
+.trust-item__icon svg {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: block;
+}
+.trust-item__text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.8rem;
+}
+.trust-item__title {
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 0.4rem;
 }
-
-.trust-badge__text {
-  font-size: 1.3rem;
-  color: rgba(var(--color-base-text), 0.6);
+.trust-item__sub {
+  font-size: 1.2rem;
+  color: rgba(var(--color-base-text), 0.55);
+}
+@keyframes trust-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trust-marquee__track { animation: none; }
+  .trust-marquee { overflow-x: auto; }
 }
 
 /* ---------- Responsive ---------- */
@@ -1544,8 +1586,6 @@ img, svg { display: block; max-width: 100%; }
 
   .category-highlights { grid-template-columns: 1fr 1fr; }
   .category-highlights .category-card:last-child { grid-column: 1 / -1; aspect-ratio: 16/9; }
-
-  .trust-bar { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 749px) {
@@ -1579,8 +1619,6 @@ img, svg { display: block; max-width: 100%; }
     grid-column: auto;
     aspect-ratio: 2/3;
   }
-
-  .trust-bar { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 
   .product-media__thumbnails { grid-template-columns: repeat(4, 1fr); }
 

@@ -1,13 +1,57 @@
-<section class="section" style="padding:0">
-  <div class="page-width">
-    <div class="trust-bar">
-      {%- for block in section.blocks -%}
-        <div class="trust-badge" {{ block.shopify_attributes }}>
-          <div class="trust-badge__icon">{{ block.settings.icon }}</div>
-          <div class="trust-badge__title">{{ block.settings.title }}</div>
-          <p class="trust-badge__text">{{ block.settings.text }}</p>
-        </div>
-      {%- endfor -%}
+{%- liquid
+  case section.settings.speed
+    when 'slow'
+      assign duration = 45
+    when 'fast'
+      assign duration = 18
+    else
+      assign duration = 28
+  endcase
+-%}
+
+{%- capture trust_set -%}
+  {%- for block in section.blocks -%}
+    <div class="trust-item">
+      <span class="trust-item__icon">
+        {%- case block.settings.icon -%}
+          {%- when 'truck', '🚚' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          {%- when 'bolt', '⚡' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          {%- when 'refresh', '🔄' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          {%- when 'lock', '🔒' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          {%- when 'shield' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          {%- when 'card' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          {%- when 'star' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          {%- when 'globe' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          {%- when 'gift' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          {%- when 'headset' -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          {%- else -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        {%- endcase -%}
+      </span>
+      <span class="trust-item__text">
+        <span class="trust-item__title">{{ block.settings.title }}</span>
+        {%- if block.settings.text != blank -%}
+          <span class="trust-item__sub">{{ block.settings.text }}</span>
+        {%- endif -%}
+      </span>
+    </div>
+  {%- endfor -%}
+{%- endcapture -%}
+
+<section class="trust-section">
+  <div class="trust-marquee" data-trust-marquee>
+    <div class="trust-marquee__track" style="animation-duration: {{ duration }}s">
+      {{ trust_set }}{{ trust_set }}{{ trust_set }}{{ trust_set }}{{ trust_set }}{{ trust_set }}
     </div>
   </div>
 </section>
@@ -16,30 +60,54 @@
 {
   "name": "Trust Bar",
   "tag": "section",
-  "max_blocks": 4,
-  "settings": [],
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "select",
+      "id": "speed",
+      "label": "Velocidade da rolagem",
+      "options": [
+        { "value": "slow", "label": "Lenta" },
+        { "value": "normal", "label": "Normal" },
+        { "value": "fast", "label": "Rápida" }
+      ],
+      "default": "normal"
+    }
+  ],
   "blocks": [
     {
       "type": "badge",
-      "name": "Icon",
+      "name": "Item",
       "settings": [
         {
-          "type": "text",
+          "type": "select",
           "id": "icon",
-          "default": "🚚",
-          "label": "Emoji / Icon"
+          "label": "Ícone",
+          "options": [
+            { "value": "truck", "label": "Caminhão (frete)" },
+            { "value": "bolt", "label": "Raio (novidades)" },
+            { "value": "refresh", "label": "Setas (trocas)" },
+            { "value": "lock", "label": "Cadeado (segurança)" },
+            { "value": "shield", "label": "Escudo" },
+            { "value": "card", "label": "Cartão" },
+            { "value": "star", "label": "Estrela" },
+            { "value": "globe", "label": "Globo" },
+            { "value": "gift", "label": "Presente" },
+            { "value": "headset", "label": "Suporte" }
+          ],
+          "default": "truck"
         },
         {
           "type": "text",
           "id": "title",
-          "default": "Free Shipping",
-          "label": "Title"
+          "default": "Free shipping",
+          "label": "Título"
         },
         {
           "type": "text",
           "id": "text",
-          "default": "On orders over 50€",
-          "label": "Text"
+          "default": "On orders over €50",
+          "label": "Subtexto"
         }
       ]
     }
@@ -48,10 +116,10 @@
     {
       "name": "Trust Bar",
       "blocks": [
-        { "type": "badge", "settings": { "icon": "🚚", "title": "Free EU shipping", "text": "On orders over €50" } },
-        { "type": "badge", "settings": { "icon": "⚡", "title": "New drops weekly", "text": "Fresh styles, limited stock" } },
-        { "type": "badge", "settings": { "icon": "🔄", "title": "Easy returns", "text": "30 days to change your mind" } },
-        { "type": "badge", "settings": { "icon": "🔒", "title": "Secure checkout", "text": "100% protected payments" } }
+        { "type": "badge", "settings": { "icon": "truck", "title": "Free EU shipping", "text": "On orders over €50" } },
+        { "type": "badge", "settings": { "icon": "bolt", "title": "New drops weekly", "text": "Fresh styles, limited stock" } },
+        { "type": "badge", "settings": { "icon": "refresh", "title": "Easy returns", "text": "30 days to change your mind" } },
+        { "type": "badge", "settings": { "icon": "lock", "title": "Secure checkout", "text": "100% protected payments" } }
       ]
     }
   ]
