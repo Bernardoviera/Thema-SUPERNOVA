@@ -1,0 +1,30 @@
+{%- comment -%}
+  Seletores de país/moeda e idioma (Shopify Markets).
+  Só aparecem se houver mais de um país/idioma ativo no admin (Mercados).
+  Parâmetro: id_prefix (string única por local de uso, ex.: 'header', 'mobile').
+{%- endcomment -%}
+{%- if localization.available_countries.size > 1 -%}
+  {%- form 'localization', id: id_prefix | append: '-country-form', class: 'localization-form' -%}
+    <input type="hidden" name="return_to" value="{{ request.path }}">
+    <div class="localization-form__field">
+      <svg class="localization-form__icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <select class="localization-form__select" name="country_code" aria-label="País e moeda" onchange="this.form.submit()">
+        {%- for country in localization.available_countries -%}
+          <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})</option>
+        {%- endfor -%}
+      </select>
+    </div>
+  {%- endform -%}
+{%- endif -%}
+{%- if localization.available_languages.size > 1 -%}
+  {%- form 'localization', id: id_prefix | append: '-language-form', class: 'localization-form' -%}
+    <input type="hidden" name="return_to" value="{{ request.path }}">
+    <div class="localization-form__field">
+      <select class="localization-form__select" name="language_code" aria-label="Idioma" onchange="this.form.submit()">
+        {%- for language in localization.available_languages -%}
+          <option value="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} selected{% endif %} lang="{{ language.iso_code }}">{{ language.endonym_name | capitalize }}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+  {%- endform -%}
+{%- endif -%}

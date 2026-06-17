@@ -328,6 +328,83 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   color: rgb(var(--color-base-text));
 }
 
+/* ---------- Localization (país/moeda/idioma) ---------- */
+.header__localization {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.localization-form { margin: 0; }
+.localization-form__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.localization-form__icon { opacity: 0.85; flex: 0 0 auto; }
+.localization-form__select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: rgb(var(--color-base-text));
+  font-family: inherit;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.4rem 1.4rem 0.4rem 0;
+}
+.localization-form__field::after {
+  content: "";
+  position: absolute;
+  right: 0.3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid currentColor;
+  opacity: 0.7;
+  pointer-events: none;
+}
+.localization-form__select option { color: #111; }
+
+@media (max-width: 990px) {
+  .header__localization { display: none; }
+}
+
+/* Redes sociais e seletores na gaveta mobile */
+.mobile-nav__social {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2.4rem;
+  border-top: 1px solid rgba(var(--color-base-text), 0.1);
+}
+.mobile-nav__social a {
+  color: rgb(var(--color-base-text));
+  transition: opacity 0.2s;
+}
+.mobile-nav__social a:hover { opacity: 0.6; }
+.mobile-nav__localization {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 2.4rem;
+}
+.mobile-nav__localization .localization-form__select {
+  color: rgb(var(--color-base-text));
+  font-size: 1.5rem;
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 0.6rem 1.6rem 0.6rem 0;
+}
+.mobile-nav__localization .localization-form__field::after { right: 0.5rem; }
+
 /* ---------- Hero Banner ---------- */
 .hero {
   position: relative;
@@ -1815,9 +1892,30 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   color: rgba(var(--color-brand-surface-text), 0.5);
 }
 
+/* ---------- Footer premium refinement ---------- */
+.site-footer { border-top: 3px solid rgb(var(--color-base-accent-1)); }
+.site-footer .footer__main { padding: 6rem 0 4.5rem; }
+.site-footer .footer__top-grid { gap: 6rem; }
+.site-footer .footer__col-title {
+  font-size: 1.25rem;
+  opacity: 0.95;
+}
+.site-footer .footer__social-icon {
+  background-color: transparent;
+  border: 1px solid rgba(var(--color-brand-surface-text), 0.22);
+}
 .site-footer .footer__social-icon:hover {
-  background-color: rgb(var(--color-brand-surface-text));
-  color: rgb(var(--color-brand-surface));
+  background-color: rgb(var(--color-base-accent-1));
+  border-color: rgb(var(--color-base-accent-1));
+  color: #fff;
+}
+.site-footer .footer__bottom { padding: 2.4rem 0; }
+.site-footer .footer__copyright {
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  text-align: center;
 }
 
 /* Electric accent glow on primary calls-to-action (Y2K energy) */

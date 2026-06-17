@@ -75,29 +75,29 @@
         <div class="footer__col footer__col--social">
           <h3 class="footer__col-title">{{ section.settings.social_heading }}</h3>
           <div class="footer__social-icons">
-            {%- if section.settings.social_facebook != blank -%}
-              <a href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="Facebook">
+            {%- if settings.social_facebook != blank -%}
+              <a href="{{ settings.social_facebook }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="Facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
                 </svg>
               </a>
             {%- endif -%}
-            {%- if section.settings.social_instagram != blank -%}
-              <a href="{{ section.settings.social_instagram }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="Instagram">
+            {%- if settings.social_instagram != blank -%}
+              <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                 </svg>
               </a>
             {%- endif -%}
-            {%- if section.settings.social_youtube != blank -%}
-              <a href="{{ section.settings.social_youtube }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="YouTube">
+            {%- if settings.social_youtube != blank -%}
+              <a href="{{ settings.social_youtube }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="YouTube">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/>
                 </svg>
               </a>
             {%- endif -%}
-            {%- if section.settings.social_tiktok != blank -%}
-              <a href="{{ section.settings.social_tiktok }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="TikTok">
+            {%- if settings.social_tiktok != blank -%}
+              <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener noreferrer" class="footer__social-icon" aria-label="TikTok">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.26 8.26 0 004.83 1.56V6.8a4.85 4.85 0 01-1.06-.11z"/>
                 </svg>
@@ -242,24 +242,8 @@
       "label": "Heading"
     },
     {
-      "type": "url",
-      "id": "social_facebook",
-      "label": "Facebook"
-    },
-    {
-      "type": "url",
-      "id": "social_instagram",
-      "label": "Instagram"
-    },
-    {
-      "type": "url",
-      "id": "social_youtube",
-      "label": "YouTube"
-    },
-    {
-      "type": "url",
-      "id": "social_tiktok",
-      "label": "TikTok"
+      "type": "paragraph",
+      "content": "Os links das redes são definidos em Configurações do tema → Social media."
     },
     {
       "type": "header",

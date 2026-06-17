@@ -84,6 +84,16 @@
     ]
   },
   {
+    "name": "Social media",
+    "settings": [
+      { "type": "paragraph", "content": "Cole os links das suas redes. Eles aparecem no rodapé e no menu do celular." },
+      { "type": "url", "id": "social_instagram", "label": "Instagram" },
+      { "type": "url", "id": "social_facebook", "label": "Facebook" },
+      { "type": "url", "id": "social_tiktok", "label": "TikTok" },
+      { "type": "url", "id": "social_youtube", "label": "YouTube" }
+    ]
+  },
+  {
     "name": "Product cards",
     "settings": [
       { "type": "range", "id": "card_image_padding", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Image padding", "default": 0 },
