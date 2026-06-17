@@ -5,15 +5,24 @@
     {%- assign logo_height_mobile = section.settings.logo_height_mobile | default: 32 -%}
     {%- assign logo_render_height = logo_height -%}
     {%- if logo_height_mobile > logo_height -%}{%- assign logo_render_height = logo_height_mobile -%}{%- endif -%}
-    <div class="header__logo" style="--logo-height: {{ logo_height }}px; --logo-height-mobile: {{ logo_height_mobile }}px;">
+    {%- assign logo_2x = logo_render_height | times: 2 -%}
+    {%- assign has_inverse = false -%}
+    {%- if section.settings.logo_inverse != blank -%}{%- assign has_inverse = true -%}{%- endif -%}
+    <div class="header__logo{% if has_inverse %} header__logo--has-inverse{% endif %}" style="--logo-height: {{ logo_height }}px; --logo-height-mobile: {{ logo_height_mobile }}px;">
       <a href="{{ routes.root_url }}">
         {%- if section.settings.logo != blank -%}
-          {%- assign logo_2x = logo_render_height | times: 2 -%}
           {{
             section.settings.logo
             | image_url: height: logo_2x
-            | image_tag: class: 'header__logo-image', alt: shop.name, loading: 'eager'
+            | image_tag: class: 'header__logo-image header__logo-image--default', alt: shop.name, loading: 'eager'
           }}
+          {%- if has_inverse -%}
+            {{
+              section.settings.logo_inverse
+              | image_url: height: logo_2x
+              | image_tag: class: 'header__logo-image header__logo-image--inverse', alt: shop.name, loading: 'eager'
+            }}
+          {%- endif -%}
         {%- else -%}
           <span class="header__logo-text">{{ shop.name }}</span>
         {%- endif -%}
@@ -100,7 +109,13 @@
     {
       "type": "image_picker",
       "id": "logo",
-      "label": "Logo"
+      "label": "Logo (home / fundo claro)"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_inverse",
+      "label": "Logo — cabeçalho escuro (páginas internas / ao rolar)",
+      "info": "Opcional. Use uma versão branca/clara. Se vazio, usa a logo principal em todo lugar."
     },
     {
       "type": "range",
