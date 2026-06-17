@@ -180,7 +180,7 @@ img, svg { display: block; max-width: 100%; }
   text-decoration: none;
 }
 
-.header__logo-image { height: var(--logo-height, 4rem); width: auto; }
+.header__logo-image { display: block; height: var(--logo-height, 4rem); width: auto; }
 
 .header__logo-text {
   font-family: var(--font-heading-family);
