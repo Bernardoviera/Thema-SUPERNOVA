@@ -176,11 +176,11 @@ img, svg { display: block; max-width: 100%; }
   text-decoration: none;
 }
 
-.header__logo-image { height: 4rem; width: auto; }
+.header__logo-image { height: var(--logo-height, 4rem); width: auto; }
 
 .header__logo-text {
   font-family: var(--font-heading-family);
-  font-size: 2.2rem;
+  font-size: calc(var(--logo-height, 40px) * 0.55);
   font-weight: var(--font-heading-weight);
   letter-spacing: 0.2em;
   text-transform: uppercase;

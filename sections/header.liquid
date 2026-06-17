@@ -1,14 +1,15 @@
 <header class="site-header" role="banner">
   <div class="header-wrapper">
     <!-- Logo -->
-    <div class="header__logo">
+    {%- assign logo_height = section.settings.logo_height | default: 40 -%}
+    <div class="header__logo" style="--logo-height: {{ logo_height }}px;">
       <a href="{{ routes.root_url }}">
         {%- if section.settings.logo != blank -%}
-          {%- assign logo_height = section.settings.logo_height -%}
+          {%- assign logo_2x = logo_height | times: 2 -%}
           {{
             section.settings.logo
-            | image_url: height: logo_height
-            | image_tag: class: 'header__logo-image', alt: shop.name, height: logo_height, loading: 'eager'
+            | image_url: height: logo_2x
+            | image_tag: class: 'header__logo-image', alt: shop.name, loading: 'eager'
           }}
         {%- else -%}
           <span class="header__logo-text">{{ shop.name }}</span>
@@ -102,11 +103,12 @@
       "type": "range",
       "id": "logo_height",
       "min": 20,
-      "max": 80,
+      "max": 120,
       "step": 2,
       "default": 40,
       "unit": "px",
-      "label": "Logo height"
+      "label": "Logo / nome — tamanho",
+      "info": "Funciona tanto para a imagem do logo quanto para o nome em texto."
     },
     {
       "type": "link_list",
