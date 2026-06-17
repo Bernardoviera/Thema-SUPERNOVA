@@ -1695,14 +1695,18 @@ img, svg { display: block; max-width: 100%; }
   }
 
   /* Animated nav underline (replaces the plain opacity fade) */
-  .header__nav-item > a { position: relative; }
+  .header__nav-item > a {
+    position: relative;
+    display: inline-block;
+    line-height: 1.2;
+  }
   .header__nav-item > a::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -4px;
+    right: 0;
+    bottom: -6px;
     height: 2px;
-    width: 100%;
     background: rgb(var(--color-base-accent-1));
     transform: scaleX(0);
     transform-origin: left center;
