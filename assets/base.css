@@ -2119,82 +2119,92 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   }
 }
 
-/* Multi-directional chaos: horizontal, vertical, diagonal & triangular shards,
-   one direction per frame (steps snap) — like the movie. */
+/* Chaotic shards: a different shape every frame — bands, triangles,
+   trapezoids, squares, jagged/star slices — displaced in every direction. */
 @keyframes sn-glitch-loop {
   0%, 88%, 100% { filter: none; transform: none; clip-path: none; }
-  89% { /* horizontal */
+  88.5% { /* horizontal band */
     filter: drop-shadow(5px 0 #ff2bd6) drop-shadow(-5px 0 #00e5ff);
     transform: translate(6px, -2px) skewX(-10deg);
-    clip-path: inset(0 0 62% 0);
+    clip-path: inset(0 0 60% 0);
   }
-  90.5% { /* vertical */
+  90% { /* vertical band */
     filter: drop-shadow(0 5px #39ff14) drop-shadow(0 -5px #ff2bd6);
     transform: translate(-2px, 6px) skewY(8deg);
-    clip-path: inset(0 60% 0 0);
+    clip-path: inset(0 58% 0 0);
   }
-  92% { /* diagonal shard (top-left) */
+  91.5% { /* triangle shard (top-left) */
     filter: drop-shadow(4px 4px #00e5ff) drop-shadow(-4px -4px #ff7a00);
     transform: translate(5px, 5px) skewX(8deg);
     clip-path: polygon(0 0, 100% 0, 0 100%);
   }
-  93.5% { /* horizontal low */
+  93% { /* trapezoid */
     filter: drop-shadow(-6px 0 #3a4bff) drop-shadow(6px 0 #39ff14);
-    transform: translate(-6px, 1px) skewY(-5deg);
-    clip-path: inset(68% 0 0 0);
+    transform: translate(-6px, 2px) skewX(6deg);
+    clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
   }
-  95% { /* vertical right */
+  94.5% { /* square block (off-center) */
     filter: drop-shadow(0 -5px #ff2e9a) drop-shadow(0 5px #00e5ff);
-    transform: translate(3px, -6px) skewY(-9deg);
-    clip-path: inset(0 0 0 62%);
+    transform: translate(4px, -6px) skewY(-7deg);
+    clip-path: inset(18% 40% 30% 12%);
   }
-  96.5% { /* diagonal shard (bottom-right) */
-    filter: drop-shadow(-4px 4px #39ff14) drop-shadow(4px -4px #ff2bd6);
-    transform: translate(-5px, 4px) skewX(-7deg);
+  96% { /* jagged / star slice */
+    filter: drop-shadow(5px 0 #ff3b3b) drop-shadow(-5px 3px #39ff14);
+    transform: translate(-4px, -3px) skewX(-9deg);
+    clip-path: polygon(0 40%, 18% 22%, 35% 50%, 55% 18%, 72% 52%, 100% 28%, 100% 64%, 0 72%);
+  }
+  97.5% { /* triangle shard (bottom-right) */
+    filter: drop-shadow(-4px 4px #ff2bd6) drop-shadow(4px -4px #00e5ff);
+    transform: translate(-5px, 4px) skewX(7deg);
     clip-path: polygon(100% 0, 100% 100%, 0 100%);
   }
-  98% { /* center cross slice */
-    filter: drop-shadow(4px 0 #ff3b3b) drop-shadow(-4px 0 #00e5ff);
-    transform: translate(3px, -3px) skewX(6deg) skewY(4deg);
-    clip-path: inset(35% 0 35% 0);
+  99% { /* diagonal stripe */
+    filter: drop-shadow(4px 0 #3a4bff) drop-shadow(-4px 0 #ff7a00);
+    transform: translate(3px, -3px) skewY(6deg);
+    clip-path: polygon(0 8%, 100% 0, 100% 38%, 0 58%);
   }
 }
 
 @keyframes sn-glitch-burst {
   0%, 100% { filter: none; transform: none; clip-path: none; }
-  12% { /* horizontal */
+  10% { /* horizontal band */
     filter: drop-shadow(5px 0 #ff2bd6) drop-shadow(-5px 0 #00e5ff);
     transform: translate(6px, -2px) skewX(-10deg);
     clip-path: inset(0 0 60% 0);
   }
-  24% { /* vertical */
+  22% { /* vertical band */
     filter: drop-shadow(0 6px #39ff14) drop-shadow(0 -6px #ff2bd6);
     transform: translate(-3px, 6px) skewY(9deg);
-    clip-path: inset(0 60% 0 0);
+    clip-path: inset(0 58% 0 0);
   }
-  36% { /* diagonal shard (top-left) */
+  34% { /* triangle shard (top-left) */
     filter: drop-shadow(5px 5px #00e5ff) drop-shadow(-5px -5px #ff7a00);
     transform: translate(5px, 5px) skewX(9deg);
     clip-path: polygon(0 0, 100% 0, 0 100%);
   }
-  48% { /* horizontal low */
+  46% { /* trapezoid */
     filter: drop-shadow(-6px 0 #3a4bff) drop-shadow(6px 0 #39ff14);
-    transform: translate(-6px, 1px) skewY(-6deg);
-    clip-path: inset(70% 0 0 0);
+    transform: translate(-6px, 2px) skewX(7deg);
+    clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
   }
-  60% { /* vertical right */
+  58% { /* square block (off-center) */
     filter: drop-shadow(0 -6px #ff2e9a) drop-shadow(0 6px #00e5ff);
-    transform: translate(3px, -6px) skewY(-10deg);
-    clip-path: inset(0 0 0 62%);
+    transform: translate(4px, -6px) skewY(-8deg);
+    clip-path: inset(18% 40% 30% 12%);
   }
-  74% { /* diagonal shard (bottom-right) */
-    filter: drop-shadow(-5px 5px #39ff14) drop-shadow(5px -5px #ff2bd6);
-    transform: translate(-5px, 4px) skewX(-8deg);
+  70% { /* jagged / star slice */
+    filter: drop-shadow(5px 0 #ff3b3b) drop-shadow(-5px 3px #39ff14);
+    transform: translate(-4px, -3px) skewX(-10deg);
+    clip-path: polygon(0 40%, 18% 22%, 35% 50%, 55% 18%, 72% 52%, 100% 28%, 100% 64%, 0 72%);
+  }
+  82% { /* triangle shard (bottom-right) */
+    filter: drop-shadow(-5px 5px #ff2bd6) drop-shadow(5px -5px #00e5ff);
+    transform: translate(-5px, 4px) skewX(8deg);
     clip-path: polygon(100% 0, 100% 100%, 0 100%);
   }
-  88% { /* center cross slice */
-    filter: drop-shadow(4px 0 #ff3b3b) drop-shadow(-4px 0 #00e5ff);
-    transform: translate(3px, -3px) skewX(6deg) skewY(5deg);
-    clip-path: inset(35% 0 35% 0);
+  92% { /* diagonal stripe */
+    filter: drop-shadow(4px 0 #3a4bff) drop-shadow(-4px 0 #ff7a00);
+    transform: translate(3px, -3px) skewY(7deg);
+    clip-path: polygon(0 8%, 100% 0, 100% 38%, 0 58%);
   }
 }
