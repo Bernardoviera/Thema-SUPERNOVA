@@ -2118,8 +2118,12 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
     animation: sn-glitch-burst 0.4s steps(1, end);
   }
 
-  /* Cart / bag icon — glitch on hover */
-  [data-open-cart]:hover {
+  /* Cart / bag icon — auto glitch (works on touch too) + stronger on hover */
+  [data-open-cart] svg {
+    animation: sn-glitch-loop 5.5s steps(1, end) infinite;
+    animation-delay: -2.8s;
+  }
+  [data-open-cart]:hover svg {
     animation: sn-glitch-burst 0.4s steps(1, end);
   }
 }
