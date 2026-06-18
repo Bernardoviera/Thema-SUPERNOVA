@@ -118,7 +118,7 @@ class CartDrawer {
     if (!itemsContainer) return;
 
     if (cart.item_count === 0) {
-      itemsContainer.innerHTML = '<p style="padding:2rem 0;text-align:center;color:rgba(var(--color-base-text),0.6)">Your cart is empty.</p>';
+      itemsContainer.innerHTML = '<p style="padding:2rem 0;text-align:center;color:rgba(var(--color-base-text),0.6)">Nothing here yet. Go cause some damage.</p>';
     } else {
       itemsContainer.innerHTML = cart.items.map(item => `
         <div class="cart-item">
@@ -221,10 +221,10 @@ async function addToCart(variantId, quantity = 1) {
       window.cartDrawer?.open();
     }
 
-    showToast('Added to cart!');
+    showToast('In the bag.');
     return item;
   } catch (e) {
-    showToast('Could not add to cart.', 'error');
+    showToast("Couldn't add that — try again.", 'error');
     throw e;
   }
 }
