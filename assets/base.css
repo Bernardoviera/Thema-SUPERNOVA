@@ -2102,3 +2102,77 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 .btn:active { transform: scale(0.97); }
 .product-card:active,
 .category-card:active { transform: scale(0.985); }
+
+/* ============================================================
+   SUPERNOVA — Spider-Verse "anomaly" glitch
+   Neon multicolor shard glitch (magenta/cyan/green/blue).
+   Short burst every ~9s + on hover. Off for reduced-motion.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .header__logo a { position: relative; }
+  .header__logo-image {
+    will-change: filter, transform, clip-path;
+    animation: sn-glitch-loop 9s steps(1, end) infinite;
+  }
+  .header__logo:hover .header__logo-image {
+    animation: sn-glitch-burst 0.55s steps(1, end);
+  }
+}
+
+@keyframes sn-glitch-loop {
+  0%, 90%, 100% { filter: none; transform: none; clip-path: none; }
+  91% {
+    filter: drop-shadow(4px 0 #ff2bd6) drop-shadow(-4px 0 #00e5ff);
+    transform: translate(2px, -1px) skewX(-7deg);
+    clip-path: inset(0 0 62% 0);
+  }
+  92.5% {
+    filter: drop-shadow(-5px 0 #39ff14) drop-shadow(5px 0 #ff2bd6);
+    transform: translate(-3px, 1px);
+    clip-path: inset(38% 0 22% 0);
+  }
+  94% {
+    filter: drop-shadow(4px 0 #00e5ff) drop-shadow(-3px 0 #3a4bff);
+    transform: translate(2px, 0) skewX(5deg);
+    clip-path: inset(68% 0 0 0);
+  }
+  95.5% {
+    filter: drop-shadow(-4px 0 #ff2e9a) drop-shadow(4px 0 #39ff14);
+    transform: translate(-2px, -1px) skewX(-3deg);
+    clip-path: inset(20% 0 48% 0);
+  }
+  97% {
+    filter: drop-shadow(3px 0 #3a4bff) drop-shadow(-3px 0 #ff2bd6);
+    transform: translate(1px, 1px);
+    clip-path: inset(50% 0 10% 0);
+  }
+}
+
+@keyframes sn-glitch-burst {
+  0%, 100% { filter: none; transform: none; clip-path: none; }
+  10% {
+    filter: drop-shadow(4px 0 #ff2bd6) drop-shadow(-4px 0 #00e5ff);
+    transform: translate(2px, -1px) skewX(-8deg);
+    clip-path: inset(0 0 60% 0);
+  }
+  30% {
+    filter: drop-shadow(-5px 0 #39ff14) drop-shadow(5px 0 #ff2bd6);
+    transform: translate(-3px, 1px);
+    clip-path: inset(40% 0 20% 0);
+  }
+  50% {
+    filter: drop-shadow(4px 0 #00e5ff) drop-shadow(-3px 0 #3a4bff);
+    transform: translate(2px, 0) skewX(6deg);
+    clip-path: inset(70% 0 0 0);
+  }
+  70% {
+    filter: drop-shadow(-4px 0 #ff2e9a) drop-shadow(4px 0 #39ff14);
+    transform: translate(-2px, -1px);
+    clip-path: inset(22% 0 50% 0);
+  }
+  85% {
+    filter: drop-shadow(3px 0 #3a4bff) drop-shadow(-3px 0 #ff2bd6);
+    transform: translate(1px, 1px) skewX(-4deg);
+    clip-path: inset(55% 0 12% 0);
+  }
+}
