@@ -2119,60 +2119,82 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   }
 }
 
+/* Multi-directional chaos: horizontal, vertical, diagonal & triangular shards,
+   one direction per frame (steps snap) — like the movie. */
 @keyframes sn-glitch-loop {
-  0%, 90%, 100% { filter: none; transform: none; clip-path: none; }
-  91% {
-    filter: drop-shadow(4px 0 #ff2bd6) drop-shadow(-4px 0 #00e5ff);
-    transform: translate(2px, -1px) skewX(-7deg);
+  0%, 88%, 100% { filter: none; transform: none; clip-path: none; }
+  89% { /* horizontal */
+    filter: drop-shadow(5px 0 #ff2bd6) drop-shadow(-5px 0 #00e5ff);
+    transform: translate(6px, -2px) skewX(-10deg);
     clip-path: inset(0 0 62% 0);
   }
-  92.5% {
-    filter: drop-shadow(-5px 0 #39ff14) drop-shadow(5px 0 #ff2bd6);
-    transform: translate(-3px, 1px);
-    clip-path: inset(38% 0 22% 0);
+  90.5% { /* vertical */
+    filter: drop-shadow(0 5px #39ff14) drop-shadow(0 -5px #ff2bd6);
+    transform: translate(-2px, 6px) skewY(8deg);
+    clip-path: inset(0 60% 0 0);
   }
-  94% {
-    filter: drop-shadow(4px 0 #00e5ff) drop-shadow(-3px 0 #3a4bff);
-    transform: translate(2px, 0) skewX(5deg);
+  92% { /* diagonal shard (top-left) */
+    filter: drop-shadow(4px 4px #00e5ff) drop-shadow(-4px -4px #ff7a00);
+    transform: translate(5px, 5px) skewX(8deg);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  93.5% { /* horizontal low */
+    filter: drop-shadow(-6px 0 #3a4bff) drop-shadow(6px 0 #39ff14);
+    transform: translate(-6px, 1px) skewY(-5deg);
     clip-path: inset(68% 0 0 0);
   }
-  95.5% {
-    filter: drop-shadow(-4px 0 #ff2e9a) drop-shadow(4px 0 #39ff14);
-    transform: translate(-2px, -1px) skewX(-3deg);
-    clip-path: inset(20% 0 48% 0);
+  95% { /* vertical right */
+    filter: drop-shadow(0 -5px #ff2e9a) drop-shadow(0 5px #00e5ff);
+    transform: translate(3px, -6px) skewY(-9deg);
+    clip-path: inset(0 0 0 62%);
   }
-  97% {
-    filter: drop-shadow(3px 0 #3a4bff) drop-shadow(-3px 0 #ff2bd6);
-    transform: translate(1px, 1px);
-    clip-path: inset(50% 0 10% 0);
+  96.5% { /* diagonal shard (bottom-right) */
+    filter: drop-shadow(-4px 4px #39ff14) drop-shadow(4px -4px #ff2bd6);
+    transform: translate(-5px, 4px) skewX(-7deg);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+  98% { /* center cross slice */
+    filter: drop-shadow(4px 0 #ff3b3b) drop-shadow(-4px 0 #00e5ff);
+    transform: translate(3px, -3px) skewX(6deg) skewY(4deg);
+    clip-path: inset(35% 0 35% 0);
   }
 }
 
 @keyframes sn-glitch-burst {
   0%, 100% { filter: none; transform: none; clip-path: none; }
-  10% {
-    filter: drop-shadow(4px 0 #ff2bd6) drop-shadow(-4px 0 #00e5ff);
-    transform: translate(2px, -1px) skewX(-8deg);
+  12% { /* horizontal */
+    filter: drop-shadow(5px 0 #ff2bd6) drop-shadow(-5px 0 #00e5ff);
+    transform: translate(6px, -2px) skewX(-10deg);
     clip-path: inset(0 0 60% 0);
   }
-  30% {
-    filter: drop-shadow(-5px 0 #39ff14) drop-shadow(5px 0 #ff2bd6);
-    transform: translate(-3px, 1px);
-    clip-path: inset(40% 0 20% 0);
+  24% { /* vertical */
+    filter: drop-shadow(0 6px #39ff14) drop-shadow(0 -6px #ff2bd6);
+    transform: translate(-3px, 6px) skewY(9deg);
+    clip-path: inset(0 60% 0 0);
   }
-  50% {
-    filter: drop-shadow(4px 0 #00e5ff) drop-shadow(-3px 0 #3a4bff);
-    transform: translate(2px, 0) skewX(6deg);
+  36% { /* diagonal shard (top-left) */
+    filter: drop-shadow(5px 5px #00e5ff) drop-shadow(-5px -5px #ff7a00);
+    transform: translate(5px, 5px) skewX(9deg);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  48% { /* horizontal low */
+    filter: drop-shadow(-6px 0 #3a4bff) drop-shadow(6px 0 #39ff14);
+    transform: translate(-6px, 1px) skewY(-6deg);
     clip-path: inset(70% 0 0 0);
   }
-  70% {
-    filter: drop-shadow(-4px 0 #ff2e9a) drop-shadow(4px 0 #39ff14);
-    transform: translate(-2px, -1px);
-    clip-path: inset(22% 0 50% 0);
+  60% { /* vertical right */
+    filter: drop-shadow(0 -6px #ff2e9a) drop-shadow(0 6px #00e5ff);
+    transform: translate(3px, -6px) skewY(-10deg);
+    clip-path: inset(0 0 0 62%);
   }
-  85% {
-    filter: drop-shadow(3px 0 #3a4bff) drop-shadow(-3px 0 #ff2bd6);
-    transform: translate(1px, 1px) skewX(-4deg);
-    clip-path: inset(55% 0 12% 0);
+  74% { /* diagonal shard (bottom-right) */
+    filter: drop-shadow(-5px 5px #39ff14) drop-shadow(5px -5px #ff2bd6);
+    transform: translate(-5px, 4px) skewX(-8deg);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+  88% { /* center cross slice */
+    filter: drop-shadow(4px 0 #ff3b3b) drop-shadow(-4px 0 #00e5ff);
+    transform: translate(3px, -3px) skewX(6deg) skewY(5deg);
+    clip-path: inset(35% 0 35% 0);
   }
 }
