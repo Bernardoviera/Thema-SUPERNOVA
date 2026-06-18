@@ -2112,10 +2112,10 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   .header__logo a { position: relative; }
   .header__logo-image {
     will-change: filter, transform, clip-path;
-    animation: sn-glitch-loop 9s steps(1, end) infinite;
+    animation: sn-glitch-loop 4s steps(1, end) infinite;
   }
   .header__logo:hover .header__logo-image {
-    animation: sn-glitch-burst 0.55s steps(1, end);
+    animation: sn-glitch-burst 0.4s steps(1, end);
   }
 }
 
