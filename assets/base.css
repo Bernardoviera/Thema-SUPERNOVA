@@ -2118,17 +2118,7 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
     animation: sn-glitch-burst 0.4s steps(1, end);
   }
 
-  /* Hero title — glitches on page load (negative delay) + every ~7s */
-  .hero__title {
-    animation: sn-glitch-loop 7s steps(1, end) infinite;
-    animation-delay: -6.4s;
-  }
-  /* Eyebrow ("Anomaly detected") — subtle, staggered ~5.5s */
-  .hero__eyebrow {
-    animation: sn-glitch-loop 5.5s steps(1, end) infinite;
-    animation-delay: -1.7s;
-  }
-  /* Cart icon — glitch on hover */
+  /* Cart / bag icon — glitch on hover */
   [data-open-cart]:hover {
     animation: sn-glitch-burst 0.4s steps(1, end);
   }
