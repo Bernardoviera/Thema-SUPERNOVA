@@ -547,12 +547,15 @@ document.addEventListener('shopify:section:load', initHeroCarousels);
       return;
     }
     const y = window.scrollY;
-    if (y > 90 && y > lastY + 4) {
+    // Only condense AFTER the hero has fully scrolled past (.scrolled is set by
+    // the IntersectionObserver). While over the hero, keep the normal header.
+    const pastHero = header.classList.contains('scrolled');
+    if (pastHero && y > lastY + 4) {
       if (!header.classList.contains('is-condensed')) {
         setShift();
         header.classList.add('is-condensed');
       }
-    } else if (y < lastY - 4 || y <= 90) {
+    } else if (!pastHero || y < lastY - 4) {
       header.classList.remove('is-condensed');
     }
     lastY = y;
