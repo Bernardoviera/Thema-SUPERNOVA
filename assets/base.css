@@ -2131,10 +2131,10 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   }
   /* Condensed: logo to center AND down; bag follows down so they stay aligned. */
   .template-index .site-header.is-condensed .header__logo {
-    transform: translate(var(--logo-shift, 0px), 2.5rem);
+    transform: translate(var(--logo-shift, 0px), 28px);
   }
   .template-index .site-header.is-condensed .header__actions {
-    transform: translateY(2.5rem);
+    transform: translateY(28px);
   }
   .template-index .site-header.is-condensed .header__icon-btn:not([data-open-cart]),
   .template-index .site-header.is-condensed .header__hamburger {
