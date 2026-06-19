@@ -11,36 +11,16 @@
   "sections": {
     "hero-banner": {
       "type": "hero-banner",
-      "blocks": {
-        "slide-1": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_17_de_jun._de_2026_13_44_05.png",
-            "image_mobile": "shopify://shop_images/ChatGPT_Image_17_de_jun._de_2026_13_52_53.png",
-            "eyebrow": "Anomaly detected",
-            "title": "WEAR THE EXPLOSION",
-            "subtitle": "A glitch in the system — and you just found it.",
-            "text_color": "light",
-            "button_label": "Enter the anomaly",
-            "button_link": "shopify://collections/all"
-          }
-        }
-      },
-      "block_order": ["slide-1"],
       "settings": {
         "image": "shopify://shop_images/ChatGPT_Image_17_de_jun._de_2026_13_44_05.png",
         "image_mobile": "shopify://shop_images/ChatGPT_Image_17_de_jun._de_2026_13_52_53.png",
         "height_option": "full-height",
         "content_alignment": "center",
-        "autoplay": true,
-        "autoplay_speed": 5,
-        "show_arrows": true,
-        "show_dots": true,
-        "eyebrow": "Anomaly detected",
+        "eyebrow": "New Drop",
         "title": "WEAR THE EXPLOSION",
-        "subtitle": "A glitch in the system — and you just found it.",
+        "subtitle": "Streetwear, football-core and Y2K — built for the bold.",
         "text_color": "light",
-        "button_label": "Enter the anomaly",
+        "button_label": "Shop the drop",
         "button_link": "shopify://collections/all",
         "button2_label": "",
         "button2_link": "",
@@ -91,7 +71,9 @@
         "badge-3",
         "badge-4"
       ],
-      "settings": {}
+      "settings": {
+        "speed": "normal"
+      }
     },
     "category-highlights": {
       "type": "category-highlights",
@@ -133,7 +115,7 @@
     "featured-collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "",
+        "collection": "street",
         "eyebrow": "Best sellers",
         "title": "Featured",
         "subtitle": "The pieces everyone's after",
