@@ -300,8 +300,10 @@ class VariantPicker {
       selected[btn.dataset.option] = btn.dataset.value;
     });
 
+    // Match using option1/option2/option3 (always present in the JSON), not the
+    // `options` array which Shopify's | json may omit.
     this.currentVariant = this.variants.find(v =>
-      v.options.every((val, i) => selected[`option${i + 1}`] === val)
+      Object.keys(selected).every(key => v[key] === selected[key])
     ) || null;
 
     this.updateUI();
