@@ -42,15 +42,8 @@
           {%- render 'price', product: product -%}
         </div>
 
-        {%- if product.description != blank -%}
-          <div class="product-info__description">{{ product.description }}</div>
-        {%- endif -%}
-
-        {%- form 'product', product,
-          id: 'product-form',
-          class: 'product-form',
-          data-variants: product.variants_json
-        -%}
+        {%- form 'product', product, id: 'product-form', class: 'product-form' -%}
+          <script type="application/json" data-product-variants>{{ product.variants | json }}</script>
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
           <!-- Variant options -->
@@ -116,6 +109,10 @@
             </button>
           </div>
         {%- endform -%}
+
+        {%- if product.description != blank -%}
+          <div class="product-info__description">{{ product.description }}</div>
+        {%- endif -%}
 
         <!-- Meta info -->
         <div class="product-info__meta">

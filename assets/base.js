@@ -246,7 +246,12 @@ function showToast(message) {
 class VariantPicker {
   constructor(form) {
     this.form = form;
-    this.variants = JSON.parse(form.dataset.variants || '[]');
+    const variantData = form.querySelector('[data-product-variants]');
+    try {
+      this.variants = variantData ? JSON.parse(variantData.textContent) : [];
+    } catch (e) {
+      this.variants = [];
+    }
     this.currentVariant = this.variants[0] || null;
     this.bindEvents();
     this.updateUI();
@@ -300,18 +305,19 @@ class VariantPicker {
     const stockEl = this.form.closest('.product-info')?.querySelector('.product-info__stock');
 
     if (!this.currentVariant) {
-      if (addBtn) { addBtn.disabled = true; addBtn.textContent = 'No disponible'; }
+      if (addBtn) { addBtn.disabled = true; addBtn.textContent = 'Unavailable'; }
       return;
     }
 
     if (priceEl) {
+      const money = cents => '€' + (cents / 100).toFixed(2).replace('.', ',');
       if (this.currentVariant.compare_at_price > this.currentVariant.price) {
         priceEl.innerHTML = `
-          <span class="price__sale">R$&nbsp;${(this.currentVariant.price / 100).toFixed(2).replace('.', ',')}</span>
-          <span class="price__compare">R$&nbsp;${(this.currentVariant.compare_at_price / 100).toFixed(2).replace('.', ',')}</span>
+          <span class="price__sale">${money(this.currentVariant.price)}</span>
+          <span class="price__compare">${money(this.currentVariant.compare_at_price)}</span>
         `;
       } else {
-        priceEl.innerHTML = `<span class="price__regular">R$&nbsp;${(this.currentVariant.price / 100).toFixed(2).replace('.', ',')}</span>`;
+        priceEl.innerHTML = `<span class="price__regular">${money(this.currentVariant.price)}</span>`;
       }
     }
 
@@ -372,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.cartDrawer = new CartDrawer();
 
   // Variant pickers
-  document.querySelectorAll('.product-form[data-variants]').forEach(form => {
+  document.querySelectorAll('.product-form').forEach(form => {
     new VariantPicker(form);
   });
 
