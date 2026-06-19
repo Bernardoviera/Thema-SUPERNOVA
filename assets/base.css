@@ -142,6 +142,14 @@ img, svg { display: block; max-width: 100%; }
   padding-top: env(safe-area-inset-top, 0px);
 }
 
+/* On the condensed home header (mobile), guarantee a minimum clearance so the
+   logo always drops below the camera area even if the safe-area inset is 0. */
+@media (max-width: 990px) {
+  .template-index .site-header.is-condensed {
+    padding-top: max(env(safe-area-inset-top, 0px), 2rem);
+  }
+}
+
 /* Remove espaço entre header e hero banner */
 .hero-section { margin-top: 0; }
 .hero { margin: 0; }
