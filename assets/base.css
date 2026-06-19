@@ -135,18 +135,20 @@ img, svg { display: block; max-width: 100%; }
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }
 
-/* iPhone safe area: when the header is stuck at the very top (announcement
-   bar scrolled away), push its content below the notch / Dynamic Island. */
-.site-header.scrolled,
-.site-header.is-condensed {
+/* iPhone safe area on inner pages: when the header sticks at the top, clear
+   the notch / Dynamic Island. */
+body:not(.template-index) .site-header.scrolled {
   padding-top: env(safe-area-inset-top, 0px);
 }
 
-/* On the condensed home header (mobile), guarantee a minimum clearance so the
-   logo always drops below the camera area even if the safe-area inset is 0. */
+/* Home (mobile), condensed: glide the whole header DOWN so the logo clears the
+   camera area. Uses the larger of the safe-area inset or 2rem. */
 @media (max-width: 990px) {
-  .template-index .site-header.is-condensed {
-    padding-top: max(env(safe-area-inset-top, 0px), 2rem);
+  .template-index .site-header .header-wrapper {
+    transition: transform 0.35s ease;
+  }
+  .template-index .site-header.is-condensed .header-wrapper {
+    transform: translateY(max(env(safe-area-inset-top, 0px), 2rem));
   }
 }
 
