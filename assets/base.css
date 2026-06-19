@@ -169,6 +169,13 @@ body:not(.template-index) .site-header.scrolled {
   box-shadow: none;
 }
 
+/* Once condensed (scrolling down), force the header solid so section content
+   never shows through it — even if still over the hero. */
+.template-index .site-header.is-condensed {
+  background-color: rgb(var(--color-brand-surface));
+  border-bottom-color: rgba(var(--color-brand-surface-text), 0.12);
+}
+
 .template-index .site-header:not(.scrolled) .header__logo-text,
 .template-index .site-header:not(.scrolled) .header__nav-item > a,
 .template-index .site-header:not(.scrolled) .header__icon-btn,
