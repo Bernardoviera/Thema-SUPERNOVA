@@ -559,5 +559,8 @@ document.addEventListener('shopify:section:load', initHeroCarousels);
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  mq.addEventListener('change', function () { header.classList.remove('is-condensed'); });
+  onScroll();
+  const onMqChange = function () { header.classList.remove('is-condensed'); };
+  if (mq.addEventListener) mq.addEventListener('change', onMqChange);
+  else if (mq.addListener) mq.addListener(onMqChange);
 })();
