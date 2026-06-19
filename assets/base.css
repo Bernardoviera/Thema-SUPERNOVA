@@ -2136,12 +2136,10 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   .template-index .site-header .header__hamburger {
     transition: opacity 0.25s ease;
   }
-  /* Condensed: logo to center AND down; bag follows down so they stay aligned. */
+  /* Condensed: logo just glides to center (no vertical drop — the sticky
+     header already sits below the status bar). */
   .template-index .site-header.is-condensed .header__logo {
-    transform: translate(var(--logo-shift, 0px), 28px);
-  }
-  .template-index .site-header.is-condensed .header__actions {
-    transform: translateY(28px);
+    transform: translateX(var(--logo-shift, 0px));
   }
   .template-index .site-header.is-condensed .header__icon-btn:not([data-open-cart]),
   .template-index .site-header.is-condensed .header__hamburger {
