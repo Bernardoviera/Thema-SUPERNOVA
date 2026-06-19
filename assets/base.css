@@ -148,7 +148,8 @@ body:not(.template-index) .site-header.scrolled {
     transition: transform 0.35s ease;
   }
   .template-index .site-header.is-condensed .header-wrapper {
-    transform: translateY(max(env(safe-area-inset-top, 0px), 2rem));
+    transform: translateY(2.5rem); /* fallback (no env/max) — always works */
+    transform: translateY(calc(env(safe-area-inset-top, 0px) + 2.5rem));
   }
 }
 
