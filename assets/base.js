@@ -330,6 +330,16 @@ class VariantPicker {
       stockEl.textContent = this.currentVariant.available ? 'In stock' : 'Sold out';
     }
 
+    // Swap the main image to the variant's image (only if one is assigned)
+    const fi = this.currentVariant.featured_image;
+    if (fi && fi.src) {
+      const mainImg = document.getElementById('product-main-image');
+      if (mainImg) {
+        mainImg.src = fi.src + (fi.src.indexOf('?') > -1 ? '&' : '?') + 'width=900';
+        if (fi.alt) mainImg.alt = fi.alt;
+      }
+    }
+
     // Update URL
     const url = new URL(window.location.href);
     url.searchParams.set('variant', this.currentVariant.id);
