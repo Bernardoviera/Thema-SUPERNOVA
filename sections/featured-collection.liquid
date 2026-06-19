@@ -1,6 +1,4 @@
-{%- if section.settings.collection != blank -%}
-  {%- assign featured_collection = collections[section.settings.collection] -%}
-{%- endif -%}
+{%- assign featured_collection = section.settings.collection -%}
 
 <section class="featured-collection section">
   <div class="page-width">
