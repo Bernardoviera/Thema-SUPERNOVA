@@ -522,3 +522,42 @@ document.addEventListener('shopify:section:load', initHeroCarousels);
     if (e.key === 'Escape') closeModal();
   });
 })();
+
+// ─── Condensed header on the home page (mobile) ────────────────────
+// Scroll down: logo glides to center & extra icons fade out (bag stays).
+// Scroll up: everything returns. Home + mobile only.
+(function () {
+  const header = document.querySelector('.site-header');
+  if (!header || !document.body.classList.contains('template-index')) return;
+  const logo = header.querySelector('.header__logo');
+  if (!logo) return;
+  const mq = window.matchMedia('(max-width: 990px)');
+  let lastY = window.scrollY;
+
+  function setShift() {
+    const r = logo.getBoundingClientRect();
+    const shift = Math.round((window.innerWidth / 2) - (r.left + r.width / 2));
+    header.style.setProperty('--logo-shift', shift + 'px');
+  }
+
+  function onScroll() {
+    if (!mq.matches) {
+      header.classList.remove('is-condensed');
+      lastY = window.scrollY;
+      return;
+    }
+    const y = window.scrollY;
+    if (y > 90 && y > lastY + 4) {
+      if (!header.classList.contains('is-condensed')) {
+        setShift();
+        header.classList.add('is-condensed');
+      }
+    } else if (y < lastY - 4 || y <= 90) {
+      header.classList.remove('is-condensed');
+    }
+    lastY = y;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  mq.addEventListener('change', function () { header.classList.remove('is-condensed'); });
+})();

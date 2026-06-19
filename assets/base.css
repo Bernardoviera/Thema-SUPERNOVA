@@ -2104,6 +2104,30 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 .category-card:active { transform: scale(0.985); }
 
 /* ============================================================
+   Condensed header on scroll — HOME + MOBILE only.
+   Scroll down: logo glides to center, extra icons fade out,
+   only the bag stays. Scroll up: everything returns.
+   (--logo-shift is set by JS to the exact px to center the logo.)
+   ============================================================ */
+@media (max-width: 990px) {
+  .template-index .site-header .header__logo {
+    transition: transform 0.35s ease;
+  }
+  .template-index .site-header .header__actions .header__icon-btn,
+  .template-index .site-header .header__hamburger {
+    transition: opacity 0.25s ease;
+  }
+  .template-index .site-header.is-condensed .header__logo {
+    transform: translateX(var(--logo-shift, 0px));
+  }
+  .template-index .site-header.is-condensed .header__icon-btn:not([data-open-cart]),
+  .template-index .site-header.is-condensed .header__hamburger {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* ============================================================
    SUPERNOVA — Spider-Verse "anomaly" glitch
    Neon multicolor shard glitch (magenta/cyan/green/blue).
    Short burst every ~9s + on hover. Off for reduced-motion.
