@@ -120,9 +120,16 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* ---------- Header ---------- */
-.site-header {
+/* Make the section wrapper the sticky element — its parent (body) spans the
+   whole page, so the header actually stays fixed while scrolling. */
+.section-header {
   position: sticky;
   top: 0;
+  z-index: 100;
+}
+
+.site-header {
+  position: relative;
   z-index: 100;
   background-color: rgb(var(--color-base-background-1));
   border-bottom: 1px solid rgba(var(--color-base-text), 0.08);
