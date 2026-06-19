@@ -331,13 +331,10 @@ class VariantPicker {
     }
 
     // Swap the main image to the variant's image (only if one is assigned)
-    const fi = this.currentVariant.featured_image;
-    if (fi && fi.src) {
+    const variantImg = this.currentVariant.featured_image;
+    if (variantImg) {
       const mainImg = document.getElementById('product-main-image');
-      if (mainImg) {
-        mainImg.src = fi.src + (fi.src.indexOf('?') > -1 ? '&' : '?') + 'width=900';
-        if (fi.alt) mainImg.alt = fi.alt;
-      }
+      if (mainImg) mainImg.src = variantImg;
     }
 
     // Update URL
