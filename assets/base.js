@@ -252,6 +252,12 @@ class VariantPicker {
     } catch (e) {
       this.variants = [];
     }
+    const imgData = form.querySelector('[data-variant-images]');
+    try {
+      this.variantImages = imgData ? JSON.parse(imgData.textContent) : {};
+    } catch (e) {
+      this.variantImages = {};
+    }
     this.currentVariant = this.variants[0] || null;
     this.bindEvents();
     this.updateUI();
@@ -331,7 +337,7 @@ class VariantPicker {
     }
 
     // Swap the main image to the variant's image (only if one is assigned)
-    const variantImg = this.currentVariant.featured_image;
+    const variantImg = this.variantImages[this.currentVariant.id];
     if (variantImg) {
       const mainImg = document.getElementById('product-main-image');
       if (mainImg) mainImg.src = variantImg;
