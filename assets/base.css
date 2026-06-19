@@ -2141,10 +2141,16 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   .template-index .site-header.is-condensed .header__logo {
     transform: translateX(var(--logo-shift, 0px));
   }
+  /* Hide everything but the bag — removed from layout so the bag sits flush
+     to the right edge, separated from the centered logo. */
   .template-index .site-header.is-condensed .header__icon-btn:not([data-open-cart]),
   .template-index .site-header.is-condensed .header__hamburger {
-    opacity: 0;
-    pointer-events: none;
+    display: none;
+  }
+  /* Slim the condensed header a touch so the logo sits a bit higher. */
+  .template-index .site-header.is-condensed .header-wrapper {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }
 
