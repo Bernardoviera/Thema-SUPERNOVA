@@ -120,9 +120,11 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* ---------- Header ---------- */
-/* Make the section wrapper the sticky element — its parent (body) spans the
-   whole page, so the header actually stays fixed while scrolling. */
-.section-header {
+/* Make the header's section wrapper the sticky element — its parent (body)
+   spans the whole page, so the header stays fixed while scrolling.
+   NOTE: target ONLY the Shopify section wrapper (.shopify-section.section-header),
+   because section heading blocks reuse the bare .section-header class. */
+.shopify-section.section-header {
   position: sticky;
   top: 0;
   z-index: 100;
