@@ -270,6 +270,8 @@ class VariantPicker {
         const value = btn.dataset.value;
         this.form.querySelectorAll(`.variant-opt[data-option="${option}"]`).forEach(b => b.classList.remove('is-selected'));
         btn.classList.add('is-selected');
+        const valueLabel = btn.closest('.product-form__option')?.querySelector('.variant-label span');
+        if (valueLabel) valueLabel.textContent = value;
         this.updateVariant();
       });
     });
