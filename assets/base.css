@@ -143,15 +143,8 @@ body:not(.template-index) .site-header.scrolled {
 
 /* Home (mobile), condensed: glide the whole header DOWN so the logo clears the
    camera area. Uses the larger of the safe-area inset or 2rem. */
-@media (max-width: 990px) {
-  .template-index .site-header .header-wrapper {
-    transition: transform 0.35s ease;
-  }
-  .template-index .site-header.is-condensed .header-wrapper {
-    transform: translateY(2.5rem); /* fallback (no env/max) — always works */
-    transform: translateY(calc(env(safe-area-inset-top, 0px) + 2.5rem));
-  }
-}
+/* (Descent is applied to the logo & bag directly — see the condensed-header
+   block below — because a transform on .header-wrapper wasn't taking effect.) */
 
 /* Remove espaço entre header e hero banner */
 .hero-section { margin-top: 0; }
@@ -2128,15 +2121,20 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
    (--logo-shift is set by JS to the exact px to center the logo.)
    ============================================================ */
 @media (max-width: 990px) {
-  .template-index .site-header .header__logo {
+  .template-index .site-header .header__logo,
+  .template-index .site-header .header__actions {
     transition: transform 0.35s ease;
   }
   .template-index .site-header .header__actions .header__icon-btn,
   .template-index .site-header .header__hamburger {
     transition: opacity 0.25s ease;
   }
+  /* Condensed: logo to center AND down; bag follows down so they stay aligned. */
   .template-index .site-header.is-condensed .header__logo {
-    transform: translateX(var(--logo-shift, 0px));
+    transform: translate(var(--logo-shift, 0px), 2.5rem);
+  }
+  .template-index .site-header.is-condensed .header__actions {
+    transform: translateY(2.5rem);
   }
   .template-index .site-header.is-condensed .header__icon-btn:not([data-open-cart]),
   .template-index .site-header.is-condensed .header__hamburger {
