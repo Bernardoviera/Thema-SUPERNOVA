@@ -89,7 +89,7 @@ img, svg { display: block; max-width: 100%; }
   background-color: rgb(var(--color-base-accent-1));
   color: rgb(var(--color-base-solid-button-labels));
   text-align: center;
-  padding: 1rem 2rem;
+  padding: calc(1rem + env(safe-area-inset-top, 0px)) 2rem 1rem;
   font-size: 1.3rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -103,7 +103,7 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 749px) {
   .announcement-bar {
     overflow: hidden;
-    padding: 1rem 0;
+    padding: calc(1rem + env(safe-area-inset-top, 0px)) 0 1rem;
   }
   .announcement-bar p,
   .announcement-bar a {
@@ -133,6 +133,13 @@ img, svg { display: block; max-width: 100%; }
   background-color: rgb(var(--color-base-background-1));
   border-bottom-color: rgba(var(--color-base-text), 0.08);
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+
+/* iPhone safe area: when the header is stuck at the very top (announcement
+   bar scrolled away), push its content below the notch / Dynamic Island. */
+.site-header.scrolled,
+.site-header.is-condensed {
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 /* Remove espaço entre header e hero banner */
