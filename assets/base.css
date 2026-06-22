@@ -1250,8 +1250,6 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   align-items: start;
 }
 
-.product-media-gallery { position: sticky; top: 10rem; }
-
 .product-media__main {
   overflow: hidden;
   border-radius: var(--media-radius);
