@@ -1249,8 +1249,11 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   gap: 6rem;
   align-items: start;
 }
+/* Let the columns shrink so a huge image can't stretch the gallery column. */
+.product > * { min-width: 0; }
 
 .product-media__main {
+  width: 100%;
   overflow: hidden;
   border-radius: var(--media-radius);
   background-color: rgb(var(--color-base-background-2));
