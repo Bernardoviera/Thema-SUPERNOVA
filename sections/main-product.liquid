@@ -16,16 +16,18 @@
         </div>
 
         {%- if product.images.size > 1 -%}
-          <div class="product-media__thumbnails">
-            {%- for image in product.images limit: 8 -%}
-              <div class="product-media__thumb{% if forloop.first %} is-active{% endif %}">
-                {{
-                  image
-                  | image_url: width: 200
-                  | image_tag: loading: 'lazy', width: 200, alt: product.title
-                }}
-              </div>
-            {%- endfor -%}
+          <div class="product-media__thumbs-wrap">
+            <div class="product-media__thumbnails">
+              {%- for image in product.images limit: 25 -%}
+                <div class="product-media__thumb{% if forloop.first %} is-active{% endif %}">
+                  {{
+                    image
+                    | image_url: width: 300
+                    | image_tag: loading: 'lazy', width: 300, alt: product.title
+                  }}
+                </div>
+              {%- endfor -%}
+            </div>
           </div>
         {%- endif -%}
       </div>
