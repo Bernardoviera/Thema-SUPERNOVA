@@ -343,8 +343,14 @@ class VariantPicker {
     // Swap the main image to the variant's image (only if one is assigned)
     const variantImg = this.variantImages[this.currentVariant.id];
     if (variantImg) {
-      const mainImg = document.getElementById('product-main-image');
-      if (mainImg) mainImg.src = variantImg;
+      const mainImg = document.querySelector('.product-media__main img')
+        || document.getElementById('product-main-image');
+      if (mainImg) {
+        // Clear srcset/sizes or the browser keeps showing the old responsive image.
+        mainImg.removeAttribute('srcset');
+        mainImg.removeAttribute('sizes');
+        mainImg.src = variantImg;
+      }
     }
 
     // Update URL
@@ -365,8 +371,13 @@ class ProductGallery {
   bindEvents() {
     this.thumbs.forEach(thumb => {
       thumb.addEventListener('click', () => {
-        const src = thumb.querySelector('img').src;
-        if (this.main) this.main.src = src;
+        const thumbImg = thumb.querySelector('img');
+        if (!thumbImg || !this.main) return;
+        // Use a larger version of the thumbnail (thumbs are ~200px wide).
+        const src = thumbImg.src.replace(/([?&])width=\d+/, '$1width=900');
+        this.main.removeAttribute('srcset');
+        this.main.removeAttribute('sizes');
+        this.main.src = src;
         this.thumbs.forEach(t => t.classList.remove('is-active'));
         thumb.classList.add('is-active');
       });
