@@ -1265,13 +1265,6 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   box-shadow: 0 8px 36px rgba(var(--color-base-accent-1), 0.14);
 }
 
-/* Glitch the main image briefly when the color (image) changes */
-@media (prefers-reduced-motion: no-preference) {
-  .product-media__main img.sn-img-glitch {
-    animation: sn-glitch-burst 0.45s steps(1, end);
-  }
-}
-
 /* LIMITED DROP badge */
 .product-info__badge {
   display: inline-block;

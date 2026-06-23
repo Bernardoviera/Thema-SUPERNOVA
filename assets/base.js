@@ -352,12 +352,6 @@ class VariantPicker {
         mainImg.removeAttribute('srcset');
         mainImg.removeAttribute('sizes');
         mainImg.src = variantImg;
-        // Brief glitch on color change (skip on initial load)
-        if (this._initialized) {
-          mainImg.classList.remove('sn-img-glitch');
-          void mainImg.offsetWidth;
-          mainImg.classList.add('sn-img-glitch');
-        }
       }
     }
 
