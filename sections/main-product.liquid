@@ -50,7 +50,7 @@
 
         {%- form 'product', product, id: 'product-form', class: 'product-form' -%}
           <script type="application/json" data-product-variants>{{ product.variants | json }}</script>
-          <script type="application/json" data-variant-images>{ {% for variant in product.variants %}"{{ variant.id }}": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 1200 | json }}{% else %}null{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %} }</script>
+          <script type="application/json" data-variant-images>{ {% for variant in product.variants %}{% assign vimg = variant.featured_media.preview_image | default: variant.featured_image %}"{{ variant.id }}": {% if vimg %}{{ vimg | image_url: width: 1200 | json }}{% else %}null{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %} }</script>
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
           <!-- Variant options -->
