@@ -57,24 +57,32 @@
           {%- unless product.has_only_default_variant -%}
             <div class="product-form__variants">
               {%- for option in product.options_with_values -%}
+                {%- assign is_color = false -%}
+                {%- if option.name == 'Cor' or option.name == 'Color' or option.name == 'Colour' -%}{%- assign is_color = true -%}{%- endif -%}
+                {%- assign opt_prop = 'option' | append: forloop.index -%}
                 <div class="product-form__option">
                   <label class="variant-label">
                     {{ option.name }}
                     <span id="selected-{{ option.name | handleize }}-{{ section.id }}">{{ option.selected_value }}</span>
                   </label>
-                  <div class="variant-options{% if option.name == 'Cor' or option.name == 'Color' or option.name == 'Colour' %} variant-options--color{% endif %}">
+                  <div class="variant-options{% if is_color %} variant-options--color{% endif %}">
                     {%- for value in option.values -%}
+                      {%- if is_color -%}
+                        {%- assign cvar = product.variants | where: opt_prop, value | first -%}
+                        {%- assign cimg = cvar.featured_media.preview_image | default: cvar.featured_image -%}
+                      {%- endif -%}
                       <button
                         type="button"
-                        class="variant-opt{% if option.selected_value == value %} is-selected{% endif %}{% if option.name == 'Cor' or option.name == 'Color' %} variant-opt--color{% endif %}"
-                        data-option="option{{ forloop.parentloop.index }}"
+                        class="variant-opt{% if option.selected_value == value %} is-selected{% endif %}{% if is_color %} variant-opt--color{% endif %}"
+                        data-option="{{ opt_prop }}"
                         data-value="{{ value | escape }}"
-                        {% if option.name == 'Cor' or option.name == 'Color' %}
-                          style="background-color:{{ value | downcase }};"
+                        {% if is_color %}
+                          {% if cimg %}style="background-image:url({{ cimg | image_url: width: 160 }});"{% else %}style="background-color:{{ value | downcase }};"{% endif %}
                           title="{{ value }}"
+                          aria-label="{{ value }}"
                         {% endif %}
                       >
-                        {%- unless option.name == 'Cor' or option.name == 'Color' -%}{{ value }}{%- endunless -%}
+                        {%- unless is_color -%}{{ value }}{%- endunless -%}
                       </button>
                     {%- endfor -%}
                   </div>
