@@ -261,6 +261,7 @@ class VariantPicker {
     this.currentVariant = this.variants[0] || null;
     this.bindEvents();
     this.updateUI();
+    this._initialized = true;
   }
 
   bindEvents() {
@@ -342,7 +343,8 @@ class VariantPicker {
 
     // Swap the main image to the variant's image (only if one is assigned)
     const variantImg = this.variantImages[this.currentVariant.id];
-    if (variantImg) {
+    if (variantImg && variantImg !== this._lastImg) {
+      this._lastImg = variantImg;
       const mainImg = document.querySelector('.product-media__main img')
         || document.getElementById('product-main-image');
       if (mainImg) {
@@ -350,6 +352,12 @@ class VariantPicker {
         mainImg.removeAttribute('srcset');
         mainImg.removeAttribute('sizes');
         mainImg.src = variantImg;
+        // Brief glitch on color change (skip on initial load)
+        if (this._initialized) {
+          mainImg.classList.remove('sn-img-glitch');
+          void mainImg.offsetWidth;
+          mainImg.classList.add('sn-img-glitch');
+        }
       }
     }
 

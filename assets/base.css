@@ -1254,11 +1254,37 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 
 .product-media__main {
   width: 100%;
+  position: relative;
   overflow: hidden;
   border-radius: var(--media-radius);
   background-color: rgb(var(--color-base-background-2));
   aspect-ratio: 1/1;
   margin-bottom: 1.2rem;
+  /* Anomalia finish: subtle accent frame + glow */
+  border: 1px solid rgba(var(--color-base-accent-1), 0.45);
+  box-shadow: 0 8px 36px rgba(var(--color-base-accent-1), 0.14);
+}
+
+/* Glitch the main image briefly when the color (image) changes */
+@media (prefers-reduced-motion: no-preference) {
+  .product-media__main img.sn-img-glitch {
+    animation: sn-glitch-burst 0.45s steps(1, end);
+  }
+}
+
+/* LIMITED DROP badge */
+.product-info__badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgb(var(--color-base-accent-1));
+  padding: 0.45rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.4rem;
 }
 
 .product-media__main img {

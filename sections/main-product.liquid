@@ -34,6 +34,10 @@
 
       <!-- Info -->
       <div class="product-info">
+        {%- if section.settings.drop_badge != blank -%}
+          <div class="product-info__badge">{{ section.settings.drop_badge }}</div>
+        {%- endif -%}
+
         {%- if product.vendor != blank -%}
           <div class="product-info__vendor">{{ product.vendor }}</div>
         {%- endif -%}
@@ -150,6 +154,13 @@
   "tag": "section",
   "templates": ["product"],
   "settings": [
+    {
+      "type": "text",
+      "id": "drop_badge",
+      "label": "Selo acima do título",
+      "default": "Limited drop",
+      "info": "Deixe vazio para ocultar."
+    },
     {
       "type": "header",
       "content": "Guia de tamanhos"
