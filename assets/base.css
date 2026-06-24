@@ -1059,15 +1059,33 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 
 .footer__links a {
   font-size: 1.4rem;
-  color: rgb(var(--color-base-accent-1));
-  transition: color 0.2s, opacity 0.2s;
+  color: rgba(var(--color-base-text), 0.55);
+  transition: color 0.2s ease, padding-left 0.2s ease;
   text-decoration: none;
+  position: relative;
 }
 
 .footer__links a:hover {
-  opacity: 0.75;
+  color: rgb(var(--color-base-text));
+  padding-left: 0.6rem;
   text-decoration: none;
 }
+
+.footer__links a::before {
+  content: "";
+  position: absolute;
+  left: -0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: rgb(var(--color-base-accent-1));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.footer__links a:hover::before { opacity: 1; }
 
 /* Coluna empresa */
 .footer__col--wide {}
@@ -1079,6 +1097,14 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   margin-bottom: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.footer__tagline {
+  font-size: 1.4rem;
+  line-height: 1.65;
+  color: rgba(var(--color-base-text), 0.6);
+  max-width: 44ch;
+  margin-bottom: 2.4rem;
 }
 
 .footer__contact-info {

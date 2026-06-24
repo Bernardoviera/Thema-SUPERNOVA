@@ -36,6 +36,10 @@
             <p class="footer__company-name">{{ section.settings.company_name }}</p>
           {%- endif -%}
 
+          {%- if section.settings.company_tagline != blank -%}
+            <p class="footer__tagline">{{ section.settings.company_tagline }}</p>
+          {%- endif -%}
+
           <div class="footer__contact-info">
             {%- if section.settings.contact_email != blank -%}
               <p>Email: <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a></p>
@@ -184,6 +188,13 @@
       "id": "company_name",
       "label": "Company name",
       "default": "SUPERNOVA"
+    },
+    {
+      "type": "textarea",
+      "id": "company_tagline",
+      "label": "Brand tagline",
+      "default": "Streetwear, football-core and Y2K — built for the bold. A glitch in the system, and you just found it.",
+      "info": "Short brand line shown under the name."
     },
     {
       "type": "text",
