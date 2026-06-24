@@ -88,20 +88,23 @@ class CartDrawer {
     if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.close());
     document.addEventListener('keydown', e => { if (e.key === 'Escape') this.close(); });
 
-    // Cart item actions — delegated ONCE on the stable drawer element so they
-    // survive re-renders and don't stack.
-    this.drawer.addEventListener('click', async (e) => {
-      const qtyBtn = e.target.closest('.cart-drawer__items [data-action]');
+    // Cart item actions — delegated at the DOCUMENT level so they keep working
+    // no matter how the drawer or its contents are re-rendered. We only act on
+    // clicks that land inside the cart drawer's item list.
+    document.addEventListener('click', async (e) => {
       const removeBtn = e.target.closest('.cart-drawer__items .cart-item__remove');
-      if (qtyBtn) {
-        const key = qtyBtn.dataset.key;
-        const input = this.drawer.querySelector(`.quantity-input[data-key="${key}"]`);
-        let qty = parseInt(input && input.value, 10) || 1;
-        qty = qtyBtn.dataset.action === 'increase' ? qty + 1 : Math.max(0, qty - 1);
-        await this.updateItem(key, qty);
-      } else if (removeBtn) {
+      const qtyBtn = e.target.closest('.cart-drawer__items [data-action]');
+      if (!removeBtn && !qtyBtn) return;
+      e.preventDefault();
+      if (removeBtn) {
         await this.updateItem(removeBtn.dataset.key, 0);
+        return;
       }
+      const key = qtyBtn.dataset.key;
+      const input = this.drawer.querySelector(`.quantity-input[data-key="${key}"]`);
+      let qty = parseInt(input && input.value, 10) || 1;
+      qty = qtyBtn.dataset.action === 'increase' ? qty + 1 : Math.max(0, qty - 1);
+      await this.updateItem(key, qty);
     });
   }
 
