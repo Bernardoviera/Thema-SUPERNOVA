@@ -67,13 +67,23 @@
                   </label>
                   <div class="variant-options{% if is_color %} variant-options--color{% endif %}">
                     {%- for value in option.values -%}
+                      {%- if is_color -%}
+                        {%- assign cparts = value | split: '/' -%}
+                        {%- if cparts.size > 1 -%}
+                          {%- assign c1 = cparts[0] | strip | downcase -%}
+                          {%- assign c2 = cparts[1] | strip | downcase -%}
+                          {%- capture swatch_style -%}background:linear-gradient(135deg,{{ c1 }} 0 50%,{{ c2 }} 50% 100%);{%- endcapture -%}
+                        {%- else -%}
+                          {%- capture swatch_style -%}background-color:{{ value | downcase }};{%- endcapture -%}
+                        {%- endif -%}
+                      {%- endif -%}
                       <button
                         type="button"
                         class="variant-opt{% if option.selected_value == value %} is-selected{% endif %}{% if is_color %} variant-opt--color{% endif %}"
                         data-option="{{ opt_prop }}"
                         data-value="{{ value | escape }}"
                         {% if is_color %}
-                          style="background-color:{{ value | downcase }};"
+                          style="{{ swatch_style }}"
                           title="{{ value }}"
                           aria-label="{{ value }}"
                         {% endif %}
