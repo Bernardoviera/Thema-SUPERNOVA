@@ -18,18 +18,15 @@ in the admin under **Settings → Policies**. The theme only links to it.
 ## Before you go live — fill these in
 
 These are written for **SUPERNOVA as an individual (pessoa física, CPF) in Brazil,
-selling to the EU via dropshipping**. Every `[BRACKETED]` field is info only you
-have. Search each file for `[` and replace:
+selling to the EU via dropshipping**. Owner/contact details are already filled
+(Bernardo Viera de Freitas, supernovaoficial066@gmail.com, Betim – MG).
 
-- `[YOUR FULL LEGAL NAME]` — your full legal name
-- `[YOUR CPF]` — your CPF
-- `[STREET, NUMBER]`, `[CITY]`, `[STATE]`, `[POSTAL CODE / CEP]` — your address
-- `[SUPPORT EMAIL]` — e.g. `hello@supernova.store`
-- `[RETURNS EMAIL]` — can be the same as support
+Only these **operational** placeholders remain in `shipping-policy.md` — replace
+the bracketed values with what your supplier actually delivers:
+
+- `[1–3 business days]` — order processing time
+- `[7–20 business days]` — estimated delivery window
 - `[STANDARD SHIPPING COST]` — flat rate for orders under €50
-- `[ORDER PROCESSING TIME]` and the `[7–20 business days]` delivery range —
-  adjust to what your supplier actually delivers
-- `[DATE]` — the date you publish
 
 ## ⚠️ Important notes for your setup
 

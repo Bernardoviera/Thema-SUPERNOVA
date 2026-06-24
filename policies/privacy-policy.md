@@ -4,15 +4,15 @@ Your data isn't the product here — your fit is. This policy explains what we
 collect, why, and the rights you have over it. We follow the EU General Data
 Protection Regulation (GDPR) for our customers in Europe, and Brazil's LGPD.
 
-*Last updated: [DATE]*
+*Last updated: 24/06/2026*
 
 ## Who's responsible for your data
 
 The data controller is:
 
-**[YOUR FULL LEGAL NAME]** (operating as SUPERNOVA)
-[CITY] – [STATE], Brazil
-Email: **[SUPPORT EMAIL]**
+**Bernardo Viera de Freitas** (operating as SUPERNOVA)
+Belo Horizonte – Minas Gerais, Brazil
+Email: **supernovaoficial066@gmail.com**
 
 You can contact us about anything in this policy at the email above.
 
@@ -76,7 +76,7 @@ Depending on where you live (GDPR in the EU, LGPD in Brazil), you can:
 - Receive your data in a portable format
 - Withdraw consent at any time
 
-To exercise any of these, email **[SUPPORT EMAIL]**. We'll respond within the
+To exercise any of these, email **supernovaoficial066@gmail.com**. We'll respond within the
 time required by law (one month under the GDPR).
 
 ## Complaints

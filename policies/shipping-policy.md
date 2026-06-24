@@ -7,7 +7,7 @@ no surprises.
 
 Right now SUPERNOVA ships **to the Netherlands**. We're a glitch that's still
 spreading — more of the EU and beyond is coming soon. Want us in your country?
-Tell us at **[SUPPORT EMAIL]**.
+Tell us at **supernovaoficial066@gmail.com**.
 
 ## How our shipping works
 
@@ -44,7 +44,7 @@ and the order value — we have no control over them.
 
 Where tracking is available, you'll get a link by email once your order ships. If
 tracking hasn't updated in a while, give it some time, then reach us at
-**[SUPPORT EMAIL]**.
+**supernovaoficial066@gmail.com**.
 
 ## Lost, delayed, or damaged parcels
 
@@ -52,7 +52,7 @@ tracking hasn't updated in a while, give it some time, then reach us at
   estimate, contact us and we'll chase it with the supplier/carrier.
 - **Marked delivered but not there?** Check around your address and with
   neighbours first, then email us.
-- **Arrived damaged?** Email **[SUPPORT EMAIL]** within **14 days** with photos
+- **Arrived damaged?** Email **supernovaoficial066@gmail.com** within **14 days** with photos
   and your order number and we'll make it right.
 
 ## Wrong address
@@ -62,4 +62,4 @@ and orders returned due to an incorrect address may incur a re-shipping cost.
 
 ---
 
-*Questions about an order? Email **[SUPPORT EMAIL]**.*
+*Questions about an order? Email **supernovaoficial066@gmail.com**.*

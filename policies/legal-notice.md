@@ -3,10 +3,10 @@
 Store and contact information.
 
 **Store name:** SUPERNOVA
-**Operated by:** [YOUR FULL LEGAL NAME] (individual / pessoa física)
-**Tax ID (CPF):** [YOUR CPF]
-**Address:** [STREET, NUMBER], [CITY] – [STATE], [POSTAL CODE / CEP], Brazil
-**Email:** [SUPPORT EMAIL]
+**Operated by:** Bernardo Viera de Freitas (individual / pessoa física)
+**Tax ID (CPF):** 156.426.886-18  <!-- optional in public — delete this line if you'd rather not publish your CPF -->
+**Address:** Rua Antônio da Silva, 111, Betim – Minas Gerais, CEP 32604-492, Brazil
+**Email:** supernovaoficial066@gmail.com
 
 SUPERNOVA is an independent online store operated by the individual named above
 and ships internationally through third-party suppliers.
@@ -15,7 +15,7 @@ and ships internationally through third-party suppliers.
 
 The European Commission provides an online dispute resolution (ODR) platform at
 ec.europa.eu/consumers/odr. We'll always try to resolve any issue with you
-directly first — email **[SUPPORT EMAIL]**.
+directly first — email **supernovaoficial066@gmail.com**.
 
 ## Liability for content & links
 

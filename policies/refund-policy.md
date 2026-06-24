@@ -19,7 +19,7 @@ a night out.
 
 ## How to start a return
 
-1. Email **[RETURNS EMAIL]** with your order number and which item(s) you want to
+1. Email **supernovaoficial066@gmail.com** with your order number and which item(s) you want to
    return — **don't ship anything before you hear back from us.**
 2. Because our items ship from our fulfilment partners, we'll send you the
    correct return address and instructions for your specific order.
@@ -42,7 +42,7 @@ fault.
 ## Wrong or faulty item?
 
 If something arrives damaged, defective, or isn't what you ordered, that's on us
-— not you. Email **[RETURNS EMAIL]** within **14 days** of delivery with a photo
+— not you. Email **supernovaoficial066@gmail.com** within **14 days** of delivery with a photo
 and your order number. We'll cover the return and sort a replacement or full
 refund, your call.
 
@@ -53,7 +53,7 @@ and place a new order. Stock moves fast — we can't hold pieces.
 
 ## Still stuck?
 
-Reach us at **[SUPPORT EMAIL]** and a human will get back to you.
+Reach us at **supernovaoficial066@gmail.com** and a human will get back to you.
 
 ---
 

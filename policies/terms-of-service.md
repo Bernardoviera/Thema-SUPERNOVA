@@ -3,12 +3,12 @@
 Welcome to SUPERNOVA. By browsing or buying from this store, you agree to these
 terms. Read them — they're short and they keep things fair for both of us.
 
-*Last updated: [DATE]*
+*Last updated: 24/06/2026*
 
 ## 1. Who we are
 
-This store is operated by **[YOUR FULL LEGAL NAME]**, an individual trading as
-SUPERNOVA, based in Brazil ([CITY] – [STATE]). In these terms, "we", "us" and
+This store is operated by **Bernardo Viera de Freitas**, an individual trading as
+SUPERNOVA, based in Brazil (Belo Horizonte – Minas Gerais). In these terms, "we", "us" and
 "our" mean SUPERNOVA; "you" means you, the customer.
 
 ## 2. Using the store
@@ -76,4 +76,4 @@ time of your order is the one that applies.
 
 ## 11. Contact
 
-Questions? Email **[SUPPORT EMAIL]** — we'll get back to you.
+Questions? Email **supernovaoficial066@gmail.com** — we'll get back to you.
