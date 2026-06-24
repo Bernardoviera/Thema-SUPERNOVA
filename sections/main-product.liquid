@@ -67,17 +67,13 @@
                   </label>
                   <div class="variant-options{% if is_color %} variant-options--color{% endif %}">
                     {%- for value in option.values -%}
-                      {%- if is_color -%}
-                        {%- assign cvar = product.variants | where: opt_prop, value | first -%}
-                        {%- assign cimg = cvar.featured_media.preview_image | default: cvar.featured_image -%}
-                      {%- endif -%}
                       <button
                         type="button"
                         class="variant-opt{% if option.selected_value == value %} is-selected{% endif %}{% if is_color %} variant-opt--color{% endif %}"
                         data-option="{{ opt_prop }}"
                         data-value="{{ value | escape }}"
                         {% if is_color %}
-                          {% if cimg %}style="background-image:url({{ cimg | image_url: width: 160 }});"{% else %}style="background-color:{{ value | downcase }};"{% endif %}
+                          style="background-color:{{ value | downcase }};"
                           title="{{ value }}"
                           aria-label="{{ value }}"
                         {% endif %}

@@ -1429,20 +1429,17 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 }
 
 .variant-opt--color {
-  width: 4.8rem;
-  height: 4.8rem;
+  width: 3.6rem;
+  height: 3.6rem;
   min-width: 0; /* override the 4.4rem min-width that made the swatches oval */
   padding: 0;
-  border-radius: 7px;
+  border-radius: 50%;
   border: 2px solid rgba(var(--color-base-text), 0.15);
   outline: 2px solid transparent;
   outline-offset: 2px;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
 }
 
-.variant-opt--color:hover { transform: scale(1.06); }
+.variant-opt--color:hover { transform: scale(1.08); }
 
 .variant-opt--color.is-selected {
   outline-color: rgb(var(--color-base-accent-1));
