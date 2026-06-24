@@ -87,6 +87,22 @@ class CartDrawer {
     if (this.overlay) this.overlay.addEventListener('click', () => this.close());
     if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.close());
     document.addEventListener('keydown', e => { if (e.key === 'Escape') this.close(); });
+
+    // Cart item actions — delegated ONCE on the stable drawer element so they
+    // survive re-renders and don't stack.
+    this.drawer.addEventListener('click', async (e) => {
+      const qtyBtn = e.target.closest('.cart-drawer__items [data-action]');
+      const removeBtn = e.target.closest('.cart-drawer__items .cart-item__remove');
+      if (qtyBtn) {
+        const key = qtyBtn.dataset.key;
+        const input = this.drawer.querySelector(`.quantity-input[data-key="${key}"]`);
+        let qty = parseInt(input && input.value, 10) || 1;
+        qty = qtyBtn.dataset.action === 'increase' ? qty + 1 : Math.max(0, qty - 1);
+        await this.updateItem(key, qty);
+      } else if (removeBtn) {
+        await this.updateItem(removeBtn.dataset.key, 0);
+      }
+    });
   }
 
   open() {
@@ -143,30 +159,6 @@ class CartDrawer {
     }
 
     if (subtotalEl) subtotalEl.textContent = this.formatMoney(cart.total_price);
-
-    this.bindCartItemEvents();
-  }
-
-  bindCartItemEvents() {
-    const itemsContainer = this.drawer.querySelector('.cart-drawer__items');
-    if (!itemsContainer) return;
-
-    itemsContainer.addEventListener('click', async (e) => {
-      const btn = e.target.closest('[data-action]');
-      const removeBtn = e.target.closest('.cart-item__remove');
-
-      if (btn) {
-        const key = btn.dataset.key;
-        const input = itemsContainer.querySelector(`.quantity-input[data-key="${key}"]`);
-        let qty = parseInt(input.value);
-        qty = btn.dataset.action === 'increase' ? qty + 1 : Math.max(0, qty - 1);
-        await this.updateItem(key, qty);
-      }
-
-      if (removeBtn) {
-        await this.updateItem(removeBtn.dataset.key, 0);
-      }
-    });
   }
 
   async updateItem(key, quantity) {
@@ -389,6 +381,7 @@ class ProductGallery {
 
 // ─── Quantity selectors ────────────────────────────────────────────
 document.querySelectorAll('.quantity-selector').forEach(selector => {
+  if (selector.closest('.cart-drawer')) return; // the cart drawer handles its own
   selector.addEventListener('click', e => {
     const btn = e.target.closest('.quantity-btn');
     if (!btn) return;
