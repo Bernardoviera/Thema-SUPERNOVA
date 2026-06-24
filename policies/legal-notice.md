@@ -1,26 +1,24 @@
 # Legal Notice
 
-Information in accordance with applicable EU and Dutch law.
+Store and contact information.
 
-**Trading name:** SUPERNOVA
-**Operated by:** [LEGAL ENTITY NAME]
-**Registered address:** [STREET ADDRESS], [POSTAL CODE] [CITY], Netherlands
-**Chamber of Commerce (KvK):** [KVK NUMBER]
-**VAT (BTW) number:** [BTW / VAT NUMBER]
+**Store name:** SUPERNOVA
+**Operated by:** [YOUR FULL LEGAL NAME] (individual / pessoa física)
+**Tax ID (CPF):** [YOUR CPF]
+**Address:** [STREET, NUMBER], [CITY] – [STATE], [POSTAL CODE / CEP], Brazil
 **Email:** [SUPPORT EMAIL]
 
-**Responsible for content:** [NAME OF OWNER / RESPONSIBLE PERSON]
+SUPERNOVA is an independent online store operated by the individual named above
+and ships internationally through third-party suppliers.
 
 ## Dispute resolution
 
-The European Commission provides a platform for online dispute resolution (ODR),
-available at ec.europa.eu/consumers/odr. We are not obliged to and do not
-generally participate in dispute resolution proceedings before a consumer
-arbitration board, but we'll always try to resolve any issue with you directly —
-email **[SUPPORT EMAIL]**.
+The European Commission provides an online dispute resolution (ODR) platform at
+ec.europa.eu/consumers/odr. We'll always try to resolve any issue with you
+directly first — email **[SUPPORT EMAIL]**.
 
 ## Liability for content & links
 
-We take care to keep the information on this site accurate and up to date, but we
-can't guarantee it's error-free at all times. Our site may contain links to
-external sites we don't control and aren't responsible for.
+We work to keep the information on this site accurate and current, but can't
+guarantee it's error-free at all times. The site may link to external sites we
+don't control and aren't responsible for.

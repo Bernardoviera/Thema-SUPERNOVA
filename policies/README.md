@@ -1,8 +1,8 @@
 # SUPERNOVA — Store Policies
 
 These are the legal/store policies referenced by the footer
-(`shop.policies.*`). **The text does not live in the theme** — Shopify stores
-it in the admin under **Settings → Policies**. The theme only links to it.
+(`shop.policies.*`). **The text does not live in the theme** — Shopify stores it
+in the admin under **Settings → Policies**. The theme only links to it.
 
 ## How to publish them
 
@@ -12,34 +12,36 @@ it in the admin under **Settings → Policies**. The theme only links to it.
    - `privacy-policy.md` → **Privacy policy**
    - `terms-of-service.md` → **Terms of service**
    - `shipping-policy.md` → **Shipping policy**
-   - `legal-notice.md` → **Legal notice** (a.k.a. Impressum)
+   - `legal-notice.md` → **Legal notice**
 3. Click **Save**. The footer links appear automatically once a policy has content.
-
-> Shopify's policy editor is rich text. Pasting the text works fine; you can
-> bold headings and add the tables manually if you want them styled.
 
 ## Before you go live — fill these in
 
-Every `[BRACKETED]` field is real business info only you have. Search each
-file for `[` and replace:
+These are written for **SUPERNOVA as an individual (pessoa física, CPF) in Brazil,
+selling to the EU via dropshipping**. Every `[BRACKETED]` field is info only you
+have. Search each file for `[` and replace:
 
-- `[LEGAL ENTITY NAME]` — the registered company / sole-trader name behind SUPERNOVA
-- `[STREET ADDRESS]`, `[POSTAL CODE]`, `[CITY]` — registered business address (NL)
-- `[KVK NUMBER]` — your Dutch Chamber of Commerce (KvK) number
-- `[BTW / VAT NUMBER]` — your VAT (BTW) number
+- `[YOUR FULL LEGAL NAME]` — your full legal name
+- `[YOUR CPF]` — your CPF
+- `[STREET, NUMBER]`, `[CITY]`, `[STATE]`, `[POSTAL CODE / CEP]` — your address
 - `[SUPPORT EMAIL]` — e.g. `hello@supernova.store`
 - `[RETURNS EMAIL]` — can be the same as support
-- `[CARRIER]` — e.g. PostNL
-- `[STANDARD SHIPPING COST]` — flat NL rate under the free threshold
-- `[ORDER PROCESSING TIME]` — e.g. 1–2 business days
+- `[STANDARD SHIPPING COST]` — flat rate for orders under €50
+- `[ORDER PROCESSING TIME]` and the `[7–20 business days]` delivery range —
+  adjust to what your supplier actually delivers
+- `[DATE]` — the date you publish
 
-## ⚠️ Important notes
+## ⚠️ Important notes for your setup
 
-- **This is a solid, EU/NL-aware template, not certified legal advice.** Have a
-  lawyer or your accountant glance at it before launch, especially the VAT,
-  refund-window, and data-controller details.
-- **Announcement bar vs. reality:** the site currently announces *"FREE EU
-  SHIPPING OVER €50"*, but you're starting NL-only. Either narrow the banner to
-  the Netherlands for now, or keep the EU promise and enable EU shipping zones in
-  **Settings → Shipping and delivery**. The shipping policy below is written
-  NL-first with an "International (coming soon)" section to match.
+- **Not certified legal advice.** This is a solid, honest EU/BR-aware template,
+  but selling into the EU as a non-EU individual via dropshipping has real tax and
+  consumer-law implications. Have an accountant/lawyer review it, and seriously
+  consider formalising (MEI/CNPJ) before scaling.
+- **Customs & import VAT:** since orders ship from outside the EU, your customers
+  can be charged import VAT/duties on delivery. The shipping & terms policies say
+  this clearly so customers aren't surprised (and you avoid chargebacks). Look
+  into the EU **IOSS** scheme if you want to collect VAT at checkout instead.
+- **Announcement bar vs. reality:** the banner says *"FREE EU SHIPPING OVER €50"*
+  but you're starting NL-only with longer dropship delivery times. Either narrow
+  the banner to the Netherlands, or keep the EU wording only once you actually
+  ship EU-wide. The shipping policy is written NL-first and honest about timing.

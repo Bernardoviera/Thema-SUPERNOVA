@@ -7,10 +7,9 @@ terms. Read them — they're short and they keep things fair for both of us.
 
 ## 1. Who we are
 
-This store is operated by **[LEGAL ENTITY NAME]**, trading as SUPERNOVA,
-registered in the Netherlands (KvK [KVK NUMBER], VAT [BTW / VAT NUMBER]),
-[STREET ADDRESS], [POSTAL CODE] [CITY]. In these terms, "we", "us" and "our"
-mean SUPERNOVA; "you" means you, the customer.
+This store is operated by **[YOUR FULL LEGAL NAME]**, an individual trading as
+SUPERNOVA, based in Brazil ([CITY] – [STATE]). In these terms, "we", "us" and
+"our" mean SUPERNOVA; "you" means you, the customer.
 
 ## 2. Using the store
 
@@ -22,17 +21,19 @@ these terms).
 ## 3. Products
 
 We do our best to show our pieces accurately, but colours can vary slightly
-between screens, and product images are illustrative. Stock is limited and drops
-sell out — adding an item to your cart doesn't reserve it.
+between screens, and product images are illustrative. Our items are produced and
+shipped through third-party fulfilment partners, and stock is limited — adding an
+item to your cart doesn't reserve it.
 
 ## 4. Prices & payment
 
-- Prices are shown in **euros (€)** and include VAT where applicable.
+- Prices are shown in **euros (€)**.
+- Prices **do not include** any import VAT, customs duties, or local taxes that
+  may apply on delivery — see our Shipping Policy.
 - We may change prices at any time, but changes won't affect orders already
   confirmed.
 - Payment is taken at checkout through our secure payment providers. Your order
-  is a binding offer; the contract is formed when we send your order
-  confirmation.
+  is an offer; the contract is formed when we send your order confirmation.
 - If a price or product detail is clearly wrong (an obvious error), we may cancel
   the order and refund you in full, even after confirmation.
 
@@ -56,16 +57,17 @@ without our written permission.
 ## 8. Liability
 
 We provide the store and products with reasonable care, but to the extent
-permitted by law, we're not liable for indirect or consequential losses. Nothing
-in these terms limits your statutory rights as a consumer under Dutch and EU law,
-or our liability for death, personal injury, or fraud caused by our negligence.
+permitted by law, we're not liable for indirect or consequential losses, or for
+delays and charges caused by carriers or customs authorities. Nothing in these
+terms limits the mandatory consumer-protection rights you have under the law of
+your country of residence.
 
 ## 9. Governing law
 
-These terms are governed by **Dutch law**, and any disputes fall under the
-jurisdiction of the competent courts in the Netherlands. As an EU consumer, you
-may also use the European Commission's Online Dispute Resolution platform at
-ec.europa.eu/consumers/odr.
+These terms are governed by the laws of Brazil. However, if you're a consumer in
+the EU, you keep the protection of the mandatory consumer laws of your country of
+residence, and you may use the European Commission's Online Dispute Resolution
+platform at ec.europa.eu/consumers/odr.
 
 ## 10. Changes
 
