@@ -106,6 +106,7 @@
           "policies_heading": "Help",
           "policies_menu": "footer",
           "company_name": "SUPERNOVA",
+          "company_tagline": "Streetwear, football-core and Y2K — built for the bold. A glitch in the system, and you just found it.",
           "contact_email": "supernovaoficial066@gmail.com",
           "contact_phone": "",
           "contact_whatsapp": "",
@@ -116,7 +117,7 @@
           "social_heading": "Follow us",
           "show_security_seals": true,
           "seal_ssl": true,
-          "seal_norton": false,
+          "seal_norton": true,
           "seals_text": "Secure checkout — your data is protected.",
           "show_payment": false,
           "payment_heading": "We accept"
