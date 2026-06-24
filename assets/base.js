@@ -80,6 +80,9 @@ class CartDrawer {
 
     if (!this.drawer) return;
     console.log('%c[cart] CartDrawer v4 ready', 'color:#0a0');
+    // Visible version marker so we can confirm the live JS without the console.
+    const title = this.drawer.querySelector('.cart-drawer__title');
+    if (title) title.insertAdjacentHTML('beforeend', ' <span style="font-size:1.1rem;color:#16a34a;vertical-align:super">v4</span>');
     this.bindEvents();
   }
 
