@@ -1208,11 +1208,11 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 
 .footer__seals-inner {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
   flex-wrap: wrap;
-  flex-direction: column;
 }
 
 .footer__seal-img {
@@ -1222,6 +1222,7 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 }
 
 .footer__seals-text {
+  flex-basis: 100%;
   font-size: 1.3rem;
   color: rgba(var(--color-base-text), 0.6);
   margin: 0;
