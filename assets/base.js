@@ -79,22 +79,8 @@ class CartDrawer {
     this.cartButtons = document.querySelectorAll('[data-open-cart]');
 
     if (!this.drawer) return;
-    console.log('%c[cart] CartDrawer v4 ready', 'color:#0a0');
-    // Visible version marker so we can confirm the live JS without the console.
-    const title = this.drawer.querySelector('.cart-drawer__title');
-    if (title) title.insertAdjacentHTML('beforeend', ' <span style="font-size:1.1rem;color:#16a34a;vertical-align:super">v5</span>');
-    // Visible on-page debug bar (temporary).
-    this.dbgEl = document.createElement('div');
-    this.dbgEl.style.cssText = 'padding:.6rem 1rem;font-size:1.2rem;background:#111;color:#16a34a;font-family:monospace;white-space:pre-wrap';
-    this.dbgEl.textContent = 'debug: ready';
-    const hdr = this.drawer.querySelector('.cart-drawer__header');
-    if (hdr) hdr.insertAdjacentElement('afterend', this.dbgEl);
+    this.titleEl = this.drawer.querySelector('.cart-drawer__title');
     this.bindEvents();
-  }
-
-  dbg(msg) {
-    if (this.dbgEl) this.dbgEl.textContent = 'debug: ' + msg;
-    console.log('[cart]', msg);
   }
 
   bindEvents() {
@@ -111,7 +97,6 @@ class CartDrawer {
       const qtyBtn = e.target.closest('.cart-drawer__items [data-action]');
       if (!removeBtn && !qtyBtn) return;
       e.preventDefault();
-      this.dbg('click ' + (removeBtn ? 'remove' : qtyBtn.dataset.action));
       if (removeBtn) {
         await this.updateItem(removeBtn.dataset.key, 0);
         return;
@@ -150,6 +135,7 @@ class CartDrawer {
   renderDrawer(cart) {
     const itemsContainer = this.drawer.querySelector('.cart-drawer__items');
     const subtotalEl = this.drawer.querySelector('.cart-drawer__subtotal-value');
+    if (this.titleEl) this.titleEl.textContent = `Cart (${cart.item_count})`;
     if (!itemsContainer) return;
 
     if (cart.item_count === 0) {
@@ -182,19 +168,16 @@ class CartDrawer {
 
   async updateItem(key, quantity) {
     try {
-      this.dbg('sending key=' + key + ' qty=' + quantity + ' to ' + window.routes.cart_change_url);
       const res = await fetch(window.routes.cart_change_url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ id: key, quantity })
       });
       const cart = await res.json();
-      this.dbg('server ok status=' + res.status + ' count=' + cart.item_count + ' total=' + cart.total_price);
       this.renderDrawer(cart);
-      this.dbg('rendered count=' + cart.item_count + ' total=' + cart.total_price);
       updateCartCount(cart.item_count);
     } catch (e) {
-      this.dbg('ERROR ' + (e && e.message));
+      console.error('Update cart error:', e);
     }
   }
 
