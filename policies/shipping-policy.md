@@ -17,8 +17,8 @@ keeps prices sharp, but it also means delivery takes longer than a local webshop
 
 ## Processing & delivery times
 
-- **Order processing:** [1–3 business days] to confirm and prepare your order.
-- **Estimated delivery:** **[7–20 business days]** after processing, depending on
+- **Order processing:** 1–3 business days to confirm and prepare your order.
+- **Estimated delivery:** **7–20 business days** after processing, depending on
   the supplier and customs.
 
 Delivery times are estimates, not guarantees. Once a parcel is with the carrier,
@@ -27,7 +27,7 @@ timing is out of our hands. Drops and holiday periods can add a few days.
 ## Shipping cost
 
 - **Free shipping on orders over €50.**
-- Orders under €50: **[STANDARD SHIPPING COST]**.
+- Orders under €50: **€4,95**.
 
 ## Customs, import VAT & duties
 
