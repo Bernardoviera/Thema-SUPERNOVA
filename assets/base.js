@@ -79,6 +79,7 @@ class CartDrawer {
     this.cartButtons = document.querySelectorAll('[data-open-cart]');
 
     if (!this.drawer) return;
+    console.log('%c[cart] CartDrawer v4 ready', 'color:#0a0');
     this.bindEvents();
   }
 
@@ -96,6 +97,7 @@ class CartDrawer {
       const qtyBtn = e.target.closest('.cart-drawer__items [data-action]');
       if (!removeBtn && !qtyBtn) return;
       e.preventDefault();
+      console.log('[cart] click', removeBtn ? 'remove' : qtyBtn.dataset.action);
       if (removeBtn) {
         await this.updateItem(removeBtn.dataset.key, 0);
         return;
@@ -172,10 +174,12 @@ class CartDrawer {
         body: JSON.stringify({ id: key, quantity })
       });
       const cart = await res.json();
+      console.log('[cart] server responded, count =', cart.item_count);
       this.renderDrawer(cart);
+      console.log('[cart] drawer re-rendered');
       updateCartCount(cart.item_count);
     } catch (e) {
-      console.error('Update cart error:', e);
+      console.error('[cart] Update cart error:', e);
     }
   }
 
