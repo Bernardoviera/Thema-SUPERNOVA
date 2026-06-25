@@ -129,7 +129,44 @@
               {%- endif -%}
             </button>
           </div>
+
+          {%- if section.settings.show_reassurance -%}
+            <ul class="product-reassurance">
+              {%- for i in (1..4) -%}
+                {%- assign tkey = 'reassurance_' | append: i | append: '_text' -%}
+                {%- assign ikey = 'reassurance_' | append: i | append: '_icon' -%}
+                {%- assign rtext = section.settings[tkey] -%}
+                {%- if rtext != blank -%}
+                  <li class="product-reassurance__item">
+                    {%- render 'sn-icon', icon: section.settings[ikey] -%}
+                    <span>{{ rtext }}</span>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
         {%- endform -%}
+
+        {%- if section.settings.show_accordions -%}
+          <div class="product-accordions">
+            {%- for i in (1..4) -%}
+              {%- assign tkey = 'accordion_' | append: i | append: '_title' -%}
+              {%- assign ckey = 'accordion_' | append: i | append: '_content' -%}
+              {%- assign ikey = 'accordion_' | append: i | append: '_icon' -%}
+              {%- assign atitle = section.settings[tkey] -%}
+              {%- assign acontent = section.settings[ckey] -%}
+              {%- if atitle != blank and acontent != blank -%}
+                <details class="product-accordion"{% if forloop.first and section.settings.accordion_first_open %} open{% endif %}>
+                  <summary class="product-accordion__head">
+                    <span class="product-accordion__label">{%- render 'sn-icon', icon: section.settings[ikey] -%}{{ atitle }}</span>
+                    <svg class="product-accordion__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                  </summary>
+                  <div class="product-accordion__body">{{ acontent }}</div>
+                </details>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
 
         {%- if product.description != blank -%}
           <div class="product-info__description">{{ product.description }}</div>
@@ -229,6 +266,232 @@
       "label": "Conteúdo (tabela de medidas)",
       "info": "Aceita HTML, incluindo tabelas. Edite os valores conforme suas peças.",
       "default": "<table><thead><tr><th>Tamanho</th><th>EU</th><th>Peito (cm)</th><th>Comprimento (cm)</th></tr></thead><tbody><tr><td>S</td><td>46</td><td>96–101</td><td>68</td></tr><tr><td>M</td><td>48–50</td><td>102–107</td><td>71</td></tr><tr><td>L</td><td>52</td><td>108–113</td><td>74</td></tr><tr><td>XL</td><td>54–56</td><td>114–119</td><td>76</td></tr></tbody></table><p>Medidas aproximadas. Na dúvida entre dois tamanhos, escolha o maior.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Garantias (abaixo do botão)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reassurance",
+      "default": true,
+      "label": "Mostrar linha de garantias"
+    },
+    {
+      "type": "select",
+      "id": "reassurance_1_icon",
+      "label": "Ícone 1",
+      "default": "returns",
+      "options": [
+        { "value": "returns", "label": "Devolução" },
+        { "value": "secure", "label": "Cadeado / seguro" },
+        { "value": "shipping", "label": "Caminhão / envio" },
+        { "value": "support", "label": "Suporte / fone" },
+        { "value": "ruler", "label": "Régua" },
+        { "value": "details", "label": "Ficha" },
+        { "value": "care", "label": "Pessoa" },
+        { "value": "info", "label": "Informação" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "reassurance_1_text",
+      "label": "Texto 1",
+      "default": "14-day returns"
+    },
+    {
+      "type": "select",
+      "id": "reassurance_2_icon",
+      "label": "Ícone 2",
+      "default": "secure",
+      "options": [
+        { "value": "returns", "label": "Devolução" },
+        { "value": "secure", "label": "Cadeado / seguro" },
+        { "value": "shipping", "label": "Caminhão / envio" },
+        { "value": "support", "label": "Suporte / fone" },
+        { "value": "ruler", "label": "Régua" },
+        { "value": "details", "label": "Ficha" },
+        { "value": "care", "label": "Pessoa" },
+        { "value": "info", "label": "Informação" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "reassurance_2_text",
+      "label": "Texto 2",
+      "default": "Secure checkout"
+    },
+    {
+      "type": "select",
+      "id": "reassurance_3_icon",
+      "label": "Ícone 3",
+      "default": "shipping",
+      "options": [
+        { "value": "returns", "label": "Devolução" },
+        { "value": "secure", "label": "Cadeado / seguro" },
+        { "value": "shipping", "label": "Caminhão / envio" },
+        { "value": "support", "label": "Suporte / fone" },
+        { "value": "ruler", "label": "Régua" },
+        { "value": "details", "label": "Ficha" },
+        { "value": "care", "label": "Pessoa" },
+        { "value": "info", "label": "Informação" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "reassurance_3_text",
+      "label": "Texto 3",
+      "default": "Tracked shipping to your door"
+    },
+    {
+      "type": "select",
+      "id": "reassurance_4_icon",
+      "label": "Ícone 4",
+      "default": "support",
+      "options": [
+        { "value": "returns", "label": "Devolução" },
+        { "value": "secure", "label": "Cadeado / seguro" },
+        { "value": "shipping", "label": "Caminhão / envio" },
+        { "value": "support", "label": "Suporte / fone" },
+        { "value": "ruler", "label": "Régua" },
+        { "value": "details", "label": "Ficha" },
+        { "value": "care", "label": "Pessoa" },
+        { "value": "info", "label": "Informação" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "reassurance_4_text",
+      "label": "Texto 4",
+      "default": "Real human support"
+    },
+    {
+      "type": "header",
+      "content": "Accordions (informações)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_accordions",
+      "default": true,
+      "label": "Mostrar accordions"
+    },
+    {
+      "type": "checkbox",
+      "id": "accordion_first_open",
+      "default": false,
+      "label": "Primeiro accordion aberto"
+    },
+    {
+      "type": "select",
+      "id": "accordion_1_icon",
+      "label": "Ícone 1",
+      "default": "ruler",
+      "options": [
+        { "value": "ruler", "label": "Régua" },
+        { "value": "details", "label": "Ficha" },
+        { "value": "shipping", "label": "Caminhão / envio" },
+        { "value": "returns", "label": "Devolução" },
+        { "value": "care", "label": "Pessoa" },
+        { "value": "secure", "label": "Cadeado / seguro" },
+        { "value": "support", "label": "Suporte / fone" },
+        { "value": "info", "label": "Informação" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "accordion_1_title",
+      "label": "Título 1",
+      "default": "Size & fit"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_1_content",
+      "label": "Conteúdo 1",
+      "default": "<p>Runs true to size with a relaxed, boxy cut. Between sizes? Size up. Check the size guide button above for full measurements.</p>"
+    },
+    {
+      "type": "select",
+      "id": "accordion_2_icon",
+      "label": "Ícone 2",
+      "default": "details",
+      "options": [
+        { "value": "ruler", "label": "Régua" },
+        { "value": "details", "label": "Ficha" },
+        { "value": "shipping", "label": "Caminhão / envio" },
+        { "value": "returns", "label": "Devolução" },
+        { "value": "care", "label": "Pessoa" },
+        { "value": "secure", "label": "Cadeado / seguro" },
+        { "value": "support", "label": "Suporte / fone" },
+        { "value": "info", "label": "Informação" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "accordion_2_title",
+      "label": "Título 2",
+      "default": "Product details"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_2_content",
+      "label": "Conteúdo 2",
+      "default": "<p>Premium fabric, built to last. Machine wash cold, hang dry, don't tumble. Designed in the anomaly — edit this with your real materials and care info.</p>"
+    },
+    {
+      "type": "select",
+      "id": "accordion_3_icon",
+      "label": "Ícone 3",
+      "default": "shipping",
+      "options": [
+        { "value": "ruler", "label": "Régua" },
+        { "value": "details", "label": "Ficha" },
+        { "value": "shipping", "label": "Caminhão / envio" },
+        { "value": "returns", "label": "Devolução" },
+        { "value": "care", "label": "Pessoa" },
+        { "value": "secure", "label": "Cadeado / seguro" },
+        { "value": "support", "label": "Suporte / fone" },
+        { "value": "info", "label": "Informação" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "accordion_3_title",
+      "label": "Título 3",
+      "default": "Shipping & returns"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_3_content",
+      "label": "Conteúdo 3",
+      "default": "<p>Free shipping over €50. Delivery in 7–20 business days (we ship via our partners). 14-day returns — return shipping is on you. Full details on our policy pages.</p>"
+    },
+    {
+      "type": "select",
+      "id": "accordion_4_icon",
+      "label": "Ícone 4",
+      "default": "care",
+      "options": [
+        { "value": "ruler", "label": "Régua" },
+        { "value": "details", "label": "Ficha" },
+        { "value": "shipping", "label": "Caminhão / envio" },
+        { "value": "returns", "label": "Devolução" },
+        { "value": "care", "label": "Pessoa" },
+        { "value": "secure", "label": "Cadeado / seguro" },
+        { "value": "support", "label": "Suporte / fone" },
+        { "value": "info", "label": "Informação" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "accordion_4_title",
+      "label": "Título 4",
+      "default": "Customer care"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_4_content",
+      "label": "Conteúdo 4",
+      "default": "<p>Questions? Email supernovaoficial066@gmail.com and a real human replies within 1–2 business days.</p>"
     }
   ]
 }

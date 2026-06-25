@@ -1257,6 +1257,106 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   width: auto;
 }
 
+/* ---------- Product reassurance row ---------- */
+.product-reassurance {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.product-reassurance__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.4rem;
+  color: rgba(var(--color-base-text), 0.8);
+}
+
+.product-reassurance__item svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+  color: rgb(var(--color-base-accent-1));
+}
+
+/* ---------- Product accordions ---------- */
+.product-accordions {
+  margin-top: 2.8rem;
+  border-top: 1px solid rgba(var(--color-base-text), 0.14);
+}
+
+.product-accordion {
+  border-bottom: 1px solid rgba(var(--color-base-text), 0.14);
+}
+
+.product-accordion__head {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.7rem 0;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: rgb(var(--color-base-text));
+}
+
+.product-accordion__head::-webkit-details-marker { display: none; }
+
+.product-accordion__label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-accordion__label svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+  color: rgb(var(--color-base-accent-1));
+}
+
+.product-accordion__chevron {
+  width: 1.8rem;
+  height: 1.8rem;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+  color: rgba(var(--color-base-text), 0.6);
+}
+
+.product-accordion[open] .product-accordion__chevron { transform: rotate(180deg); }
+
+.product-accordion__body {
+  padding: 0 0 1.9rem;
+  font-size: 1.4rem;
+  line-height: 1.65;
+  color: rgba(var(--color-base-text), 0.8);
+  animation: sn-acc-in 0.25s ease;
+}
+
+.product-accordion__body p { margin: 0 0 1rem; }
+.product-accordion__body p:last-child { margin-bottom: 0; }
+.product-accordion__body table { width: 100%; border-collapse: collapse; font-size: 1.3rem; }
+.product-accordion__body th,
+.product-accordion__body td {
+  border: 1px solid rgba(var(--color-base-text), 0.15);
+  padding: 0.7rem 1rem;
+  text-align: left;
+}
+
+@keyframes sn-acc-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-accordion__chevron { transition: none; }
+  .product-accordion__body { animation: none; }
+}
+
 /* ---------- Sticky add-to-cart bar (product page) ---------- */
 .product-sticky-bar {
   position: fixed;
