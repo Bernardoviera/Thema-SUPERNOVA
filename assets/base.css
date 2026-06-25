@@ -1650,29 +1650,33 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   text-align: center;
 }
 
-.variant-opt:hover,
-.variant-opt.is-selected {
+/* Text buttons only (XL, L, M…) — keep colour swatches out of this. */
+.variant-opt:not(.variant-opt--color):hover,
+.variant-opt:not(.variant-opt--color).is-selected {
   border-color: rgb(var(--color-base-text));
   background-color: rgb(var(--color-base-text));
   color: rgb(var(--color-base-background-1));
 }
 
 .variant-opt--color {
-  width: 3.6rem;
-  height: 3.6rem;
+  width: 3.4rem;
+  height: 3.4rem;
   min-width: 0; /* override the 4.4rem min-width that made the swatches oval */
   padding: 0;
+  border: none;
   border-radius: 50%;
-  border: 2px solid rgba(var(--color-base-text), 0.15);
+  /* Hairline ring OUTSIDE the dot so it never cuts into the colour. */
+  box-shadow: 0 0 0 1px rgba(var(--color-base-text), 0.2);
   outline: 2px solid transparent;
-  outline-offset: 2px;
+  outline-offset: 3px;
+  transition: transform 0.15s ease;
 }
 
-.variant-opt--color:hover { transform: scale(1.08); }
+.variant-opt--color:hover { transform: scale(1.1); }
 
 .variant-opt--color.is-selected {
   outline-color: rgb(var(--color-base-accent-1));
-  border-color: rgb(var(--color-base-accent-1));
+  box-shadow: 0 0 0 1px rgba(var(--color-base-text), 0.2);
 }
 
 .product-form__quantity {
