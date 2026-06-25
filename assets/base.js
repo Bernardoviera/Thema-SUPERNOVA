@@ -256,6 +256,7 @@ class VariantPicker {
       this.variantImages = {};
     }
     this.currentVariant = this.variants[0] || null;
+    this.form._variantPicker = this; // expose for the sticky bar
     this.bindEvents();
     this.updateUI();
     this._initialized = true;
@@ -356,6 +357,76 @@ class VariantPicker {
     const url = new URL(window.location.href);
     url.searchParams.set('variant', this.currentVariant.id);
     window.history.replaceState({}, '', url.toString());
+
+    // Let the sticky bar (or anything else) react to the new variant.
+    this.form.dispatchEvent(new CustomEvent('variant:change', { detail: { variant: this.currentVariant } }));
+  }
+}
+
+// ─── Sticky add-to-cart bar (product page) ────────────────────────
+function initStickyAddToCart() {
+  const bar = document.querySelector('[data-sticky-bar]');
+  const form = document.querySelector('.product-form');
+  if (!bar || !form) return;
+
+  const mainAddBtn = form.querySelector('[data-add-to-cart]');
+  const stickyAdd = bar.querySelector('[data-sticky-add]');
+  const stickyPrice = bar.querySelector('[data-sticky-price]');
+  const mainPrice = form.closest('.product-info')?.querySelector('.product-info__price');
+  const stickySelects = bar.querySelectorAll('[data-sticky-option]');
+  const picker = form._variantPicker;
+
+  // Show the bar only while the real Add-to-cart button is off-screen.
+  if (mainAddBtn && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(([entry]) => {
+      const show = !entry.isIntersecting;
+      bar.classList.toggle('is-visible', show);
+      bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+    }, { rootMargin: '0px 0px -10% 0px' });
+    io.observe(mainAddBtn);
+  }
+
+  // Sticky dropdown → drive the real variant button (reuses all existing logic).
+  stickySelects.forEach(sel => {
+    sel.addEventListener('change', () => {
+      const opt = sel.dataset.stickyOption;
+      const btn = form.querySelector(`.variant-opt[data-option="${opt}"][data-value="${CSS.escape(sel.value)}"]`);
+      if (btn) btn.click();
+    });
+  });
+
+  // Real variant change → mirror into the sticky bar.
+  const syncFromVariant = (v) => {
+    stickySelects.forEach(sel => {
+      const opt = sel.dataset.stickyOption;
+      if (v && v[opt] != null) sel.value = v[opt];
+    });
+    if (stickyPrice && mainPrice) stickyPrice.innerHTML = mainPrice.innerHTML;
+    if (stickyAdd) {
+      const avail = v && v.available;
+      stickyAdd.disabled = !avail;
+      stickyAdd.textContent = !v ? 'Unavailable' : (avail ? 'Add to cart' : 'Sold out');
+    }
+  };
+  form.addEventListener('variant:change', (e) => syncFromVariant(e.detail.variant));
+  syncFromVariant(picker?.currentVariant); // initial state
+
+  // Sticky Add to cart.
+  if (stickyAdd) {
+    stickyAdd.addEventListener('click', async () => {
+      const v = form._variantPicker?.currentVariant;
+      if (!v || !v.available) return;
+      const qty = parseInt(bar.querySelector('[data-sticky-qty]')?.value, 10) || 1;
+      const original = stickyAdd.textContent;
+      stickyAdd.disabled = true;
+      stickyAdd.textContent = 'Adding...';
+      try {
+        await addToCart(v.id, qty);
+      } finally {
+        stickyAdd.disabled = false;
+        stickyAdd.textContent = original;
+      }
+    });
   }
 }
 
@@ -409,6 +480,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.product-form').forEach(form => {
     new VariantPicker(form);
   });
+
+  // Sticky add-to-cart bar (after pickers so the variant state is ready)
+  initStickyAddToCart();
 
   // Product galleries
   document.querySelectorAll('.product-media-gallery').forEach(gallery => {
