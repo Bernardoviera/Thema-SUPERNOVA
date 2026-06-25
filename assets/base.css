@@ -1672,6 +1672,14 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   transition: transform 0.15s ease;
 }
 
+/* Print/graphic variants: show the variant image inside the round swatch. */
+.variant-opt--image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 0 1px rgba(var(--color-base-text), 0.25);
+}
+
 .variant-opt--color:hover { transform: scale(1.1); }
 
 .variant-opt--color.is-selected {
