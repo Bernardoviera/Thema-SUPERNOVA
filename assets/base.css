@@ -1473,6 +1473,14 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 /* Let the columns shrink so a huge image can't stretch the gallery column. */
 .product > * { min-width: 0; }
 
+/* Pin the gallery while the (taller) info column scrolls — kills the dead
+   space below the images. Reset to static on mobile (single column). */
+.product-media-gallery {
+  position: sticky;
+  top: calc(var(--header-height, 8rem) + 2rem);
+  align-self: start;
+}
+
 .product-media__main {
   width: 100%;
   position: relative;
