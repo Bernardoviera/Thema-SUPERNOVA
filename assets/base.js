@@ -267,11 +267,27 @@ class VariantPicker {
       btn.addEventListener('click', () => {
         const option = btn.dataset.option;
         const value = btn.dataset.value;
-        this.form.querySelectorAll(`.variant-opt[data-option="${option}"]`).forEach(b => b.classList.remove('is-selected'));
-        btn.classList.add('is-selected');
-        const valueLabel = btn.closest('.product-form__option')?.querySelector('.variant-label span');
-        if (valueLabel) valueLabel.textContent = value;
-        this.updateVariant();
+
+        // Build the selection with this option overridden.
+        const selected = {};
+        this.form.querySelectorAll('.variant-opt.is-selected').forEach(b => { selected[b.dataset.option] = b.dataset.value; });
+        selected[option] = value;
+
+        // Keep the clicked value fixed and snap the OTHER options to a real,
+        // available variant so we never land on a phantom "Unavailable" combo.
+        let match = this.variants.find(v => v.available && Object.keys(selected).every(k => v[k] === selected[k]));
+        if (!match) match = this.variants.find(v => v.available && v[option] === value);
+        if (!match) match = this.variants.find(v => v[option] === value);
+
+        if (match) {
+          this.selectVariant(match);
+        } else {
+          this.form.querySelectorAll(`.variant-opt[data-option="${option}"]`).forEach(b => b.classList.remove('is-selected'));
+          btn.classList.add('is-selected');
+          const valueLabel = btn.closest('.product-form__option')?.querySelector('.variant-label span');
+          if (valueLabel) valueLabel.textContent = value;
+          this.updateVariant();
+        }
       });
     });
 
@@ -291,6 +307,20 @@ class VariantPicker {
         }
       });
     }
+  }
+
+  // Sync every option button + label to match a specific variant, then refresh.
+  selectVariant(variant) {
+    this.form.querySelectorAll('.variant-opt').forEach(b => {
+      const isSel = variant[b.dataset.option] === b.dataset.value;
+      b.classList.toggle('is-selected', isSel);
+      if (isSel) {
+        const label = b.closest('.product-form__option')?.querySelector('.variant-label span');
+        if (label) label.textContent = b.dataset.value;
+      }
+    });
+    this.currentVariant = variant;
+    this.updateUI();
   }
 
   updateVariant() {
