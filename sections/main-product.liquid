@@ -50,7 +50,11 @@
 
         {%- form 'product', product, id: 'product-form', class: 'product-form' -%}
           <script type="application/json" data-product-variants>{{ product.variants | json }}</script>
-          <script type="application/json" data-variant-images>{ {% for variant in product.variants %}{% assign vimg = variant.featured_media.preview_image | default: variant.featured_image %}"{{ variant.id }}": {% if vimg %}{{ vimg | image_url: width: 1200 | json }}{% else %}null{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %} }</script>
+          {%- assign color_pos0 = -1 -%}
+          {%- for o in product.options_with_values -%}
+            {%- if o.name == 'Cor' or o.name == 'Color' or o.name == 'Colour' -%}{%- assign color_pos0 = forloop.index0 -%}{%- break -%}{%- endif -%}
+          {%- endfor -%}
+          <script type="application/json" data-variant-images>{ {% for variant in product.variants %}{% assign vimg = variant.featured_media.preview_image | default: variant.featured_image %}{% if vimg == blank and color_pos0 >= 0 %}{% assign vcolor = variant.options[color_pos0] %}{% for v2 in product.variants %}{% if v2.options[color_pos0] == vcolor %}{% assign v2img = v2.featured_media.preview_image | default: v2.featured_image %}{% if v2img != blank %}{% assign vimg = v2img %}{% break %}{% endif %}{% endif %}{% endfor %}{% endif %}"{{ variant.id }}": {% if vimg %}{{ vimg | image_url: width: 1200 | json }}{% else %}null{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %} }</script>
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
           <!-- Variant options -->
