@@ -61,7 +61,6 @@
                 {%- if option.name == 'Cor' or option.name == 'Color' or option.name == 'Colour' -%}{%- assign is_color = true -%}{%- endif -%}
                 {%- assign opt_prop = 'option' | append: forloop.index -%}
                 {%- assign opt_pos0 = forloop.index0 -%}
-                {%- assign known_colors = 'black,white,red,blue,green,yellow,orange,purple,pink,brown,grey,gray,beige,navy,teal,maroon,olive,gold,silver,cream,tan,khaki,burgundy,turquoise,lime,coral,salmon,indigo,violet,charcoal,ivory,mustard,mint,lavender,peach,rose,wine,sand,stone,bone,camel,aqua,magenta,cyan' | split: ',' -%}
                 <div class="product-form__option">
                   <label class="variant-label">
                     {{ option.name }}
@@ -72,27 +71,34 @@
                       {%- assign swatch_is_image = false -%}
                       {%- if is_color -%}
                         {%- assign cparts = value | split: '/' -%}
-                        {%- assign vlc = value | strip | downcase -%}
                         {%- if cparts.size > 1 -%}
-                          {%- assign c1 = cparts[0] | strip | downcase -%}
-                          {%- assign c2 = cparts[1] | strip | downcase -%}
+                          {%- capture c1 -%}{%- render 'sn-color', name: cparts[0] -%}{%- endcapture -%}
+                          {%- capture c2 -%}{%- render 'sn-color', name: cparts[1] -%}{%- endcapture -%}
+                          {%- assign c1 = c1 | strip -%}
+                          {%- assign c2 = c2 | strip -%}
+                          {%- if c1 == blank -%}{%- assign c1 = cparts[0] | strip | downcase -%}{%- endif -%}
+                          {%- if c2 == blank -%}{%- assign c2 = cparts[1] | strip | downcase -%}{%- endif -%}
                           {%- capture swatch_style -%}background:linear-gradient(135deg,{{ c1 }} 0 50%,{{ c2 }} 50% 100%);{%- endcapture -%}
-                        {%- elsif known_colors contains vlc -%}
-                          {%- capture swatch_style -%}background-color:{{ vlc }};{%- endcapture -%}
                         {%- else -%}
-                          {%- comment -%} Not a colour name (e.g. a print) → use that variant's image as the swatch. {%- endcomment -%}
-                          {%- assign swatch_img = blank -%}
-                          {%- for v in product.variants -%}
-                            {%- if v.options[opt_pos0] == value and v.image != blank -%}
-                              {%- assign swatch_img = v.image -%}
-                              {%- break -%}
-                            {%- endif -%}
-                          {%- endfor -%}
-                          {%- if swatch_img != blank -%}
-                            {%- assign swatch_is_image = true -%}
-                            {%- capture swatch_style -%}background-image:url({{ swatch_img | image_url: width: 120 }});{%- endcapture -%}
+                          {%- capture chex -%}{%- render 'sn-color', name: value -%}{%- endcapture -%}
+                          {%- assign chex = chex | strip -%}
+                          {%- if chex != blank -%}
+                            {%- capture swatch_style -%}background-color:{{ chex }};{%- endcapture -%}
                           {%- else -%}
-                            {%- capture swatch_style -%}background-color:{{ vlc }};{%- endcapture -%}
+                            {%- comment -%} Not a known colour (e.g. a print) → use that variant's image. {%- endcomment -%}
+                            {%- assign swatch_img = blank -%}
+                            {%- for v in product.variants -%}
+                              {%- if v.options[opt_pos0] == value and v.image != blank -%}
+                                {%- assign swatch_img = v.image -%}
+                                {%- break -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                            {%- if swatch_img != blank -%}
+                              {%- assign swatch_is_image = true -%}
+                              {%- capture swatch_style -%}background-image:url({{ swatch_img | image_url: width: 120 }});{%- endcapture -%}
+                            {%- else -%}
+                              {%- capture swatch_style -%}background-color:{{ value | strip | downcase }};{%- endcapture -%}
+                            {%- endif -%}
                           {%- endif -%}
                         {%- endif -%}
                       {%- endif -%}
