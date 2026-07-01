@@ -770,6 +770,7 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   gap: var(--grid-desktop-vertical-spacing) var(--grid-desktop-horizontal-spacing);
 }
 
+/* ===== Product card — "technical / anomaly" ===== */
 .product-card {
   position: relative;
   display: flex;
@@ -779,10 +780,14 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 .product-card__media {
   position: relative;
   overflow: hidden;
-  border-radius: var(--product-card-corner-radius);
+  border-radius: 0; /* sharp corners */
   background-color: rgb(var(--color-base-background-2));
   aspect-ratio: 3/4;
+  border: 1px solid rgba(var(--color-base-text), 0.14);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
+
+.product-card__media-link { display: block; width: 100%; height: 100%; }
 
 .product-card__media img {
   width: 100%;
@@ -791,12 +796,48 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   transition: transform 0.5s ease;
 }
 
-.product-card:hover .product-card__media img { transform: scale(1.05); }
+.product-card:hover .product-card__media {
+  border-color: rgba(var(--color-base-accent-1), 0.9);
+  box-shadow: 0 10px 40px rgba(var(--color-base-accent-1), 0.18);
+}
+
+.product-card:hover .product-card__media img {
+  transform: scale(1.06);
+  animation: sn-card-glitch 0.5s steps(1, end) 1;
+}
+
+/* Scanline sweep on hover */
+.product-card__scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(rgba(var(--color-base-accent-1), 0) 0%, rgba(var(--color-base-accent-1), 0.18) 50%, rgba(var(--color-base-accent-1), 0) 100%);
+  background-size: 100% 12px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  mix-blend-mode: screen;
+}
+
+.product-card:hover .product-card__scan { opacity: 1; animation: sn-card-scan 0.7s linear 1; }
+
+@keyframes sn-card-glitch {
+  0%   { filter: none; clip-path: inset(0 0 0 0); }
+  15%  { filter: drop-shadow(3px 0 0 rgba(255,0,90,0.7)) drop-shadow(-3px 0 0 rgba(0,220,255,0.7)); transform: scale(1.06) translate(-2px, 0); }
+  30%  { clip-path: inset(12% 0 55% 0); transform: scale(1.06) translate(2px, 0); }
+  45%  { filter: drop-shadow(-4px 0 0 rgba(255,0,90,0.7)) drop-shadow(4px 0 0 rgba(0,220,255,0.7)); clip-path: inset(60% 0 8% 0); }
+  60%  { clip-path: inset(0 0 0 0); transform: scale(1.06) translate(-1px, 0); }
+  100% { filter: none; transform: scale(1.06); }
+}
+
+@keyframes sn-card-scan {
+  from { background-position: 0 -100%; }
+  to   { background-position: 0 200%; }
+}
 
 .product-card__badges {
   position: absolute;
-  top: 1.2rem;
-  left: 1.2rem;
+  top: 1rem;
+  left: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -805,16 +846,17 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 
 .badge {
   display: inline-block;
-  padding: 0.4rem 1rem;
-  font-size: 1.1rem;
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-body-family), monospace;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 .badge--sale {
-  background-color: #c9303f;
+  background-color: rgb(var(--color-base-accent-1));
   color: #fff;
 }
 
@@ -823,50 +865,73 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   color: rgb(var(--color-base-background-1));
 }
 
-.product-card__quick-add {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0,0,0,0.75);
-  color: #fff;
-  border: none;
-  padding: 1.2rem;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.product-card:hover .product-card__quick-add { transform: translateY(0); }
-
 .product-card__info {
-  padding: 1.4rem 0 0;
-  text-align: var(--product-card-text-alignment);
+  padding: 1.4rem 0 0.2rem;
+  text-align: left;
   flex: 1;
 }
 
-.product-card__vendor {
+.product-card__index {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   font-size: 1.1rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(var(--color-base-text), 0.55);
-  margin-bottom: 0.4rem;
+  letter-spacing: 0.1em;
+  color: rgb(var(--color-base-accent-1));
+  margin-bottom: 0.5rem;
 }
+
+.product-card__index span { color: rgba(var(--color-base-text), 0.4); }
 
 .product-card__title {
   font-family: var(--font-heading-family);
   font-size: 1.5rem;
   font-weight: var(--font-heading-weight);
-  letter-spacing: 0.04em;
-  text-transform: none;
-  margin: 0 0 0.8rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin: 0 0 0.7rem;
   color: rgb(var(--color-base-text));
 }
 
 .product-card__title a:hover { text-decoration: none; opacity: 0.7; }
+
+.product-card__info .price { justify-content: flex-start; }
+
+/* Full-width technical add bar */
+.product-card__add {
+  margin-top: 1.2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  background: transparent;
+  color: rgb(var(--color-base-text));
+  border: 1px solid rgba(var(--color-base-text), 0.35);
+  border-radius: 0;
+  font-family: var(--font-body-family);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.product-card__add svg { width: 1.6rem; height: 1.6rem; transition: transform 0.2s ease; }
+
+.product-card__add:hover {
+  background-color: rgb(var(--color-base-text));
+  color: rgb(var(--color-base-background-1));
+  border-color: rgb(var(--color-base-text));
+}
+
+.product-card__add:hover svg { transform: rotate(90deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card:hover .product-card__media img { animation: none; }
+  .product-card:hover .product-card__scan { animation: none; }
+}
 
 .price {
   display: flex;

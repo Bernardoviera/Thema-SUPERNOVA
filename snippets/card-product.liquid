@@ -16,22 +16,22 @@
 
 <div class="product-card">
   <div class="product-card__media">
-    {%- if product.featured_image != blank -%}
-      <a href="{{ product.url }}">
+    <a href="{{ product.url }}" class="product-card__media-link" aria-label="{{ product.title | escape }}">
+      {%- if product.featured_image != blank -%}
         {{
           product.featured_image
           | image_url: width: 600
           | image_tag:
             loading: lazy_load,
             width: 600,
-            alt: product.title
+            alt: product.title,
+            class: 'product-card__img'
         }}
-      </a>
-    {%- else -%}
-      <a href="{{ product.url }}">
+      {%- else -%}
         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-      </a>
-    {%- endif -%}
+      {%- endif -%}
+      <span class="product-card__scan" aria-hidden="true"></span>
+    </a>
 
     <div class="product-card__badges">
       {%- if on_sale -%}
@@ -41,21 +41,12 @@
         <span class="badge badge--new">New</span>
       {%- endif -%}
     </div>
-
-    {%- if first_available_variant != blank -%}
-      <button
-        class="product-card__quick-add"
-        data-quick-add="{{ first_available_variant.id }}"
-        aria-label="{{ 'products.product.add_to_cart' | t }}: {{ product.title }}"
-      >
-        Add to cart
-      </button>
-    {%- endif -%}
   </div>
 
   <div class="product-card__info">
-    {%- if product.vendor != blank -%}
-      <div class="product-card__vendor">{{ product.vendor }}</div>
+    {%- if index != blank -%}
+      {%- capture idx -%}00{{ index }}{%- endcapture -%}
+      <div class="product-card__index">{{ idx | slice: -3, 3 }} <span>//</span></div>
     {%- endif -%}
 
     <h3 class="product-card__title">
@@ -66,4 +57,15 @@
       {%- render 'price', product: product -%}
     </div>
   </div>
+
+  {%- if first_available_variant != blank -%}
+    <button
+      class="product-card__add"
+      data-quick-add="{{ first_available_variant.id }}"
+      aria-label="{{ 'products.product.add_to_cart' | t }}: {{ product.title }}"
+    >
+      <span>Add to cart</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+  {%- endif -%}
 </div>
