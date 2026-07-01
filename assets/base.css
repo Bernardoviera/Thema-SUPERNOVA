@@ -797,42 +797,13 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 }
 
 .product-card:hover .product-card__media {
-  border-color: rgba(var(--color-base-accent-1), 0.9);
-  box-shadow: 0 10px 40px rgba(var(--color-base-accent-1), 0.18);
+  border-color: rgba(var(--color-base-text), 0.3);
 }
 
-.product-card:hover .product-card__media img {
-  transform: scale(1.06);
-  animation: sn-card-glitch 0.5s steps(1, end) 1;
-}
+.product-card:hover .product-card__media img { transform: scale(1.06); }
 
-/* Scanline sweep on hover */
-.product-card__scan {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(rgba(var(--color-base-accent-1), 0) 0%, rgba(var(--color-base-accent-1), 0.18) 50%, rgba(var(--color-base-accent-1), 0) 100%);
-  background-size: 100% 12px;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  mix-blend-mode: screen;
-}
-
-.product-card:hover .product-card__scan { opacity: 1; animation: sn-card-scan 0.7s linear 1; }
-
-@keyframes sn-card-glitch {
-  0%   { filter: none; clip-path: inset(0 0 0 0); }
-  15%  { filter: drop-shadow(3px 0 0 rgba(255,0,90,0.7)) drop-shadow(-3px 0 0 rgba(0,220,255,0.7)); transform: scale(1.06) translate(-2px, 0); }
-  30%  { clip-path: inset(12% 0 55% 0); transform: scale(1.06) translate(2px, 0); }
-  45%  { filter: drop-shadow(-4px 0 0 rgba(255,0,90,0.7)) drop-shadow(4px 0 0 rgba(0,220,255,0.7)); clip-path: inset(60% 0 8% 0); }
-  60%  { clip-path: inset(0 0 0 0); transform: scale(1.06) translate(-1px, 0); }
-  100% { filter: none; transform: scale(1.06); }
-}
-
-@keyframes sn-card-scan {
-  from { background-position: 0 -100%; }
-  to   { background-position: 0 200%; }
-}
+/* Glitch/scanline removed — keep the clean technical look. */
+.product-card__scan { display: none; }
 
 .product-card__badges {
   position: absolute;
@@ -2016,8 +1987,7 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
 .category-card__overlay {
   position: absolute;
   inset: 0;
-  /* Only a slim protection strip behind the text — the image stays clean. */
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 28%);
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.05) 60%);
 }
 
 .category-card__content {
@@ -2033,16 +2003,14 @@ body:not(.template-index) .header__logo--has-inverse .header__logo-image--invers
   font-size: 2rem;
   color: #fff;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
 }
 
 .category-card__link {
   font-size: 1.2rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.8);
   text-decoration: underline;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.55);
 }
 
 /* ---------- Trust badges ---------- */
