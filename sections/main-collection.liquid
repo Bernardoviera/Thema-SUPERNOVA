@@ -1,5 +1,14 @@
-<div class="collection-hero">
-  <div class="page-width">
+{%- assign has_cover = false -%}
+{%- if section.settings.show_cover_image and collection.image != blank -%}{%- assign has_cover = true -%}{%- endif -%}
+
+<div
+  class="collection-hero{% if has_cover %} collection-hero--image{% endif %}"
+  {% if has_cover %}style="background-image:url({{ collection.image | image_url: width: 2200 }});min-height:{{ section.settings.cover_height }}px;--cover-overlay:{{ section.settings.overlay_opacity | divided_by: 100.0 }}"{% endif %}
+>
+  <div class="page-width collection-hero__inner">
+    {%- if section.settings.show_eyebrow and section.settings.eyebrow_text != blank -%}
+      <span class="collection-hero__eyebrow">{{ section.settings.eyebrow_text }}</span>
+    {%- endif -%}
     <h1 class="collection-hero__title">{{ collection.title }}</h1>
     {%- if collection.description != blank -%}
       <div class="collection-hero__desc">{{ collection.description }}</div>
@@ -67,6 +76,53 @@
   "tag": "section",
   "templates": ["collection"],
   "settings": [
+    {
+      "type": "header",
+      "content": "Collection cover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cover_image",
+      "default": true,
+      "label": "Use the collection image as a cover",
+      "info": "Set the image in Products → Collections → [collection] → Image. Without an image, a clean title header is shown."
+    },
+    {
+      "type": "range",
+      "id": "cover_height",
+      "min": 260,
+      "max": 720,
+      "step": 20,
+      "unit": "px",
+      "default": 440,
+      "label": "Cover height"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 45,
+      "label": "Image darkening"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_eyebrow",
+      "default": true,
+      "label": "Show eyebrow label"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "default": "// Collection",
+      "label": "Eyebrow text"
+    },
+    {
+      "type": "header",
+      "content": "Product grid"
+    },
     {
       "type": "range",
       "id": "columns_desktop",
