@@ -81,14 +81,16 @@
         "cat-1": {
           "type": "category",
           "settings": {
-            "title": "Tops",
+            "image": "shopify://shop_images/ChatGPT_Image_3_de_jul._de_2026_15_02_06.png",
+            "title": "STREET ",
             "cta_label": "Shop now",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/street"
           }
         },
         "cat-2": {
           "type": "category",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_3_de_jul._de_2026_15_15_01.png",
             "title": "Bottoms",
             "cta_label": "Shop now",
             "link": "shopify://collections/all"
